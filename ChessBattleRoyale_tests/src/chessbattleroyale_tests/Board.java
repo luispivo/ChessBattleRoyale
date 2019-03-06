@@ -20,13 +20,17 @@ class Board {
     int Rows,InitialRows;
     int Columns,InitialColumns;
     
+    //No tengo claro si es mejor tener aquí simplemente un color representando al jugador que le toca mover
+    //o tener al jugador entero. Vamos a ir explorando con esto pero lo mismo es mejor tener la referencia al jugador
+    Color TurnoJugador;
+    
     ArrayList<Casilla> Tablero;
     //Otra posibilidad sería trabajar con 
     //Casilla[][] TCasillas;
     //pero es mejor el arraylist a priori para no tener fijas las dimensiones
 
     /**
-     * 
+     * Constructor para el tablero vacío, sin piezas y que comienza el jugador negro
      * @param columns número de columnas del tablero (1 al número de columnas)
      * @param rows número de filas del tablero (1 al número de filas)
      */
@@ -36,7 +40,8 @@ class Board {
         this.Columns = columns;
         InitialRows=rows;
         InitialColumns=columns;
-        for(int i=0;i<Rows;i++) for(int j=0;j<Columns;j++) Tablero.add(new Casilla(i,j));    
+        for(int i=0;i<Rows;i++) for(int j=0;j<Columns;j++) Tablero.add(new Casilla(i,j));
+        TurnoJugador=Color.BLACK;
     } 
     /**
      * 
