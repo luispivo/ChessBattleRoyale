@@ -6,6 +6,7 @@
 package chessbattleroyale_tests;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import javax.xml.bind.annotation.XmlElement;
 
 /**
@@ -23,6 +24,8 @@ class Board {
     //No tengo claro si es mejor tener aquí simplemente un color representando al jugador que le toca mover
     //o tener al jugador entero. Vamos a ir explorando con esto pero lo mismo es mejor tener la referencia al jugador
     Color TurnoJugador;
+    //La colección de colores de jugadores activos que no han sido eliminados el rey (y por lo tanto sus piezas todavía
+    EnumSet<Color> JugadoresActivos;
     
     ArrayList<Casilla> Tablero;
     //Otra posibilidad sería trabajar con 
@@ -86,6 +89,13 @@ class Board {
             }
         }             
         return false;   
+    }
+    /**
+     * NO IMPLEMENTADO
+     * @return Un conjunto de tableros que constituyen 
+     */
+    ArrayList<Board> JugadasPosibles(){
+        return null;
     }
     /**
      * Incrementa el status de desaparición a un conjunto rectangular de casillas del tablero con el

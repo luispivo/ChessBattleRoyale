@@ -5,6 +5,9 @@
  */
 package chessbattleroyale_tests;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
+
 /**
  *
  * @author Luis
@@ -27,9 +30,38 @@ public class ChessRoyale {
             System.out.println(tablero);
             System.out.println(i);
         }
+        
+        //Prueba de unas cosillas de las enumeraciones para ver como hago para que vaya avanzando con ella por los turnos      
+        Color color=Color.BLUE;
+        System.out.println(color.ordinal());
+        color=color.values()[color.ordinal()+1]; //Hace la siguiente del BLUE... El purple
+        System.out.println(color.name());
+        //Probando los enumset
+        EnumSet<Color> colorines;
+        colorines=EnumSet.allOf(Color.class);
+        ArrayList<Color> colores=new ArrayList();
+        
+        colorines.remove(Color.BLUE);
+        colorines.forEach( x -> colores.add(x) );
+        System.out.println(colorines);
+        System.out.println(colores);
+        //colores.removeAll(colores);
+        
+        int contador=-1;
+        for(int i=0;i<10;i++) {            
+            if(contador>=colores.size()-1) contador=0;
+            else contador++;
+            System.out.println(colores.get(contador));
+        }
+        System.out.println("hola");
+        for(Color x:colores) System.out.println(x);
+        for(Color x:colorines) System.out.println(x);
+        
+        //Parece que con los EnumSet me puedo apañar
+             
         //System.out.println(tablero);
         //Pruebas de movimientos...
-        Pieza peoncito=new King(Color.BLACK);
+        /* Pieza peoncito=new King(Color.BLACK);
         Casilla casillita=tablero.getCasilla(4,5);
         Pawn otroPeoncito=new Pawn(Color.GREEN);
         casillita.setPiezaCasilla(peoncito);
@@ -40,7 +72,7 @@ public class ChessRoyale {
         //masCasillita=tablero.getCasilla(3,6);
         //masCasillita.setPiezaCasilla(peoncito);
         
-        System.out.println(peoncito.PossibleMoves(casillita, tablero));
+        System.out.println(peoncito.PossibleMoves(casillita, tablero));*/
         /*tablero.IncrementaAlertaTablero(1);
         System.out.println(tablero);
         System.out.println("hola");
