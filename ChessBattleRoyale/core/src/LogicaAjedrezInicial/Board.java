@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package chessbattleroyale_tests;
+package LogicaAjedrezInicial;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -16,7 +16,7 @@ import java.util.EnumSet;
  * 
  * @author Luis
  */
-class Board {
+public class Board {
     int Rows,InitialRows;
     int Columns,InitialColumns;
     
@@ -147,7 +147,78 @@ class Board {
         inicio.Ocupada=null;
         destino.Ocupada=pieza;
     }
-    
+    /**
+     * Pues colocar todas las piezas en el tablero, esto si que dependerá del tablero asi que una función por
+     * cada tipo de juego que se quiera. Por eso no he considerado logico hacerlo en modo general, aprovecharemos
+     * que sabemos que son 14 filas y columnas y 4 jugadores
+     */
+    public void TableroInicialPiezas14(){
+        Pieza aux;
+        for(int j=3;j<=10;j++) {
+                //Los peones no necesitan un switch ...
+                aux=new Pawn(Color.BLACK);                                        
+                this.getCasilla(1,j).Ocupada=aux;
+                aux=new Pawn(Color.BLUE);                                        
+                this.getCasilla(j,1).Ocupada=aux;
+                aux=new Pawn(Color.PURPLE);                                        
+                this.getCasilla(12,j).Ocupada=aux;
+                aux=new Pawn(Color.GREEN);                                        
+                this.getCasilla(j,12).Ocupada=aux;
+                //Las piezas si que depende de la columnan son distintas...
+                switch (j) {
+                    case 3:case 10:                         
+                        aux=new Rook(Color.BLACK);
+                        this.getCasilla(0,j).Ocupada=aux;
+                        aux=new Rook(Color.PURPLE);
+                        this.getCasilla(13,j).Ocupada=aux;
+                        aux=new Rook(Color.BLUE);
+                        this.getCasilla(j,0).Ocupada=aux;
+                        aux=new Rook(Color.GREEN);
+                        this.getCasilla(j,13).Ocupada=aux;                        
+                        break;
+                    case 4: case 9:                
+                        aux=new Knight(Color.BLACK);
+                        this.getCasilla(0,j).Ocupada=aux;               
+                        aux=new Knight(Color.PURPLE);
+                        this.getCasilla(13,j).Ocupada=aux;
+                        aux=new Rook(Color.BLUE);
+                        this.getCasilla(j,0).Ocupada=aux;
+                        aux=new Rook(Color.GREEN);
+                        this.getCasilla(j,13).Ocupada=aux;                        
+                        break;                       
+                    case 5: case 8:
+                        aux=new Bishop(Color.BLACK);
+                        this.getCasilla(0,j).Ocupada=aux;
+                        aux=new Bishop(Color.PURPLE);
+                        this.getCasilla(13,j).Ocupada=aux;
+                        aux=new Rook(Color.BLUE);
+                        this.getCasilla(j,0).Ocupada=aux;
+                        aux=new Rook(Color.GREEN);
+                        this.getCasilla(j,13).Ocupada=aux;                        
+                        break;
+                    case 6:
+                        aux=new Queen(Color.BLACK);
+                        this.getCasilla(0,j).Ocupada=aux;
+                        aux=new Queen(Color.PURPLE);
+                        this.getCasilla(13,j).Ocupada=aux;
+                        aux=new Rook(Color.BLUE);
+                        this.getCasilla(j,0).Ocupada=aux;
+                        aux=new Rook(Color.GREEN);
+                        this.getCasilla(j,13).Ocupada=aux;                        
+                        break;                       
+                    case 7:
+                        aux=new King(Color.BLACK);
+                        this.getCasilla(0,j).Ocupada=aux;
+                        aux=new King(Color.PURPLE);
+                        this.getCasilla(13,j).Ocupada=aux;
+                        aux=new Rook(Color.BLUE);
+                        this.getCasilla(j,0).Ocupada=aux;
+                        aux=new Rook(Color.GREEN);
+                        this.getCasilla(j,13).Ocupada=aux;
+                        break;                    
+                }                
+            }
+    }
     /**
     * 
     * @return string con el tablero (para pruebas antes de ir pintando con la libreria y demás LIBGDX
