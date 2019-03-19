@@ -29,6 +29,7 @@ enum Color{
 abstract class Pieza {
     TipoPieza ClasePieza;
     Color ColorJugador;
+    
     /**
      * Función para devolver todas las casillas a las que se puede mover la pieza situada en
      * @param casilla casilla donde esta la pieza situada
@@ -77,10 +78,13 @@ abstract class Pieza {
 class Pawn extends Pieza{
 
     public Pawn(Color color) {
-        ClasePieza=TipoPieza.PAWN;
-        ColorJugador=color;     
+        ColorJugador=color;
+        ClasePieza=TipoPieza.PAWN;    
     }
-    
+    public Pawn(Pieza pieza){
+        ColorJugador=pieza.ColorJugador;
+        ClasePieza=pieza.ClasePieza;
+    }
     @Override
     ArrayList<Casilla> PossibleMoves(Casilla casilla, Board tablero) {
         ArrayList<Casilla> listaCasillas=new ArrayList<>();
@@ -143,10 +147,13 @@ class Pawn extends Pieza{
  */
 class King extends Pieza{
     public King(Color color) {
+        ColorJugador=color;
         ClasePieza=TipoPieza.KING;
-        ColorJugador=color;  
     }
-
+    public King(Pieza pieza){
+        ColorJugador=pieza.ColorJugador;
+        ClasePieza=pieza.ClasePieza;
+    }
     @Override
     ArrayList<Casilla> PossibleMoves(Casilla casilla, Board tablero) {
         ArrayList<Casilla> listaCasillas=new ArrayList<>();
@@ -180,10 +187,13 @@ class King extends Pieza{
 class Knight extends Pieza{
 
     public Knight(Color color) {
+        ColorJugador=color;
         ClasePieza=TipoPieza.KNIGHT;
-        ColorJugador=color;  
     }
-
+    public Knight(Pieza pieza){
+        ColorJugador=pieza.ColorJugador;
+        ClasePieza=pieza.ClasePieza;
+    }
     @Override
     ArrayList<Casilla> PossibleMoves(Casilla casilla, Board tablero) {
         ArrayList<Casilla> listaCasillas=new ArrayList<>();
@@ -213,8 +223,12 @@ class Knight extends Pieza{
 class Bishop extends Pieza {
 
     public Bishop(Color color) {
-        ClasePieza=TipoPieza.BISHOP;
-        ColorJugador=color;  
+        ColorJugador=color;
+        ClasePieza=TipoPieza.BISHOP; 
+    }
+    public Bishop(Pieza pieza){
+        ColorJugador=pieza.ColorJugador;
+        ClasePieza=pieza.ClasePieza;
     }
     @Override
     ArrayList<Casilla> PossibleMoves(Casilla casilla, Board tablero) {
@@ -278,8 +292,12 @@ class Bishop extends Pieza {
 class Rook extends Pieza{
 
     public Rook(Color color) {
-        ClasePieza=TipoPieza.ROOK;
-        ColorJugador=color;  
+        ColorJugador=color;
+        ClasePieza=TipoPieza.ROOK;  
+    }
+    public Rook(Pieza pieza){
+        ColorJugador=pieza.ColorJugador;
+        ClasePieza=pieza.ClasePieza;
     }
     @Override
     ArrayList<Casilla> PossibleMoves(Casilla casilla, Board tablero) {
@@ -329,8 +347,12 @@ class Rook extends Pieza{
 class Queen extends Pieza{
 
     public Queen(Color color) {
+        ColorJugador=color;
         ClasePieza=TipoPieza.QUEEN;
-        ColorJugador=color;  
+    }
+    public Queen(Pieza pieza){
+        ColorJugador=pieza.ColorJugador;
+        ClasePieza=pieza.ClasePieza;
     }
     @Override
     ArrayList<Casilla> PossibleMoves(Casilla casilla, Board tablero) {

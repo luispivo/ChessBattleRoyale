@@ -46,6 +46,23 @@ public class Board {
         TurnoJugador=Color.BLACK;
     } 
     /**
+     * Constructor copia
+     * @param board Tablero a copiar
+     */
+    public Board(Board board){
+        Rows=board.Rows;
+        InitialRows=board.InitialRows;
+        Columns=board.Columns;
+        InitialColumns=board.InitialColumns; 
+        TurnoJugador=board.TurnoJugador;
+        JugadoresActivos=board.JugadoresActivos;
+        Tablero=new ArrayList();
+        for (Casilla x:board.Tablero) {
+            Casilla y=new Casilla(x);
+            Tablero.add(y);
+        }
+    }
+    /**
      * 
      * @param casilla Casilla que se elimina de la colección del tablero
      */
@@ -82,7 +99,7 @@ public class Board {
         for (Casilla x: Tablero){
             if (!x.equals(casilla)&& x.Ocupada!=null && x.Ocupada.ColorJugador!=color){
                 for(Casilla y: x.Ocupada.PossibleCaptures(x, this)){
-                    System.out.println("hola");
+                    //System.out.println("hola");
                     if (casilla.equals(y)) return true;
                 }
             }
@@ -91,9 +108,17 @@ public class Board {
     }
     /**
      * NO IMPLEMENTADO
-     * @return Un conjunto de tableros que constituyen 
+     * @return Un conjunto de tableros que constituyen las posibles jugadas a partir de él. No incluyen valoración
+     * que eso lo haré dependiendo de parametros de mi intento de hacer IA
      */
     ArrayList<Board> JugadasPosibles(){
+        ArrayList<Board> tablerosFuturos=new ArrayList();
+        for (Casilla x: Tablero){
+            if(x.Ocupada!=null && x.Ocupada.ColorJugador==TurnoJugador){
+                for (Casilla y:x.Ocupada.PossibleMoves(x, this)) tablerosFuturos.add(Movimiento(x, y));
+            }
+        }
+        
         return null;
     }
     /**
@@ -141,11 +166,17 @@ public class Board {
         }
         for (int i=numeroFilas;i>=0;i--) IncrementaAlertaTablero((InitialRows-Rows)/2+i);               
     }
-    
-    void Movimiento(Casilla inicio, Casilla destino){
-        Pieza pieza=inicio.Ocupada;
-        inicio.Ocupada=null;
-        destino.Ocupada=pieza;
+    /**
+     * Mueve una pieza de la casilla inicio a la casilla destino en un tablero copia
+     * @param inicio Casilla inicio
+     * @param destino Casilla destino
+     */
+    Board Movimiento(Casilla inicio, Casilla destino){
+        Board nuevoTablero=new Board(this);
+        Pieza pieza=inicio.CopiaPiezaPorTipo();
+        nuevoTablero.getCasilla(inicio.Fila, inicio.Columna).Ocupada=null;
+        nuevoTablero.getCasilla(destino.Fila, destino.Columna).Ocupada=pieza;
+        return nuevoTablero;
     }
     /**
      * Pues colocar todas las piezas en el tablero, esto si que dependerá del tablero asi que una función por
@@ -181,9 +212,9 @@ public class Board {
                         this.getCasilla(0,j).Ocupada=aux;               
                         aux=new Knight(Color.PURPLE);
                         this.getCasilla(13,j).Ocupada=aux;
-                        aux=new Rook(Color.BLUE);
+                        aux=new Knight(Color.BLUE);
                         this.getCasilla(j,0).Ocupada=aux;
-                        aux=new Rook(Color.GREEN);
+                        aux=new Knight(Color.GREEN);
                         this.getCasilla(j,13).Ocupada=aux;                        
                         break;                       
                     case 5: case 8:
@@ -191,9 +222,9 @@ public class Board {
                         this.getCasilla(0,j).Ocupada=aux;
                         aux=new Bishop(Color.PURPLE);
                         this.getCasilla(13,j).Ocupada=aux;
-                        aux=new Rook(Color.BLUE);
+                        aux=new Bishop(Color.BLUE);
                         this.getCasilla(j,0).Ocupada=aux;
-                        aux=new Rook(Color.GREEN);
+                        aux=new Bishop(Color.GREEN);
                         this.getCasilla(j,13).Ocupada=aux;                        
                         break;
                     case 6:
@@ -201,9 +232,9 @@ public class Board {
                         this.getCasilla(0,j).Ocupada=aux;
                         aux=new Queen(Color.PURPLE);
                         this.getCasilla(13,j).Ocupada=aux;
-                        aux=new Rook(Color.BLUE);
+                        aux=new Queen(Color.BLUE);
                         this.getCasilla(j,0).Ocupada=aux;
-                        aux=new Rook(Color.GREEN);
+                        aux=new Queen(Color.GREEN);
                         this.getCasilla(j,13).Ocupada=aux;                        
                         break;                       
                     case 7:
@@ -211,9 +242,9 @@ public class Board {
                         this.getCasilla(0,j).Ocupada=aux;
                         aux=new King(Color.PURPLE);
                         this.getCasilla(13,j).Ocupada=aux;
-                        aux=new Rook(Color.BLUE);
+                        aux=new King(Color.BLUE);
                         this.getCasilla(j,0).Ocupada=aux;
-                        aux=new Rook(Color.GREEN);
+                        aux=new King(Color.GREEN);
                         this.getCasilla(j,13).Ocupada=aux;
                         break;                    
                 }                
@@ -264,6 +295,7 @@ class Casilla{
     int Columna;
     Pieza Ocupada;
     EstadoCasilla Status;
+    Boolean Clickada;
 
     /**
      * Crea la casilla correspondiente
@@ -274,6 +306,41 @@ class Casilla{
         Fila = fila;
         Columna = columna;
         Status=EstadoCasilla.EMPTY;
+        Clickada=false;
+    }
+    
+    public Casilla(Casilla casilla){
+        Fila=casilla.Fila;
+        Columna=casilla.Columna;
+        Status=casilla.Status;
+        Clickada=casilla.Clickada;
+        Ocupada=CopiaPiezaPorTipo();
+    }
+
+    Pieza CopiaPiezaPorTipo() {
+        //Problema es que claro tengo que copiar la pieza... pero claro eso depende de que pieza por usar la pieza
+        //abstracta... quizás debería haber usado una interface y quitar todo estos problemas
+        switch (Ocupada.ClasePieza){
+            case PAWN:
+                Ocupada=new Pawn(Ocupada);
+                break;
+            case KNIGHT:
+                Ocupada=new Knight(Ocupada);
+                break;
+            case ROOK:
+                Ocupada=new Rook(Ocupada);
+                break;
+            case BISHOP:
+                Ocupada=new Bishop(Ocupada);
+                break;
+            case QUEEN:
+                Ocupada=new Queen(Ocupada);
+                break;
+            case KING:
+                Ocupada=new King(Ocupada);
+                break;
+        }
+        return Ocupada;
     }
 
     void setPiezaCasilla(Pieza Ocupada) {

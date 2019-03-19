@@ -5,7 +5,9 @@
  */
 package Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.pddm.game.ChessBattleRoyaleGame;
 
@@ -17,6 +19,7 @@ public abstract class PlantillaScreen implements Screen {
 
     protected ChessBattleRoyaleGame game;
     protected SpriteBatch batch;
+    public Sound moveSound;
 
     public PlantillaScreen(ChessBattleRoyaleGame game) {
         this.game = game;
@@ -25,17 +28,18 @@ public abstract class PlantillaScreen implements Screen {
        
     @Override
     public void show() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         moveSound = Gdx.audio.newSound(Gdx.files.internal("move.mp3"));
+         moveSound.play();
     }
     
     @Override
     public void resize(int i, int i1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
     public void pause() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
