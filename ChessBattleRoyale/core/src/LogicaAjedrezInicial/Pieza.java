@@ -23,7 +23,7 @@ enum Color{
 }
 /**
  * Clase abstracta que contiene el tipo y el color de la pieza y de momento una lista de sus posibles 
- * movimientos dado un tablero y una casilla de inicio
+ * movimientos dado un tablero y una casilla de inicio (Estoy pensando que para que hacerla abstracta
  * @author Luis
  */
 abstract class Pieza {

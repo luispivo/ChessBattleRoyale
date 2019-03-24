@@ -24,7 +24,7 @@ public class PartidaScreen extends PlantillaScreen{
 
     @Override
     public void render(float f) {
-        batch.begin();
+        batch.begin();        
         batch.end();        
     }
     

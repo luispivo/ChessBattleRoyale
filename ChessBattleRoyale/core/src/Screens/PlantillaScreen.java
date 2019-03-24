@@ -39,12 +39,12 @@ public abstract class PlantillaScreen implements Screen {
 
     @Override
     public void pause() {
-       
+       moveSound.pause();
     }
 
     @Override
     public void resume() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        moveSound.resume();
     }
 
     @Override
