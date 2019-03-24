@@ -23,7 +23,7 @@ github_username:  luispivo
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-cayman
+theme: jekyll-theme-architect
 plugins:
   - jekyll-feed
 
