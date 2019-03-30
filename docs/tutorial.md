@@ -3,7 +3,7 @@
 ## Ajedrez a 4 con tablero menguante
 
 > Hay dos clases de hombres: los que se contentan con ceder a las circunstancias y juegan al whist; y aquellos que buscan controlar las circunstancias y 
-juegan al ajedrez. - EDWARD JAMES MORTIMER COLLINS
+juegan al ajedrez. - Edward James Mortimer Collins
 
 Vale, parece que es un simple ajedrez. De hecho ya hay ajedreces para 4 jugadores en el mercado. 
 
