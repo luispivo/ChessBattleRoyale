@@ -103,3 +103,4 @@ primero del tablero se queda con 0 puntos, el que permanece el último se gana e
 reparten los puntos. Pero fiate tú si quieres de repartirlo y que en el ultimo momento el rival mueva su rey de donde va cayendo el tablero y te deje con un palmo
 de narices...
 
+[Vuelve al índice](./index.md)
