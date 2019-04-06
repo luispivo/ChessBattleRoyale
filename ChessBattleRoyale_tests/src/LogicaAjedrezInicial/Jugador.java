@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package chessbattleroyale_tests;
-
-import java.util.ArrayList;
+package LogicaAjedrezInicial;
 
 /**
- * Clase para tener seteados todas las cosas de la partida
+ *
  * @author Luis
  */
-class Partida {
-    ArrayList<Jugador> JugadoresActivos;
-    
-    
+class Jugador {
+    String Nick,Nombre,Apellidos,Correo;
+    ELO Elo;   
 }

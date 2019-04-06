@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package chessbattleroyale_tests;
+package LogicaAjedrezInicial;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -16,7 +16,7 @@ import java.util.EnumSet;
  * 
  * @author Luis
  */
-class Board {
+public class Board {
     int Rows,InitialRows;
     int Columns,InitialColumns;
     
@@ -45,6 +45,23 @@ class Board {
         for(int i=0;i<Rows;i++) for(int j=0;j<Columns;j++) Tablero.add(new Casilla(i,j));
         TurnoJugador=Color.BLACK;
     } 
+    /**
+     * Constructor copia
+     * @param board Tablero a copiar
+     */
+    public Board(Board board){
+        Rows=board.Rows;
+        InitialRows=board.InitialRows;
+        Columns=board.Columns;
+        InitialColumns=board.InitialColumns; 
+        TurnoJugador=board.TurnoJugador;
+        JugadoresActivos=board.JugadoresActivos;
+        Tablero=new ArrayList();
+        for (Casilla x:board.Tablero) {
+            Casilla y=new Casilla(x);
+            Tablero.add(y);
+        }
+    }
     /**
      * 
      * @param casilla Casilla que se elimina de la colección del tablero
@@ -82,7 +99,7 @@ class Board {
         for (Casilla x: Tablero){
             if (!x.equals(casilla)&& x.Ocupada!=null && x.Ocupada.ColorJugador!=color){
                 for(Casilla y: x.Ocupada.PossibleCaptures(x, this)){
-                    System.out.println("hola");
+                    //System.out.println("hola");
                     if (casilla.equals(y)) return true;
                 }
             }
@@ -91,9 +108,17 @@ class Board {
     }
     /**
      * NO IMPLEMENTADO
-     * @return Un conjunto de tableros que constituyen 
+     * @return Un conjunto de tableros que constituyen las posibles jugadas a partir de él. No incluyen valoración
+     * que eso lo haré dependiendo de parametros de mi intento de hacer IA
      */
     ArrayList<Board> JugadasPosibles(){
+        ArrayList<Board> tablerosFuturos=new ArrayList();
+        for (Casilla x: Tablero){
+            if(x.Ocupada!=null && x.Ocupada.ColorJugador==TurnoJugador){
+                for (Casilla y:x.Ocupada.PossibleMoves(x, this)) tablerosFuturos.add(Movimiento(x, y));
+            }
+        }
+        
         return null;
     }
     /**
@@ -141,13 +166,90 @@ class Board {
         }
         for (int i=numeroFilas;i>=0;i--) IncrementaAlertaTablero((InitialRows-Rows)/2+i);               
     }
-    
-    void Movimiento(Casilla inicio, Casilla destino){
-        Pieza pieza=inicio.Ocupada;
-        inicio.Ocupada=null;
-        destino.Ocupada=pieza;
+    /**
+     * Mueve una pieza de la casilla inicio a la casilla destino en un tablero copia
+     * @param inicio Casilla inicio
+     * @param destino Casilla destino
+     */
+    Board Movimiento(Casilla inicio, Casilla destino){
+        Board nuevoTablero=new Board(this);
+        Pieza pieza=inicio.CopiaPiezaPorTipo();
+        nuevoTablero.getCasilla(inicio.Fila, inicio.Columna).Ocupada=null;
+        nuevoTablero.getCasilla(destino.Fila, destino.Columna).Ocupada=pieza;
+        return nuevoTablero;
     }
-    
+    /**
+     * Pues colocar todas las piezas en el tablero, esto si que dependerá del tablero asi que una función por
+     * cada tipo de juego que se quiera. Por eso no he considerado logico hacerlo en modo general, aprovecharemos
+     * que sabemos que son 14 filas y columnas y 4 jugadores
+     */
+    public void TableroInicialPiezas14(){
+        Pieza aux;
+        for(int j=3;j<=10;j++) {
+                //Los peones no necesitan un switch ...
+                aux=new Pawn(Color.BLACK);                                        
+                this.getCasilla(1,j).Ocupada=aux;
+                aux=new Pawn(Color.BLUE);                                        
+                this.getCasilla(j,1).Ocupada=aux;
+                aux=new Pawn(Color.PURPLE);                                        
+                this.getCasilla(12,j).Ocupada=aux;
+                aux=new Pawn(Color.GREEN);                                        
+                this.getCasilla(j,12).Ocupada=aux;
+                //Las piezas si que depende de la columnan son distintas...
+                switch (j) {
+                    case 3:case 10:                         
+                        aux=new Rook(Color.BLACK);
+                        this.getCasilla(0,j).Ocupada=aux;
+                        aux=new Rook(Color.PURPLE);
+                        this.getCasilla(13,j).Ocupada=aux;
+                        aux=new Rook(Color.BLUE);
+                        this.getCasilla(j,0).Ocupada=aux;
+                        aux=new Rook(Color.GREEN);
+                        this.getCasilla(j,13).Ocupada=aux;                        
+                        break;
+                    case 4: case 9:                
+                        aux=new Knight(Color.BLACK);
+                        this.getCasilla(0,j).Ocupada=aux;               
+                        aux=new Knight(Color.PURPLE);
+                        this.getCasilla(13,j).Ocupada=aux;
+                        aux=new Knight(Color.BLUE);
+                        this.getCasilla(j,0).Ocupada=aux;
+                        aux=new Knight(Color.GREEN);
+                        this.getCasilla(j,13).Ocupada=aux;                        
+                        break;                       
+                    case 5: case 8:
+                        aux=new Bishop(Color.BLACK);
+                        this.getCasilla(0,j).Ocupada=aux;
+                        aux=new Bishop(Color.PURPLE);
+                        this.getCasilla(13,j).Ocupada=aux;
+                        aux=new Bishop(Color.BLUE);
+                        this.getCasilla(j,0).Ocupada=aux;
+                        aux=new Bishop(Color.GREEN);
+                        this.getCasilla(j,13).Ocupada=aux;                        
+                        break;
+                    case 6:
+                        aux=new Queen(Color.BLACK);
+                        this.getCasilla(0,j).Ocupada=aux;
+                        aux=new Queen(Color.PURPLE);
+                        this.getCasilla(13,j).Ocupada=aux;
+                        aux=new Queen(Color.BLUE);
+                        this.getCasilla(j,0).Ocupada=aux;
+                        aux=new Queen(Color.GREEN);
+                        this.getCasilla(j,13).Ocupada=aux;                        
+                        break;                       
+                    case 7:
+                        aux=new King(Color.BLACK);
+                        this.getCasilla(0,j).Ocupada=aux;
+                        aux=new King(Color.PURPLE);
+                        this.getCasilla(13,j).Ocupada=aux;
+                        aux=new King(Color.BLUE);
+                        this.getCasilla(j,0).Ocupada=aux;
+                        aux=new King(Color.GREEN);
+                        this.getCasilla(j,13).Ocupada=aux;
+                        break;                    
+                }                
+            }
+    }
     /**
     * 
     * @return string con el tablero (para pruebas antes de ir pintando con la libreria y demás LIBGDX
@@ -175,119 +277,4 @@ class Board {
         }*/
         return auxiliar;
     }   
-}
-/**
- * Enumeración de los distintos estados de la casilla
- * @author Luis
- */
-enum EstadoCasilla{
-    EMPTY,DANGERYELLOW,DANGERORANGE,DANGERRED
-}
-/**
- * Casilla. Básicamente un Vector (Fila, Columna) con un estado de peligrosidad de desaparición y que puede
- * contener una Pieza (null si está vacía).
- * @author Luis
- */
-class Casilla{
-    int Fila;
-    int Columna;
-    Pieza Ocupada;
-    EstadoCasilla Status;
-
-    /**
-     * Crea la casilla correspondiente
-     * @param columna 
-     * @param fila 
-     */
-    public Casilla(int fila,int columna) {
-        Fila = fila;
-        Columna = columna;
-        Status=EstadoCasilla.EMPTY;
-    }
-
-    void setPiezaCasilla(Pieza Ocupada) {
-        this.Ocupada = Ocupada;
-    }
-    
-    /**
-     * Incrementa el status de peligro de la casilla y si esta sobrepasa al rojo la elimina del conjunto
-     * de casillas que forman el tablero
-     * @param tablero El tablero. Necesario puesto que se tiene que eliminar la casilla de la colección si el
-     * peligro sobrepasa al rojo
-     * @return True si se ha eliminado una casilla (para luego tener en cuenta que hay que cambiar número
-     * de filas y columnas o False si no se ha eliminado la casilla
-     */
-    boolean IncreaseDangerStatus(Board tablero){
-       switch (Status) {
-           case EMPTY:
-               Status=EstadoCasilla.DANGERYELLOW;
-               break;
-           case DANGERYELLOW:
-               Status=EstadoCasilla.DANGERORANGE;
-               break;
-           case DANGERORANGE:
-               Status=EstadoCasilla.DANGERRED;
-               break;
-           case DANGERRED:
-               tablero.EliminaCasilla(this);
-               //System.out.println("ELIMINANDO fila:"+Fila+" Columna:"+Columna);
-               return true;
-       }
-       return false;
-    }
-    // Que feos son los hashcode y los equals del netbeans pero bueno...
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + this.Fila;
-        hash = 37 * hash + this.Columna;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Casilla other = (Casilla) obj;
-        if (this.Fila != other.Fila) {
-            return false;
-        }
-        if (this.Columna != other.Columna) {
-            return false;
-        }
-        return true;
-    }
-    
-    /**
-     * 
-     * @return Un string significativo del status de la casilla (luego ya modificaré cuando tenga las piezas 
-     * hechas para que además devuelva que pieza hay y que jugador para pintarlas en el LIBGDX
-     */
-    @Override
-    public String toString() {
-        String auxiliar=null;
-        switch (Status) {
-            case EMPTY:
-               auxiliar="| |";
-               break;
-           case DANGERYELLOW:
-               auxiliar="|Y|";
-               break;
-           case DANGERORANGE:
-               auxiliar="|O|";
-               break;
-           case DANGERRED:
-               auxiliar="|R|";
-               break;
-        }
-        return auxiliar+"*"+Fila+"*"+Columna+"*"+Ocupada;
-        //return auxiliar;
-    }    
 }

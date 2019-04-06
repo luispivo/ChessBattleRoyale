@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package chessbattleroyale_tests;
+package LogicaAjedrezInicial;
 
 /**
  * Preparando el infierno de la IA. La idea de la que parto (que no tiene porque ser la única y final). Es que haré

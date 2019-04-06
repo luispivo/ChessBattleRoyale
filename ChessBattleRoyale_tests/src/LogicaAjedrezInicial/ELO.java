@@ -3,18 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package chessbattleroyale_tests;
+package LogicaAjedrezInicial;
 
 /**
  *
  * @author Luis
  */
-class Jugador {
-    String Nick,Nombre,Apellidos,Correo;
-    ELO Elo;   
-}
 class ELO{
     int Elo,NumeroPartidasEvaluadas;
     double MediaEloAdversarios;
     
 }
+
