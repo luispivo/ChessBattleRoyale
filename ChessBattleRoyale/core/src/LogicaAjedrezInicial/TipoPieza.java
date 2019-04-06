@@ -6,10 +6,9 @@
 package LogicaAjedrezInicial;
 
 /**
- *
+ * Tipos de pieza
  * @author Luis
  */
-class Jugador {
-    String Nick,Nombre,Apellidos,Correo;
-    ELO Elo;   
+enum TipoPieza{
+    PAWN,KNIGHT,BISHOP,ROOK,QUEEN,KING
 }

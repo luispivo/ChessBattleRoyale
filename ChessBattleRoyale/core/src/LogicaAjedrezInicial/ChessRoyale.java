@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 
 /**
- *
+ * Para hacer las pruebas en ASCII posteriormente quitaré pero de momento pues aqui las dejo
  * @author Luis
  */
 public class ChessRoyale {

@@ -5,11 +5,11 @@
  */
 package LogicaAjedrezInicial;
 
+
 /**
- *
+ * Enumeración de los distintos estados de la casilla
  * @author Luis
  */
-class Jugador {
-    String Nick,Nombre,Apellidos,Correo;
-    ELO Elo;   
+enum EstadoCasilla{
+    EMPTY,DANGERYELLOW,DANGERORANGE,DANGERRED
 }

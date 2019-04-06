@@ -6,10 +6,9 @@
 package LogicaAjedrezInicial;
 
 /**
- *
+ * Colores de los 4 jugadores del juego
  * @author Luis
  */
-class Jugador {
-    String Nick,Nombre,Apellidos,Correo;
-    ELO Elo;   
+enum Color{
+    BLACK,BLUE,PURPLE,GREEN
 }

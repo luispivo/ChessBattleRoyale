@@ -9,7 +9,9 @@ package LogicaAjedrezInicial;
  *
  * @author Luis
  */
-class Jugador {
-    String Nick,Nombre,Apellidos,Correo;
-    ELO Elo;   
+class ELO{
+    int Elo,NumeroPartidasEvaluadas;
+    double MediaEloAdversarios;
+    
 }
+
