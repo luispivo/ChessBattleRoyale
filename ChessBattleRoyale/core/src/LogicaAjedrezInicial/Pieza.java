@@ -56,5 +56,11 @@ abstract class Pieza {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%.1s  %.1s", ClasePieza,ColorJugador); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }
 

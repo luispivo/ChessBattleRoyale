@@ -119,7 +119,7 @@ public class Board {
             }
         }
         
-        return null;
+        return tablerosFuturos;
     }
     /**
      * Incrementa el status de desaparición a un conjunto rectangular de casillas del tablero con el

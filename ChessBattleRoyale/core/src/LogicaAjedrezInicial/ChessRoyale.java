@@ -25,12 +25,13 @@ public class ChessRoyale {
 
         // Prueba para ver como iba decreciendo el tablero... Se puede hasta i=8 con el tablero de 14 (el 9 haria
         // tablero nulo
-        for (int i = 0; i < 0; i++) {
+        /* for (int i = 0; i < 3; i++) {
             tablero.IncrementaAlertaTablero();
             System.out.println(tablero);
             System.out.println(i);
         }
-        
+        System.out.println("\033[33;35m pepe");
+        */
         //Prueba de unas cosillas de las enumeraciones para ver como hago para que vaya avanzando con ella por los turnos      
         Color color=Color.BLUE;
         System.out.println(color.ordinal());
@@ -104,7 +105,21 @@ public class ChessRoyale {
         //System.out.println(tablero.Tablero.get(16).Status);
         //tablero.Tablero.get(25).IncreaseDangerStatus(tablero);
         //System.out.println(tablero.Tablero.get(25).Status);
-         */
+        */
+        
+        // PRUEBAS DE COMO VA LOS MOVIMIENTOS
+        System.out.println("IMPRIMO TABLERO SIN NADA");
+        System.out.println(tablero);
+        
+        tablero.TableroInicialPiezas14();
+        System.out.println("IMPRIMO TABLERO INICIAL");
+        System.out.println(tablero);
+        
+        for (int i = 0; i < 3; i++) {
+            System.out.println(i);
+            tablero.IncrementaAlertaTablero();
+            System.out.println(tablero);        
+        }
     }
 
 }

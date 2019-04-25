@@ -137,19 +137,23 @@ class Casilla{
         String auxiliar=null;
         switch (Status) {
             case EMPTY:
-               auxiliar="| |";
+               auxiliar="|";
                break;
            case DANGERYELLOW:
-               auxiliar="|Y|";
+               auxiliar="|Y";
+               auxiliar="\u001B[33;32m|";
                break;
            case DANGERORANGE:
-               auxiliar="|O|";
+               auxiliar="|O";
+               auxiliar="\u001B[32;32 m|";
                break;
            case DANGERRED:
-               auxiliar="|R|";
+               auxiliar="|R";
+               auxiliar=((char)27+"[31m|");
                break;
         }
-        return auxiliar+"*"+Fila+"*"+Columna+"*"+Ocupada;
+        //return auxiliar+" "+Fila+"-"+Columna+" "+Ocupada+"|";
+        return auxiliar+Ocupada+"|";
         //return auxiliar;
     }    
 }
