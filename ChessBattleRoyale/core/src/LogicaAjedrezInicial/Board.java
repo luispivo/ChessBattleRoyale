@@ -57,8 +57,10 @@ public class Board {
         TurnoJugador=board.TurnoJugador;
         JugadoresActivos=board.JugadoresActivos;
         Tablero=new ArrayList();
-        for (Casilla x:board.Tablero) {
+        System.out.println("constructor copia");
+        for (Casilla x:board.Tablero) {          
             Casilla y=new Casilla(x);
+            System.out.println(x.toString()+y.toString());
             Tablero.add(y);
         }
     }
@@ -111,7 +113,7 @@ public class Board {
      * @return Un conjunto de tableros que constituyen las posibles jugadas a partir de él. No incluyen valoración
      * que eso lo haré dependiendo de parametros de mi intento de hacer IA
      */
-    ArrayList<Board> JugadasPosibles(){
+    ArrayList<Board> TablerosPosibles(){
         ArrayList<Board> tablerosFuturos=new ArrayList();
         for (Casilla x: Tablero){
             if(x.Ocupada!=null && x.Ocupada.ColorJugador==TurnoJugador){
@@ -173,9 +175,15 @@ public class Board {
      */
     Board Movimiento(Casilla inicio, Casilla destino){
         Board nuevoTablero=new Board(this);
+        System.out.println("UNA COSA");
+        System.out.println(nuevoTablero);
         Pieza pieza=inicio.CopiaPiezaPorTipo();
         nuevoTablero.getCasilla(inicio.Fila, inicio.Columna).Ocupada=null;
         nuevoTablero.getCasilla(destino.Fila, destino.Columna).Ocupada=pieza;
+        // PUFF NO ES TAN SENCILLO CAMBIAR DE JUGADOR COMO PENSABA
+        //nuevoTablero.TurnoJugador=this.JugadoresActivos.
+        //TurnoJugador = JugadoresActivos.get(TurnoJugador.ordinal()+1);
+                
         return nuevoTablero;
     }
     /**
@@ -257,7 +265,7 @@ public class Board {
     @Override
     public String toString() {
         int fila=Tablero.get(0).Fila;
-        String auxiliar="";
+        String auxiliar=TurnoJugador+"\n";
         //Aqui estoy dibujando al reves ... la fila 0 al principio cuando en tablero normal deberia ser abajo
         for(int i=0;i<Tablero.size();i++){
            if (Tablero.get(i).Fila==fila) auxiliar+= Tablero.get(i).toString();

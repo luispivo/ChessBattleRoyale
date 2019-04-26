@@ -115,11 +115,20 @@ public class ChessRoyale {
         System.out.println("IMPRIMO TABLERO INICIAL");
         System.out.println(tablero);
         
-        for (int i = 0; i < 3; i++) {
+        /*for (int i = 0; i < 3; i++) {
             System.out.println(i);
             tablero.IncrementaAlertaTablero();
             System.out.println(tablero);        
+        }*/
+        Casilla casillaAuxInicio, casillaAuxFinal;
+        casillaAuxInicio=tablero.getCasilla(1, 5);
+        System.out.println(casillaAuxInicio);
+        casillaAuxFinal=tablero.getCasilla(2,5);
+        if (casillaAuxInicio.Ocupada !=null&&casillaAuxInicio.Ocupada.PossibleMoves(casillaAuxInicio, tablero).contains(casillaAuxFinal))
+        {
+            tablero=tablero.Movimiento(casillaAuxInicio, casillaAuxFinal);
         }
+        System.out.println(tablero);
     }
 
 }

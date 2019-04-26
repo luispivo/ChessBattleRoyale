@@ -38,31 +38,33 @@ class Casilla{
         Columna=casilla.Columna;
         Status=casilla.Status;
         Clickada=casilla.Clickada;
-        Ocupada=CopiaPiezaPorTipo();
+        Ocupada=casilla.Ocupada;
     }
 
     Pieza CopiaPiezaPorTipo() {
         //Problema es que claro tengo que copiar la pieza... pero claro eso depende de que pieza por usar la pieza
         //abstracta... quizás debería haber usado una interface y quitar todo estos problemas
-        switch (Ocupada.ClasePieza){
-            case PAWN:
-                Ocupada=new Pawn(Ocupada);
-                break;
-            case KNIGHT:
-                Ocupada=new Knight(Ocupada);
-                break;
-            case ROOK:
-                Ocupada=new Rook(Ocupada);
-                break;
-            case BISHOP:
-                Ocupada=new Bishop(Ocupada);
-                break;
-            case QUEEN:
-                Ocupada=new Queen(Ocupada);
-                break;
-            case KING:
-                Ocupada=new King(Ocupada);
-                break;
+        if (Ocupada != null) {
+            switch (Ocupada.ClasePieza) {
+                case PAWN:
+                    Ocupada = new Pawn(Ocupada);
+                    break;
+                case KNIGHT:
+                    Ocupada = new Knight(Ocupada);
+                    break;
+                case ROOK:
+                    Ocupada = new Rook(Ocupada);
+                    break;
+                case BISHOP:
+                    Ocupada = new Bishop(Ocupada);
+                    break;
+                case QUEEN:
+                    Ocupada = new Queen(Ocupada);
+                    break;
+                case KING:
+                    Ocupada = new King(Ocupada);
+                    break;
+            }
         }
         return Ocupada;
     }
@@ -121,10 +123,7 @@ class Casilla{
         if (this.Fila != other.Fila) {
             return false;
         }
-        if (this.Columna != other.Columna) {
-            return false;
-        }
-        return true;
+        return this.Columna == other.Columna;
     }
     
     /**
