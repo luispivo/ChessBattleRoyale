@@ -139,20 +139,20 @@ class Casilla{
                auxiliar="|";
                break;
            case DANGERYELLOW:
-               auxiliar="|Y";
-               auxiliar="\u001B[33;32m|";
+               //auxiliar="|Y";
+               auxiliar="\u001B[42;32m|";
                break;
            case DANGERORANGE:
-               auxiliar="|O";
-               auxiliar="\u001B[32;32 m|";
+               //auxiliar="|O";
+               auxiliar="\u001B[43;33m|";
                break;
            case DANGERRED:
-               auxiliar="|R";
-               auxiliar=((char)27+"[31m|");
+               //auxiliar="|R";
+               auxiliar="\u001B[41;31m|";
                break;
         }
         //return auxiliar+" "+Fila+"-"+Columna+" "+Ocupada+"|";
-        return auxiliar+Ocupada+"|";
+        return auxiliar+Ocupada+"|\u001B[40;30m";
         //return auxiliar;
     }    
 }

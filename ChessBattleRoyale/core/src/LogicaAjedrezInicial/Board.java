@@ -24,7 +24,7 @@ public class Board {
     //o tener al jugador entero. Vamos a ir explorando con esto pero lo mismo es mejor tener la referencia al jugador
     Color TurnoJugador;
     //La colección de colores de jugadores activos que no han sido eliminados el rey (y por lo tanto sus piezas todavía
-    EnumSet<Color> JugadoresActivos;
+    ArrayList<Color> JugadoresActivos;
     
     ArrayList<Casilla> Tablero;
     //Otra posibilidad sería trabajar con 
@@ -44,6 +44,8 @@ public class Board {
         InitialColumns=columns;
         for(int i=0;i<Rows;i++) for(int j=0;j<Columns;j++) Tablero.add(new Casilla(i,j));
         TurnoJugador=Color.BLACK;
+        JugadoresActivos=new ArrayList<>();
+        (EnumSet.allOf(Color.class)).forEach( x -> JugadoresActivos.add(x));
     } 
     /**
      * Constructor copia
@@ -57,10 +59,10 @@ public class Board {
         TurnoJugador=board.TurnoJugador;
         JugadoresActivos=board.JugadoresActivos;
         Tablero=new ArrayList();
-        System.out.println("constructor copia");
+        //System.out.println("constructor copia");
         for (Casilla x:board.Tablero) {          
             Casilla y=new Casilla(x);
-            System.out.println(x.toString()+y.toString());
+          //  System.out.println(x.toString()+y.toString());
             Tablero.add(y);
         }
     }
@@ -166,25 +168,65 @@ public class Board {
                 numeroFilas=3;
                 break;
         }
-        for (int i=numeroFilas;i>=0;i--) IncrementaAlertaTablero((InitialRows-Rows)/2+i);               
+        for (int i=numeroFilas;i>=0;i--) IncrementaAlertaTablero((InitialRows-Rows)/2+i);
+        for(Color x:JugadoresActivos) if (ColorSeVaDePartida(x)) EliminaPiezasJugadorEliminado(x);
     }
     /**
-     * Mueve una pieza de la casilla inicio a la casilla destino en un tablero copia
+     * Mueve una pieza de la casilla inicio a la casilla destino en un tablero copia.
+     * NOTA: No incluyo aqui comprobación que el movimiento es legal porque lo quiero usar con 
+     * el generador de movimientos para la IA donde ya tengo que comprobar que le pongo movimientos
+     * legales. Así que me pareció excesivo ponerle un doble check de ello. Esto hace que para las partidas 
+     * normales este check de movimiento legal ha de hacerse SIEMPRE y genere algo un tanto más feo
+     * pero es el precio a pagar para no incrementar la carga de "checks" de movimiento legal
      * @param inicio Casilla inicio
      * @param destino Casilla destino
      */
     Board Movimiento(Casilla inicio, Casilla destino){
         Board nuevoTablero=new Board(this);
-        System.out.println("UNA COSA");
-        System.out.println(nuevoTablero);
+        //System.out.println("UNA COSA");
+        //System.out.println(nuevoTablero);
         Pieza pieza=inicio.CopiaPiezaPorTipo();
         nuevoTablero.getCasilla(inicio.Fila, inicio.Columna).Ocupada=null;
         nuevoTablero.getCasilla(destino.Fila, destino.Columna).Ocupada=pieza;
-        // PUFF NO ES TAN SENCILLO CAMBIAR DE JUGADOR COMO PENSABA
-        //nuevoTablero.TurnoJugador=this.JugadoresActivos.
-        //TurnoJugador = JugadoresActivos.get(TurnoJugador.ordinal()+1);
+        nuevoTablero.getColorDelSiguienteJugador();
                 
         return nuevoTablero;
+    }
+    /**
+     * Devuelve el tablero del siguiente jugador a mover cambiando el Turno del jugador y el array de Jugadores activo 
+     * si es necesario
+     * @param nuevoTablero Tablero al que todavía no se le ha cambiado el jugador  
+     * @return Un nuevo tablero con todo comprobado si es correcto y nulo si no quedan jugadores
+     */
+    private void getColorDelSiguienteJugador() {
+        int indice;
+        Color colorSiguienteJugador;
+        indice=JugadoresActivos.indexOf(TurnoJugador)+1;
+        if(indice>JugadoresActivos.size()-1) indice=0;
+        do{                     
+            colorSiguienteJugador=JugadoresActivos.get(indice);
+            if (ColorSeVaDePartida(colorSiguienteJugador)) {
+                JugadoresActivos.remove(colorSiguienteJugador);
+                EliminaPiezasJugadorEliminado(colorSiguienteJugador);
+            }
+            //System.out.println(colorSiguienteJugador.toString()+ColorSeVaDePartida(colorSiguienteJugador).toString());
+        } while (ColorSeVaDePartida(colorSiguienteJugador));    
+    }
+    /**
+     * Comprueba que el jugador/color no ha desaparecido del tablero
+     * @param color
+     * @return Booleano de si ha perdido o continua en la partida
+     */
+    private Boolean ColorSeVaDePartida(Color color){
+        for (Casilla x:Tablero) if( x.Ocupada!=null && x.Ocupada.ClasePieza==TipoPieza.KING && x.Ocupada.ColorJugador==color) return false;
+        return true;
+    }
+    /**
+     * Función para eliminar las piezas de un determinado color/jugador (p.e. porque su rey ha desaparecido
+     * @param colorSiguienteJugador color de las piezas a eliminar
+     */
+    private void EliminaPiezasJugadorEliminado(Color color) {
+        for (Casilla x:Tablero) if(x.Ocupada!=null && x.Ocupada.ColorJugador==color) x.Ocupada=null;
     }
     /**
      * Pues colocar todas las piezas en el tablero, esto si que dependerá del tablero asi que una función por

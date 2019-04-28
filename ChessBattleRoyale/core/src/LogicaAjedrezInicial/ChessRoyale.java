@@ -7,6 +7,7 @@ package LogicaAjedrezInicial;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.Iterator;
 
 /**
  * Para hacer las pruebas en ASCII posteriormente quitaré pero de momento pues aqui las dejo
@@ -33,7 +34,7 @@ public class ChessRoyale {
         System.out.println("\033[33;35m pepe");
         */
         //Prueba de unas cosillas de las enumeraciones para ver como hago para que vaya avanzando con ella por los turnos      
-        Color color=Color.BLUE;
+        /*Color color=Color.BLUE;
         System.out.println(color.ordinal());
         color=color.values()[color.ordinal()+1]; //Hace la siguiente del BLUE... El purple
         System.out.println(color.name());
@@ -44,19 +45,23 @@ public class ChessRoyale {
         
         colorines.remove(Color.BLUE);
         colorines.forEach( x -> colores.add(x) );
-        System.out.println(colorines);
-        System.out.println(colores);
+        //System.out.println(colorines);
+        //System.out.println(colores);
         //colores.removeAll(colores);
         
-        int contador=-1;
-        for(int i=0;i<10;i++) {            
-            if(contador>=colores.size()-1) contador=0;
-            else contador++;
-            System.out.println(colores.get(contador));
-        }
+        //int contador=-1;
+        //for(int i=0;i<10;i++) {            
+        //    if(contador>=colores.size()-1) contador=0;
+        //    else contador++;
+        //    System.out.println(colores.get(contador));
+        //}
         System.out.println("hola");
-        for(Color x:colores) System.out.println(x);
-        for(Color x:colorines) System.out.println(x);
+        //for(Color x:colores) System.out.println(x);
+        //for(Color x:colorines) System.out.println(x);
+        
+        System.out.println(tablero.TurnoJugador);
+
+        
         
         //Parece que con los EnumSet me puedo apañar
              
@@ -108,12 +113,12 @@ public class ChessRoyale {
         */
         
         // PRUEBAS DE COMO VA LOS MOVIMIENTOS
-        System.out.println("IMPRIMO TABLERO SIN NADA");
-        System.out.println(tablero);
+        //System.out.println("IMPRIMO TABLERO SIN NADA");
+        //System.out.println(tablero);
         
         tablero.TableroInicialPiezas14();
-        System.out.println("IMPRIMO TABLERO INICIAL");
-        System.out.println(tablero);
+        //System.out.println("IMPRIMO TABLERO INICIAL");
+        //System.out.println(tablero);
         
         /*for (int i = 0; i < 3; i++) {
             System.out.println(i);
@@ -122,13 +127,24 @@ public class ChessRoyale {
         }*/
         Casilla casillaAuxInicio, casillaAuxFinal;
         casillaAuxInicio=tablero.getCasilla(1, 5);
-        System.out.println(casillaAuxInicio);
+        //System.out.println(casillaAuxInicio);
         casillaAuxFinal=tablero.getCasilla(2,5);
+        //System.out.println(tablero.getCasilla(7, 0));
+        tablero.getCasilla(7,0).Ocupada=null;
+        tablero.getCasilla(7,5).Ocupada=new King(Color.BLUE);
+        //System.out.println(tablero.getCasilla(7, 0));
         if (casillaAuxInicio.Ocupada !=null&&casillaAuxInicio.Ocupada.PossibleMoves(casillaAuxInicio, tablero).contains(casillaAuxFinal))
         {
             tablero=tablero.Movimiento(casillaAuxInicio, casillaAuxFinal);
         }
         System.out.println(tablero);
+        tablero.getCasilla(13, 8).Ocupada=null;
+        
+         for (int i = 0; i < 4; i++) {
+            System.out.println(i);
+            tablero.IncrementaAlertaTablero();
+            System.out.println(tablero);        
+        }
     }
 
 }
