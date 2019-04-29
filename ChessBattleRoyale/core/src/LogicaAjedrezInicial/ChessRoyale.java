@@ -5,10 +5,6 @@
  */
 package LogicaAjedrezInicial;
 
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.Iterator;
-
 /**
  * Para hacer las pruebas en ASCII posteriormente quitaré pero de momento pues aqui las dejo
  * @author Luis
@@ -130,13 +126,11 @@ public class ChessRoyale {
         //System.out.println(casillaAuxInicio);
         casillaAuxFinal=tablero.getCasilla(2,5);
         //System.out.println(tablero.getCasilla(7, 0));
-        tablero.getCasilla(7,0).Ocupada=null;
-        tablero.getCasilla(7,5).Ocupada=new King(Color.BLUE);
+        tablero.getCasilla(0,7).Ocupada=null;
+        tablero.getCasilla(7,5).Ocupada=new King(Color.PURPLE);
+        tablero.getCasilla(7,6).Ocupada=new King(Color.BLUE);
         //System.out.println(tablero.getCasilla(7, 0));
-        if (casillaAuxInicio.Ocupada !=null&&casillaAuxInicio.Ocupada.PossibleMoves(casillaAuxInicio, tablero).contains(casillaAuxFinal))
-        {
-            tablero=tablero.Movimiento(casillaAuxInicio, casillaAuxFinal);
-        }
+        if (tablero.MovimientoLegal(casillaAuxInicio, casillaAuxFinal)) tablero=tablero.Movimiento(casillaAuxInicio, casillaAuxFinal);
         System.out.println(tablero);
         tablero.getCasilla(13, 8).Ocupada=null;
         

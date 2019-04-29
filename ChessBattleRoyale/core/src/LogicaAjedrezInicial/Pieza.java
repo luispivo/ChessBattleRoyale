@@ -44,11 +44,9 @@ abstract class Pieza {
      * @return 
      */
     boolean CasillaNoDisponible(Casilla auxiliarCasilla, ArrayList<Casilla> listaCasillas) {
-        if (auxiliarCasilla==null) {
-            return true;
-        } else if (auxiliarCasilla.Ocupada==null) {
-            listaCasillas.add(auxiliarCasilla);
-        } else if (auxiliarCasilla.Ocupada.ColorJugador!=ColorJugador) {
+        if (auxiliarCasilla==null) return true;
+        else if (auxiliarCasilla.Ocupada==null) listaCasillas.add(auxiliarCasilla);
+        else if (auxiliarCasilla.Ocupada.ColorJugador!=ColorJugador) {
             listaCasillas.add(auxiliarCasilla);
             return true;
         } else {

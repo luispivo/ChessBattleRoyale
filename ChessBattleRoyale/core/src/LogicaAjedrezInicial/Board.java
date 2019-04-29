@@ -59,15 +59,10 @@ public class Board {
         TurnoJugador=board.TurnoJugador;
         JugadoresActivos=board.JugadoresActivos;
         Tablero=new ArrayList();
-        //System.out.println("constructor copia");
-        for (Casilla x:board.Tablero) {          
-            Casilla y=new Casilla(x);
-          //  System.out.println(x.toString()+y.toString());
-            Tablero.add(y);
-        }
+        board.Tablero.forEach( x -> Tablero.add(new Casilla(x)));
     }
     /**
-     * 
+     * Elimina la casilla del tablero
      * @param casilla Casilla que se elimina de la colección del tablero
      */
     void EliminaCasilla(Casilla casilla){
@@ -75,7 +70,6 @@ public class Board {
         //Cambiando las dimensiones del tablero...        
     }
     /**
-     * 
      * @param fila
      * @param columna
      * @return La casilla correspondiente a esa fila y columna (null si ya eliminada)
@@ -156,6 +150,7 @@ public class Board {
      * Rows cuando hace desparecer las casillas
      */
     void IncrementaAlertaTablero(){
+        Boolean cambiarTurno=false;
         int numeroFilas=0;
         switch(Tablero.get(0).Status){
             case DANGERYELLOW:     
@@ -169,7 +164,11 @@ public class Board {
                 break;
         }
         for (int i=numeroFilas;i>=0;i--) IncrementaAlertaTablero((InitialRows-Rows)/2+i);
-        for(Color x:JugadoresActivos) if (ColorSeVaDePartida(x)) EliminaPiezasJugadorEliminado(x);
+        for(Color x:JugadoresActivos) if (ColorSeVaDePartida(x)) {
+            EliminaPiezasJugadorEliminado(x);
+            cambiarTurno=true;           
+        }
+        if (cambiarTurno) ColorDelSiguienteJugador(false);
     }
     /**
      * Mueve una pieza de la casilla inicio a la casilla destino en un tablero copia.
@@ -188,9 +187,18 @@ public class Board {
         Pieza pieza=inicio.CopiaPiezaPorTipo();
         nuevoTablero.getCasilla(inicio.Fila, inicio.Columna).Ocupada=null;
         nuevoTablero.getCasilla(destino.Fila, destino.Columna).Ocupada=pieza;
-        nuevoTablero.getColorDelSiguienteJugador();
+        nuevoTablero.ColorDelSiguienteJugador(true);
                 
         return nuevoTablero;
+    }
+    /**
+     * Comprueba que el movimiento de inicio a final se puede hacer
+     * @param inicio casilla donde debe haber una pieza que se pueda mover
+     * @param destino casilla a la que se mueve
+     * @return 
+     */
+    Boolean MovimientoLegal(Casilla inicio, Casilla destino){
+        return  (inicio.Ocupada !=null&&inicio.Ocupada.PossibleMoves(inicio, this).contains(destino));
     }
     /**
      * Devuelve el tablero del siguiente jugador a mover cambiando el Turno del jugador y el array de Jugadores activo 
@@ -198,19 +206,24 @@ public class Board {
      * @param nuevoTablero Tablero al que todavía no se le ha cambiado el jugador  
      * @return Un nuevo tablero con todo comprobado si es correcto y nulo si no quedan jugadores
      */
-    private void getColorDelSiguienteJugador() {
+    private void ColorDelSiguienteJugador(Boolean cambio) {
         int indice;
         Color colorSiguienteJugador;
-        indice=JugadoresActivos.indexOf(TurnoJugador)+1;
-        if(indice>JugadoresActivos.size()-1) indice=0;
-        do{                     
+        indice=JugadoresActivos.indexOf(TurnoJugador)+(cambio?1:0); 
+        System.out.println(TurnoJugador.toString()+indice+JugadoresActivos.get(indice));
+        do{            
+            if(indice>JugadoresActivos.size()-1) indice=0;
+            else if (indice<0) indice=JugadoresActivos.size()-1;
             colorSiguienteJugador=JugadoresActivos.get(indice);
             if (ColorSeVaDePartida(colorSiguienteJugador)) {
                 JugadoresActivos.remove(colorSiguienteJugador);
                 EliminaPiezasJugadorEliminado(colorSiguienteJugador);
-            }
-            //System.out.println(colorSiguienteJugador.toString()+ColorSeVaDePartida(colorSiguienteJugador).toString());
-        } while (ColorSeVaDePartida(colorSiguienteJugador));    
+                System.out.println(colorSiguienteJugador+"HOLA"+TurnoJugador);
+                if (colorSiguienteJugador.equals(TurnoJugador)) cambio=true;
+            }          
+            System.out.println(colorSiguienteJugador.toString()+ColorSeVaDePartida(colorSiguienteJugador).toString());
+        } while (JugadoresActivos.size()>0 && ColorSeVaDePartida(colorSiguienteJugador));   
+        if (cambio) TurnoJugador=colorSiguienteJugador;
     }
     /**
      * Comprueba que el jugador/color no ha desaparecido del tablero
