@@ -131,13 +131,17 @@ public class ChessRoyale {
         tablero.getCasilla(7,6).Ocupada=new King(Color.BLUE);
         //System.out.println(tablero.getCasilla(7, 0));
         if (tablero.MovimientoLegal(casillaAuxInicio, casillaAuxFinal)) tablero=tablero.Movimiento(casillaAuxInicio, casillaAuxFinal);
-        System.out.println(tablero);
-        tablero.getCasilla(13, 8).Ocupada=null;
         
-         for (int i = 0; i < 4; i++) {
+        System.out.println("------->VAMOS A VER DISTANCIAS***********************");
+        Casilla casilla=tablero.getCasilla(7, 7);
+        casilla.Ocupada=new King(Color.GREEN);
+        
+        System.out.println(tablero.DistanciaFinalTablero(casilla));
+         for (int i = 0; i < 9; i++) {
             System.out.println(i);
             tablero.IncrementaAlertaTablero();
-            System.out.println(tablero);        
+            System.out.println(tablero);
+            System.out.println("DISTANCIA: "+tablero.DistanciaFinalTablero(casilla)+ "Diferencias rows "+tablero.InitialRows+" "+tablero.Rows ) ;
         }
     }
 

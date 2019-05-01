@@ -153,6 +153,7 @@ class Casilla{
         }
         //return auxiliar+" "+Fila+"-"+Columna+" "+Ocupada+"|";
         return auxiliar+Ocupada+"|\u001B[40;30m";
-        //return auxiliar;
+        //return auxiliar;  
+        
     }    
 }

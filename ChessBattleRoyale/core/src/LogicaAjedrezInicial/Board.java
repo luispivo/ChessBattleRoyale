@@ -314,6 +314,71 @@ public class Board {
             }
     }
     /**
+     * Esta función da la distancia a las casillas "rojas" para usar en la valoración estática del tablero
+     * necesaria para el cálculo de la función que va a emplear la IA. Cuando aún no hay casillas en peligro
+     * se le suma parte de la distancia para tener eso en cuenta en el factor.
+     * @param casilla donde ese encuentra la pieza
+     * @return Integer con la distancia parametrizada
+     */
+    protected int DistanciaFinalTablero(Casilla casilla){
+        //En vez de pelearnos con las filas y columnas y tener expresiones complicadas 
+        //vamos a emplear un truco un tanto rastrero teniendo en cuenta como se van colocando las piezas
+        //en el ArrayList del tablero conforme vamos eliminandolas y demás.
+        //Basicamente es lo mismo que empleamos para ir borrando las filas y columnas del tablero pero aqui 
+        //en vez de borrarlas devolvemos la distancia a la que se encuentra
+        //De hecho queda por implementar en un futuro reestructurar el código para usar esta función para ambas cosas
+        //porque asi aunque inspirada parece más simple. Pero el cambio no es tan simple
+        
+        int contador=0;
+        int fila=casilla.Fila;
+        int columna=casilla.Columna;
+        for(int i=0;i<=Rows/2;i++){
+            if((fila==i+(InitialRows-Rows)/2||fila==(InitialRows+Rows-2*i-2)/2)||(columna==i+(InitialColumns-Columns)/2||columna==(InitialColumns+Columns-2*i-2)/2)){
+               contador=i;
+               break;
+            }
+        }
+        //La siguiente parte es para tener en cuenta cuando aún no se han coloreado en peligro hay menos peligro de estar 
+        //al borde del tablero
+        switch(Tablero.get(0).Status){
+            case DANGERYELLOW:
+                contador+=2;
+                break;
+            case DANGERORANGE:
+                contador+=1;
+                break;
+            case DANGERRED:
+                break;
+            default:
+                contador+=3;
+                break;
+        }
+        return contador;
+    }
+    /**
+     * Una función que usaré para la IA que intenta sopesar la relativa importancia de la situación de la pieza en el tablero.
+     * Está elegida tras distintos ajustes y pruebas matemáticas. No creo que sea perfecta pero si creo que para empezar puede ser
+     * un buen intento. Intenta forzar a las piezas a ir hacia el centro para que no se caigan (por así decirlo).
+     * Ver la documentación del proyecto para más información. En cualquier caso estas funciones pueden ser sustituidas 
+     * y/o parametrizadas para alcanzar el valor que haga jugar a la IA mejor.
+     * @param casilla a la que se está haciendo el peso variable por su situacion en el tablero
+     * @return un valor double más o menos entre 0 y 1.x como mucho que indica un factor multiplicativo para sopesar el peso de una
+     * pieza
+     */
+    protected double FactorDistancia(Casilla casilla){
+        //Puede ser otro parametro y definirlo buscandolo pero de momento lo dejo como constante que más o menos he visto
+        //que salía unos resultados que me parecían coherentes
+        final int PARAMETRO=8;
+        if (Rows!=2){
+             //Relacionado con la distancia máxima del tablero
+            double parametroRows=(double) Rows/2.-1.;        
+            //Relaciona con la distancia real (considerando las filas en no peligro)
+            double parametroDistancia= (double) DistanciaFinalTablero(casilla)/parametroRows;
+            return Math.sqrt(parametroDistancia)+(1-parametroDistancia)/(PARAMETRO-parametroRows);
+        }
+        else return 1;
+    }
+    /**
     * 
     * @return string con el tablero (para pruebas antes de ir pintando con la libreria y demás LIBGDX
     */
@@ -321,14 +386,14 @@ public class Board {
     public String toString() {
         int fila=Tablero.get(0).Fila;
         String auxiliar=TurnoJugador+"\n";
-        //Aqui estoy dibujando al reves ... la fila 0 al principio cuando en tablero normal deberia ser abajo
+        /*//Aqui estoy dibujando al reves ... la fila 0 al principio cuando en tablero normal deberia ser abajo
         for(int i=0;i<Tablero.size();i++){
            if (Tablero.get(i).Fila==fila) auxiliar+= Tablero.get(i).toString();
            else{               
                auxiliar+=("\n"+Tablero.get(i).toString());
                fila++;
            }
-        }
+        }*/
         /*int contador=0;
         for(Casilla x:Tablero){
             contador++;
@@ -338,6 +403,16 @@ public class Board {
             }
             auxiliar+=x;
         }*/
+              
+        //UNA PRUEBA
+        
+        for(int i=0;i<Tablero.size();i++){
+           if (Tablero.get(i).Fila==fila) auxiliar+= "|"+String.format("%.3f",this.FactorDistancia(Tablero.get(i)))+"|";
+           else{               
+               auxiliar+="\n"+"|"+String.format("%.3f",this.FactorDistancia(Tablero.get(i)))+"|";
+               fila++;
+           }
+        }
         return auxiliar;
     }   
 }
