@@ -126,7 +126,7 @@ public class ChessRoyale {
             tablero.IncrementaAlertaTablero();
             System.out.println(tablero);        
         }*/
-        Casilla casillaAuxInicio, casillaAuxFinal;
+        /*Casilla casillaAuxInicio, casillaAuxFinal;
         casillaAuxInicio=tablero.getCasilla(1, 5);
         //System.out.println(casillaAuxInicio);
         casillaAuxFinal=tablero.getCasilla(2,5);
@@ -155,7 +155,9 @@ public class ChessRoyale {
          fichero.close();
         } catch (IOException ex) {
             Logger.getLogger(ChessRoyale.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
+        
+        
     }
 
 }

@@ -11,11 +11,15 @@ class Bishop extends Pieza {
 
     public Bishop(Color color) {
         ColorJugador=color;
-        ClasePieza=TipoPieza.BISHOP; 
+        ClasePieza=TipoPieza.BISHOP;
+        MOVIMIENTOSMAXIMOS=25.;
+        VALOR=3.;
     }
     public Bishop(Pieza pieza){
         ColorJugador=pieza.ColorJugador;
         ClasePieza=pieza.ClasePieza;
+        MOVIMIENTOSMAXIMOS=25.;
+        VALOR=3.;
     }
     @Override
     ArrayList<Casilla> PossibleMoves(Casilla casilla, Board tablero) {
@@ -74,5 +78,11 @@ class Bishop extends Pieza {
     @Override
     ArrayList<Casilla> PossibleCaptures(Casilla casilla, Board tablero) {
         return PossibleMoves(casilla,tablero);
+    }
+
+    @Override
+    double FactorValor() {
+        //En un futuro será un valor a parametrizar por la IA bien. Ahora simplemente pongo el Valor pero irá cambiando
+        return VALOR;
     }
 }

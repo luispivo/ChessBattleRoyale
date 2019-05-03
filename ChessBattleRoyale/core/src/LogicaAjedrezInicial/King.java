@@ -16,10 +16,14 @@ class King extends Pieza{
     public King(Color color) {
         ColorJugador=color;
         ClasePieza=TipoPieza.KING;
+        MOVIMIENTOSMAXIMOS=8.;
+        VALOR=1000000.; //Por poner algo de momento que sea mayor que las demas
     }
     public King(Pieza pieza){
         ColorJugador=pieza.ColorJugador;
         ClasePieza=pieza.ClasePieza;
+        MOVIMIENTOSMAXIMOS=8.;
+        VALOR=1000000.; //Por poner algo de momento que sea mayor que las demas
     }
     @Override
     ArrayList<Casilla> PossibleMoves(Casilla casilla, Board tablero) {
@@ -49,5 +53,10 @@ class King extends Pieza{
     @Override
     ArrayList<Casilla> PossibleCaptures(Casilla casilla, Board tablero) {
         return PossibleMoves(casilla,tablero);
+    }
+
+    @Override
+    double FactorValor() {
+        return VALOR;
     }
 }

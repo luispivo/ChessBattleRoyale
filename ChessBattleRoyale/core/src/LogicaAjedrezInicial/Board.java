@@ -385,15 +385,15 @@ public class Board {
     @Override
     public String toString() {
         int fila=Tablero.get(0).Fila;
-        //String auxiliar=TurnoJugador+"\n";
-        /*//Aqui estoy dibujando al reves ... la fila 0 al principio cuando en tablero normal deberia ser abajo
+        String auxiliar=TurnoJugador+"\n";
+        //Aqui estoy dibujando al reves ... la fila 0 al principio cuando en tablero normal deberia ser abajo
         for(int i=0;i<Tablero.size();i++){
            if (Tablero.get(i).Fila==fila) auxiliar+= Tablero.get(i).toString();
            else{               
                auxiliar+=("\n"+Tablero.get(i).toString());
                fila++;
            }
-        }*/
+        }
         /*int contador=0;
         for(Casilla x:Tablero){
             contador++;
@@ -404,7 +404,7 @@ public class Board {
             auxiliar+=x;
         }*/
               
-        //UNA PRUEBA
+        /*//UNA PRUEBA
         String auxiliar="";
         for(int i=0;i<Tablero.size();i++){
            if (Tablero.get(i).Fila==fila) auxiliar+= String.format("%.3f",this.FactorDistancia(Tablero.get(i)))+";";
@@ -412,7 +412,7 @@ public class Board {
                auxiliar+="\n"+String.format("%.3f",this.FactorDistancia(Tablero.get(i)))+";";
                fila++;
            }
-        }
+        }*/
         return auxiliar;
     }   
 }
