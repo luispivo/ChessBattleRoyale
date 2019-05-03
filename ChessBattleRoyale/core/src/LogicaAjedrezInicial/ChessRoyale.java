@@ -5,6 +5,11 @@
  */
 package LogicaAjedrezInicial;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Para hacer las pruebas en ASCII posteriormente quitaré pero de momento pues aqui las dejo
  * @author Luis
@@ -136,12 +141,20 @@ public class ChessRoyale {
         Casilla casilla=tablero.getCasilla(7, 7);
         casilla.Ocupada=new King(Color.GREEN);
         
+        try {
+            FileWriter fichero=new FileWriter("salida.txt");
+        
         System.out.println(tablero.DistanciaFinalTablero(casilla));
          for (int i = 0; i < 9; i++) {
             System.out.println(i);
             tablero.IncrementaAlertaTablero();
             System.out.println(tablero);
+            fichero.write("\n\n"+tablero.toString());
             System.out.println("DISTANCIA: "+tablero.DistanciaFinalTablero(casilla)+ "Diferencias rows "+tablero.InitialRows+" "+tablero.Rows ) ;
+        }
+         fichero.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ChessRoyale.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
