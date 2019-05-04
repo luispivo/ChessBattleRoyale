@@ -12,14 +12,10 @@ class Queen extends Pieza{
     public Queen(Color color) {
         ColorJugador=color;
         ClasePieza=TipoPieza.QUEEN;
-        MOVIMIENTOSMAXIMOS=51.;
-        VALOR=10.;
     }
     public Queen(Pieza pieza){
         ColorJugador=pieza.ColorJugador;
         ClasePieza=pieza.ClasePieza;
-        MOVIMIENTOSMAXIMOS=51.;
-        VALOR=10.;
     }
     @Override
     ArrayList<Casilla> PossibleMoves(Casilla casilla, Board tablero) {
@@ -35,11 +31,5 @@ class Queen extends Pieza{
     @Override
     ArrayList<Casilla> PossibleCaptures(Casilla casilla, Board tablero) {
         return PossibleMoves(casilla,tablero);
-    }
-
-    @Override
-    double FactorValor() {
-        return VALOR;
-    }
-    
+    }   
 }

@@ -12,14 +12,10 @@ class Knight extends Pieza{
     public Knight(Color color) {
         ColorJugador=color;
         ClasePieza=TipoPieza.KNIGHT;
-        MOVIMIENTOSMAXIMOS=8.;
-        VALOR=3.; 
     }
     public Knight(Pieza pieza){
         ColorJugador=pieza.ColorJugador;
         ClasePieza=pieza.ClasePieza;
-        MOVIMIENTOSMAXIMOS=8.;
-        VALOR=3.;
     }
     @Override
     ArrayList<Casilla> PossibleMoves(Casilla casilla, Board tablero) {
@@ -45,11 +41,6 @@ class Knight extends Pieza{
     @Override
     ArrayList<Casilla> PossibleCaptures(Casilla casilla, Board tablero) {
         return PossibleMoves(casilla,tablero);
-    }
-
-    @Override
-    double FactorValor() {
-        return VALOR;
     }
 }
 

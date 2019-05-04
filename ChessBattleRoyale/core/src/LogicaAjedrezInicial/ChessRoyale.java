@@ -119,14 +119,14 @@ public class ChessRoyale {
         
         tablero.TableroInicialPiezas14();
         //System.out.println("IMPRIMO TABLERO INICIAL");
-        //System.out.println(tablero);
+        System.out.println(tablero);
         
-        /*for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             System.out.println(i);
             tablero.IncrementaAlertaTablero();
             System.out.println(tablero);        
-        }*/
-        /*Casilla casillaAuxInicio, casillaAuxFinal;
+        }
+        Casilla casillaAuxInicio, casillaAuxFinal;
         casillaAuxInicio=tablero.getCasilla(1, 5);
         //System.out.println(casillaAuxInicio);
         casillaAuxFinal=tablero.getCasilla(2,5);
@@ -136,7 +136,8 @@ public class ChessRoyale {
         tablero.getCasilla(7,6).Ocupada=new King(Color.BLUE);
         //System.out.println(tablero.getCasilla(7, 0));
         if (tablero.MovimientoLegal(casillaAuxInicio, casillaAuxFinal)) tablero=tablero.Movimiento(casillaAuxInicio, casillaAuxFinal);
-        
+        System.out.println(tablero);
+        /*
         System.out.println("------->VAMOS A VER DISTANCIAS***********************");
         Casilla casilla=tablero.getCasilla(7, 7);
         casilla.Ocupada=new King(Color.GREEN);

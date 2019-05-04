@@ -15,16 +15,6 @@ import java.util.ArrayList;
 abstract class Pieza {
     TipoPieza ClasePieza;
     Color ColorJugador;
-    //Hay dos formas de tratar esta cuestión:
-    //La primera y más pragmática simplemente calcular cuantos movimientos tiene un alfil en un tablero fijo
-    //y parametrizarlo o "hardcodearlo". Quizás más sencilla y mejor
-    //Otra forma es crear tablero vacío para calcular el movimiento de un alfil en ese tablero
-    //para que entre en la formula movimientos_posibles/movimientos_ideal
-    //He preferido simplemente parametrizarlo pero dejo la nota para el futuro (y comprobar cuanto más de 
-    //potencia de calculo/memoria necesitaria.
-    //Por ahora simplemente pongo estos atributos aqui para luego que vaya a cada uno de ellos
-    double MOVIMIENTOSMAXIMOS;
-    double VALOR;
     
     /**
      * FunciÃ³n para devolver todas las casillas a las que se puede mover la pieza situada en
@@ -65,11 +55,6 @@ abstract class Pieza {
         return false;
     }
 
-    double FactorMovimiento(Casilla casilla,Board tablero){
-        return (double)PossibleMoves(casilla, tablero).size()/MOVIMIENTOSMAXIMOS;
-    };
-    
-    abstract double FactorValor();
     @Override
     public String toString() {
         //Caballo en ingles misma inicial que rey es un no no (Pensar en la internacionalizaciÃ³n futura) que tendra que 

@@ -15,15 +15,11 @@ class Pawn extends Pieza{
 
     public Pawn(Color color) {
         ColorJugador=color;
-        ClasePieza=TipoPieza.PAWN;
-        MOVIMIENTOSMAXIMOS=8.;
-        VALOR=1.; 
+        ClasePieza=TipoPieza.PAWN; 
     }
     public Pawn(Pieza pieza){
         ColorJugador=pieza.ColorJugador;
         ClasePieza=pieza.ClasePieza;
-        MOVIMIENTOSMAXIMOS=8.;
-        VALOR=1.;
     }
     @Override
     ArrayList<Casilla> PossibleMoves(Casilla casilla, Board tablero) {
@@ -77,11 +73,5 @@ class Pawn extends Pieza{
             if (auxiliarCasilla!=null) listaCasillas.add(auxiliarCasilla);
         }
         return listaCasillas;
-    }
-
-    @Override
-    double FactorValor() {
-        return VALOR;
-    }
-    
+    }    
 }

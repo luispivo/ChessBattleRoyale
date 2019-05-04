@@ -12,14 +12,10 @@ class Rook extends Pieza{
     public Rook(Color color) {
         ColorJugador=color;
         ClasePieza=TipoPieza.ROOK; 
-        MOVIMIENTOSMAXIMOS=26.;
-        VALOR=5.;
     }
     public Rook(Pieza pieza){
         ColorJugador=pieza.ColorJugador;
         ClasePieza=pieza.ClasePieza;
-        MOVIMIENTOSMAXIMOS=26.;
-        VALOR=5.;
     }
     @Override
     ArrayList<Casilla> PossibleMoves(Casilla casilla, Board tablero) {
@@ -64,10 +60,5 @@ class Rook extends Pieza{
     @Override
     ArrayList<Casilla> PossibleCaptures(Casilla casilla, Board tablero) {
         return PossibleMoves(casilla,tablero);
-    }
-
-    @Override
-    double FactorValor() {
-        return VALOR;
     }
 }
