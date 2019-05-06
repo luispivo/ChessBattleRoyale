@@ -34,7 +34,7 @@ class King extends Pieza{
                 auxiliarCasilla=tablero.getCasilla(fila+i, columna+j);
                 if ((auxiliarCasilla!=null && 
                         (auxiliarCasilla.Ocupada==null ||(auxiliarCasilla.Ocupada!=null && auxiliarCasilla.Ocupada.ColorJugador!=ColorJugador)))
-                        && !tablero.CasillaAmenazadaPorOtroJugador(auxiliarCasilla, ColorJugador)) listaCasillas.add(auxiliarCasilla);
+                        /*&& !tablero.CasillaAmenazadaPorOtroJugador(auxiliarCasilla, ColorJugador)*/) listaCasillas.add(auxiliarCasilla);
                 // Falta la parte que no este amenazada por una pieza... 
                 // Ahora mismo no se me ocurre salvo bucle por el tablero de todas las casillas y de todas las piezas e ir
                 // comprobando que no está la casilla en la lista de posibles moves... Pero suena un poco largo de implementar

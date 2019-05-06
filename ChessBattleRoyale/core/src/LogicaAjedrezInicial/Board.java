@@ -93,7 +93,8 @@ public class Board {
     boolean CasillaAmenazadaPorOtroJugador(Casilla casilla, Color color){
         //Recorro todo el tablero en busca de las piezas de colores distintos al del jugador en cuestión 
         //Y me baso en que he definido el equals como las coordenadas de la casilla (no lo que contiene 
-        //y su estado
+        //y su estado. 
+        // REPASAR
         for (Casilla x: Tablero){
             if (!x.equals(casilla)&& x.Ocupada!=null && x.Ocupada.ColorJugador!=color){
                 for(Casilla y: x.Ocupada.PossibleCaptures(x, this)){
@@ -111,12 +112,15 @@ public class Board {
      */
     ArrayList<Board> TablerosPosibles(){
         ArrayList<Board> tablerosFuturos=new ArrayList();
+        int contador=0;
         for (Casilla x: Tablero){
+            contador++;
+            //System.out.println("contador:"+contador);
             if(x.Ocupada!=null && x.Ocupada.ColorJugador==TurnoJugador){
                 for (Casilla y:x.Ocupada.PossibleMoves(x, this)) tablerosFuturos.add(Movimiento(x, y));
             }
         }
-        
+        System.out.println(contador);
         return tablerosFuturos;
     }
     /**
@@ -210,7 +214,7 @@ public class Board {
         int indice;
         Color colorSiguienteJugador;
         indice=JugadoresActivos.indexOf(TurnoJugador)+(cambio?1:0); 
-        System.out.println(TurnoJugador.toString()+indice+JugadoresActivos.get(indice));
+        //System.out.println(TurnoJugador.toString()+indice+JugadoresActivos.get(indice));
         do{            
             if(indice>JugadoresActivos.size()-1) indice=0;
             else if (indice<0) indice=JugadoresActivos.size()-1;
@@ -218,10 +222,10 @@ public class Board {
             if (ColorSeVaDePartida(colorSiguienteJugador)) {
                 JugadoresActivos.remove(colorSiguienteJugador);
                 EliminaPiezasJugadorEliminado(colorSiguienteJugador);
-                System.out.println(colorSiguienteJugador+"HOLA"+TurnoJugador);
+                //System.out.println(colorSiguienteJugador+"HOLA"+TurnoJugador);
                 if (colorSiguienteJugador.equals(TurnoJugador)) cambio=true;
             }          
-            System.out.println(colorSiguienteJugador.toString()+ColorSeVaDePartida(colorSiguienteJugador).toString());
+            //System.out.println(colorSiguienteJugador.toString()+ColorSeVaDePartida(colorSiguienteJugador).toString());
         } while (JugadoresActivos.size()>0 && ColorSeVaDePartida(colorSiguienteJugador));   
         if (cambio) TurnoJugador=colorSiguienteJugador;
     }

@@ -11,4 +11,5 @@ package LogicaAjedrezInicial;
  */
 enum Color{
     BLACK,BLUE,PURPLE,GREEN
+    //WHITE,BLUE,PURPLE,GREEN //para que se vea distinto B y B
 }

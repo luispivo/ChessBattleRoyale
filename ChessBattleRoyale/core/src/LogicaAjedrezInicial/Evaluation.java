@@ -26,5 +26,7 @@ public interface Evaluation {
     * @param casilla
     * @return Valor doble que pesa la pieza
     */
-    double FactorValor(Casilla casilla);
+    double FactorValor(TipoPieza pieza);
+    
+    double Evaluacion(Board tablero);
 }

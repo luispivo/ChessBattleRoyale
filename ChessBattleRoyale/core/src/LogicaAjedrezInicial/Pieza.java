@@ -59,9 +59,10 @@ abstract class Pieza {
     public String toString() {
         //Caballo en ingles misma inicial que rey es un no no (Pensar en la internacionalización futura) que tendra que 
         //quitar esto por las iniciales
-        String clasePieza;
+        String clasePieza,colorJugador;
         clasePieza=(ClasePieza==TipoPieza.KNIGHT?"N":ClasePieza.toString());
-        return String.format("%.1s  %.1s", clasePieza,ColorJugador); //To change body of generated methods, choose Tools | Templates.
+        colorJugador=(ColorJugador==Color.BLACK?"W":ColorJugador.toString());
+        return String.format("%.1s  %.1s", clasePieza,colorJugador); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

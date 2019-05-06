@@ -24,11 +24,13 @@ public class SillyIA implements Evaluation{
     //Por ahora simplemente pongo estos atributos aqui para luego que vaya a cada uno de ellos
     
     ArrayList<ParametrosSillyIAPieza> Parametros;
+    Color EvaluaColor;
     
     //Para la parametrización futura (y que se definan más piezas)
-    //defino aqui los valores de los parámetros en vez de en la clase ParametrosSillyIAPieza
+    //defino aqui los valores de los parámetros en vez de en la clase ParametrosSillyIAPieza o de crearlas cuando los cree
     //No tenía claro donde colocarlo realmente pero así puedo definir distintas IAsmodificandolos
-    public SillyIA(){
+    public SillyIA(Color color){
+        EvaluaColor=color;
         Parametros=new ArrayList();
         
         (EnumSet.allOf(TipoPieza.class)).forEach( x -> {
@@ -49,7 +51,7 @@ public class SillyIA implements Evaluation{
                     Parametros.add(new ParametrosSillyIAPieza(51.0,10.0,x));
                     break;
                 case KING:
-                    Parametros.add(new ParametrosSillyIAPieza(8.0,1000000.0,x)); //Por poner algo de varias ordenes de magnitud
+                    Parametros.add(new ParametrosSillyIAPieza(8.0,100.0,x)); //Por poner algo de varias ordenes de magnitud
                                                                                  //La perdida del rey hace perder la partida...
                     break;                                    
                 default:
@@ -72,10 +74,36 @@ public class SillyIA implements Evaluation{
         return 0;
     }
     @Override
-    public double FactorValor(Casilla casilla) {
-        ParametrosSillyIAPieza aux=new ParametrosSillyIAPieza(0, 0, casilla.Ocupada.ClasePieza);
+    public double FactorValor(TipoPieza pieza) {
+        ParametrosSillyIAPieza aux=new ParametrosSillyIAPieza(0, 0, pieza);
         for (ParametrosSillyIAPieza x: Parametros) if (x.equals(aux)) return x.VALOR;
         return 0;
     }
-    
+
+    @Override
+    public double Evaluacion(Board tablero) {
+        //La ecuaci�n usada es 
+        //(Sum_piezasJug (FactorValor*FactorMovimiento)-Sum_piezasEne (FactorValor*FactorMovimiento/NumeroEnemigos)/Sum_tablero (FactorValor*FactorMovimiento)
+        //Multiplicado por un factor de que es un cambio unitario en este sistema (un pe�n)
+
+        double valorJugador=0;
+        double valorEnemigos=0;
+        double denominador,numerador;
+        for(Casilla x:tablero.Tablero){
+            //if (x.Ocupada!=null && x.Ocupada.ClasePieza!=TipoPieza.KING){ //No entiendo porque tengo que quitar al rey...
+            if (x.Ocupada!=null){ 
+                if ( x.Ocupada.ColorJugador==EvaluaColor) valorJugador+=FactorValor(x.Ocupada.ClasePieza)*FactorMovimiento(x,tablero);
+                else if (x.Ocupada.ColorJugador!=EvaluaColor) valorEnemigos+=FactorValor(x.Ocupada.ClasePieza)*FactorMovimiento(x,tablero);
+            }
+        }
+        denominador=valorJugador+valorEnemigos;
+        numerador=valorJugador-valorEnemigos/(double) (tablero.JugadoresActivos.size()-1);     
+         
+        //OUTPUTS DE PRUEBAS
+        //System.out.println("TURNO"+tablero.TurnoJugador+"J: "+valorJugador+" E: "+valorEnemigos);
+        //System.out.println("D: "+denominador);
+        //System.out.println("N: "+numerador);
+        //return (denominador-1)*numerador/((numerador-1)*denominador);
+        return numerador/denominador;
+    }   
 }
