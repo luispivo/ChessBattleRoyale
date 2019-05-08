@@ -82,9 +82,9 @@ public class SillyIA implements Evaluation{
 
     @Override
     public double Evaluacion(Board tablero) {
-        //La ecuación usada es 
+        //La ecuacion usada es 
         //(Sum_piezasJug (FactorValor*FactorMovimiento)-Sum_piezasEne (FactorValor*FactorMovimiento/NumeroEnemigos)/Sum_tablero (FactorValor*FactorMovimiento)
-        //Multiplicado por un factor de que es un cambio unitario en este sistema (un peón)
+        //Multiplicado por un factor de que es un cambio unitario en este sistema (un peon)
 
         double valorJugador=0;
         double valorEnemigos=0;

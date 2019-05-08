@@ -95,16 +95,26 @@ public class Board {
         //Y me baso en que he definido el equals como las coordenadas de la casilla (no lo que contiene 
         //y su estado. 
         // REPASAR
-        for (Casilla x: Tablero){
+        /*for (Casilla x: Tablero){
             if (!x.equals(casilla)&& x.Ocupada!=null && x.Ocupada.ColorJugador!=color){
                 for(Casilla y: x.Ocupada.PossibleCaptures(x, this)){
                     //System.out.println("hola");
                     if (casilla.equals(y)) return true;
                 }
             }
-        }             
+        }  */ 
+        
+        for (Casilla x:Tablero){
+            if (x.Ocupada!=null && x.Ocupada.ColorJugador!=color){
+                //Esto Tengo que ver como lo soluciono... El problema es que con el rey se dedica a a llamar recursivamente
+                //hasta el final
+                if(x.Ocupada.PossibleCaptures(x, this).contains(casilla)) return true;                
+            }
+        }
         return false;   
     }
+    
+    
     /**
      * NO IMPLEMENTADO
      * @return Un conjunto de tableros que constituyen las posibles jugadas a partir de él. No incluyen valoración
@@ -192,7 +202,13 @@ public class Board {
         nuevoTablero.getCasilla(inicio.Fila, inicio.Columna).Ocupada=null;
         nuevoTablero.getCasilla(destino.Fila, destino.Columna).Ocupada=pieza;
         nuevoTablero.ColorDelSiguienteJugador(true);
-                
+        
+        //Chequeo del jaque mate...
+        //UNA posibilidad es comprobar lo de los reyes como hicimos con los cambios de colroes
+        //nuevoTablero.JugadoresActivos.forEach ( x -> {if (ColorSeVaDePartida(x)) nuevoTablero.EliminaPiezasJugadorEliminado(x);});
+        //PERO dado que es cosa del ultimo movimiento parece mas sencillo para menos ciclos y memoria...
+        if (this.getCasilla(destino.Fila, destino.Columna).Ocupada!=null && this.getCasilla(destino.Fila, destino.Columna).Ocupada.ClasePieza==TipoPieza.KING) nuevoTablero.EliminaPiezasJugadorEliminado(destino.Ocupada.ColorJugador);
+        
         return nuevoTablero;
     }
     /**
