@@ -12,7 +12,7 @@ import java.util.EnumSet;
  * Mi primer intento de ir construyendo una clase que se pueda usar para jugar automaticamente
  * @author Luis
  */
-public class SillyIA implements Evaluation{
+class SillyIA implements Evaluation{
 
     //Hay dos formas de tratar esta cuestiï¿½n:
     //La primera y mï¿½s pragmï¿½tica simplemente calcular cuantos movimientos tiene una pieza dada en un tablero fijo
@@ -51,8 +51,12 @@ public class SillyIA implements Evaluation{
                     Parametros.add(new ParametrosSillyIAPieza(51.0,10.0,x));
                     break;
                 case KING:
-                    Parametros.add(new ParametrosSillyIAPieza(8.0,100.0,x)); //Por poner algo de varias ordenes de magnitud
-                                                                                 //La perdida del rey hace perder la partida...
+                    //Por poner algo de varias ordenes de magnitud probe 100 pero 
+                    //aunque la perdida del rey hace perder la partida...
+                    //Este factor tiene que ser más de la fuerza ofensiva
+                    //y dejar si pierde el rey en los calculos como infinito
+                    //que si no movera el rey para fomentar su movilidad
+                    Parametros.add(new ParametrosSillyIAPieza(8.0,2.0,x)); 
                     break;                                    
                 default:
                     throw new AssertionError(x.name());

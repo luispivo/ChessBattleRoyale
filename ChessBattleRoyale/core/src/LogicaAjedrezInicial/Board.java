@@ -122,15 +122,13 @@ public class Board {
      */
     ArrayList<Board> TablerosPosibles(){
         ArrayList<Board> tablerosFuturos=new ArrayList();
-        int contador=0;
         for (Casilla x: Tablero){
-            contador++;
             //System.out.println("contador:"+contador);
             if(x.Ocupada!=null && x.Ocupada.ColorJugador==TurnoJugador){
                 for (Casilla y:x.Ocupada.PossibleMoves(x, this)) tablerosFuturos.add(Movimiento(x, y));
             }
         }
-        System.out.println(contador);
+        System.out.println("Casillas "+Tablero.size()+" Tableros "+tablerosFuturos.size());
         return tablerosFuturos;
     }
     /**

@@ -224,14 +224,17 @@ public class ChessRoyale {
                     sillyIActiva=sillyIAGreen;
                     break;                      
             }
-            for (Board x: tablero.TablerosPosibles()) {
-                valoracion=sillyIActiva.Evaluacion(x);
-                if (valoracion>mejorJugada){
-                    mejorJugada=valoracion;
-                    mejorTablero=x;
-                }
+            //for(int j=0;j<=3;j++){
+                for (Board x: tablero.TablerosPosibles()) {
+                    valoracion=sillyIActiva.Evaluacion(x);
+                    if (valoracion>mejorJugada){
+                        mejorJugada=valoracion;
+                        mejorTablero=x;
+                    }
                 //System.out.println("Activa: "+sillyIActiva.EvaluaColor+" val "+valoracion);
-            }
+                }
+               
+            //}
             tablero=new Board(mejorTablero);
             System.out.println(tablero+"V "+sillyIActiva.Evaluacion(tablero));//+sillyIActiva.Evaluacion(tablero));
         }
@@ -301,7 +304,7 @@ public class ChessRoyale {
         System.out.println(tablero);
         System.out.println(tablero.getCasilla(0, 7).Ocupada);
         ArrayList<Casilla> casillas=tablero.getCasilla(0,7).Ocupada.PossibleMoves(tablero.getCasilla(0, 7), tablero);
-        for (Casilla x: casillas) System.out.println("F: "+x.Fila+" C: "+x.Columna);
+        casillas.forEach(x -> System.out.println("F: "+x.Fila+" C: "+x.Columna));
     }
 
 }
