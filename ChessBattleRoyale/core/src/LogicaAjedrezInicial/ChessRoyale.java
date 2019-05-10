@@ -24,12 +24,12 @@ public class ChessRoyale {
     public static void main(String[] args) {
         //pruebaDecrecerTablero()
         //pruebaColorines();
-        pruebaValoraciones();
+        //pruebaValoraciones();
         //pruebaMovimientos();
         //pruebaMovimientosII();
         //pruebaDistancias();
         //pruebaCasillasRey();
-        
+        pruebaHorizonteTableros();
     }
     private static void pruebaDistancias(){      
         Board tablero = new Board(14, 14);
@@ -305,6 +305,54 @@ public class ChessRoyale {
         System.out.println(tablero.getCasilla(0, 7).Ocupada);
         ArrayList<Casilla> casillas=tablero.getCasilla(0,7).Ocupada.PossibleMoves(tablero.getCasilla(0, 7), tablero);
         casillas.forEach(x -> System.out.println("F: "+x.Fila+" C: "+x.Columna));
+    }
+
+    private static void pruebaHorizonteTableros() {
+        Board tablero = new Board(14, 14);
+        tablero.TableroInicialPiezas14();
+        SillyIA sillyIABlack=new SillyIA(Color.BLACK);
+        SillyIA sillyIABlue=new SillyIA(Color.BLUE);
+        SillyIA sillyIAGreen=new SillyIA(Color.GREEN);
+        SillyIA sillyIAPurple=new SillyIA(Color.PURPLE);
+        SillyIA sillyIActiva=null;
+        Casilla casillaAuxInicio, casillaAuxFinal;
+        double mejorJugada,valoracion;
+        Board mejorTablero=null;
+        
+        for (int i=0;i<=40;i++){
+            mejorJugada=-1000000000;
+            /*            indice=tablero.JugadoresActivos.indexOf(tablero.TurnoJugador)+1;
+            if(indice>tablero.JugadoresActivos.size()-1) indice=0;
+            else if (indice<0) indice=tablero.JugadoresActivos.size()-1;
+            siguiente=tablero.JugadoresActivos.get(indice);*/
+            switch (tablero.TurnoJugador){
+                case BLACK:
+                    sillyIActiva=sillyIABlack;
+                    break;
+                case BLUE:
+                    sillyIActiva=sillyIABlue;
+                    break;
+                case PURPLE:
+                    sillyIActiva=sillyIAPurple;
+                    break;
+                case GREEN:
+                    sillyIActiva=sillyIAGreen;
+                    break;                      
+            }
+            for(int j=0;j<=3;j++){
+                for (Board x: tablero.TablerosPosibles()) {
+                    valoracion=sillyIActiva.Evaluacion(x);
+                    if (valoracion>mejorJugada){
+                        mejorJugada=valoracion;
+                        mejorTablero=x;
+                    }
+                //System.out.println("Activa: "+sillyIActiva.EvaluaColor+" val "+valoracion);
+                }
+               
+            }
+            tablero=new Board(mejorTablero);
+            System.out.println(tablero+"V "+sillyIActiva.Evaluacion(tablero));//+sillyIActiva.Evaluacion(tablero));
+        }
     }
 
 }

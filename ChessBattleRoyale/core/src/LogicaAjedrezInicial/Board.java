@@ -373,29 +373,7 @@ public class Board {
         }
         return contador;
     }
-    /**
-     * Una función que usaré para la IA que intenta sopesar la relativa importancia de la situación de la pieza en el tablero.
-     * Está elegida tras distintos ajustes y pruebas matemáticas. No creo que sea perfecta pero si creo que para empezar puede ser
-     * un buen intento. Intenta forzar a las piezas a ir hacia el centro para que no se caigan (por así decirlo).
-     * Ver la documentación del proyecto para más información. En cualquier caso estas funciones pueden ser sustituidas 
-     * y/o parametrizadas para alcanzar el valor que haga jugar a la IA mejor.
-     * @param casilla a la que se está haciendo el peso variable por su situacion en el tablero
-     * @return un valor double más o menos entre 0 y 1.x como mucho que indica un factor multiplicativo para sopesar el peso de una
-     * pieza
-     */
-    protected double FactorDistancia(Casilla casilla){
-        //Puede ser otro parametro y definirlo buscandolo pero de momento lo dejo como constante que más o menos he visto
-        //que salía unos resultados que me parecían coherentes
-        final int PARAMETRO=8;
-        if (Rows!=2){
-             //Relacionado con la distancia máxima del tablero
-            double parametroRows=(double) Rows/2.-1.;        
-            //Relaciona con la distancia real (considerando las filas en no peligro)
-            double parametroDistancia= (double) DistanciaFinalTablero(casilla)/parametroRows;
-            return Math.sqrt(parametroDistancia)+(1-parametroDistancia)/(PARAMETRO-parametroRows);
-        }
-        else return 1;
-    }
+   
     /**
     * 
     * @return string con el tablero (para pruebas antes de ir pintando con la libreria y demás LIBGDX

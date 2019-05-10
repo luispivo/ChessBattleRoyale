@@ -83,7 +83,32 @@ class SillyIA implements Evaluation{
         for (ParametrosSillyIAPieza x: Parametros) if (x.equals(aux)) return x.VALOR;
         return 0;
     }
-
+     /**
+     * Una función que usaré para la IA que intenta sopesar la relativa importancia de la situación de la pieza en el tablero.
+     * Está elegida tras distintos ajustes y pruebas matemáticas. No creo que sea perfecta pero si creo que para empezar puede ser
+     * un buen intento. Intenta forzar a las piezas a ir hacia el centro para que no se caigan (por así decirlo).
+     * Ver la documentación del proyecto para más información. En cualquier caso estas funciones pueden ser sustituidas 
+     * y/o parametrizadas para alcanzar el valor que haga jugar a la IA mejor.
+     * @param casilla a la que se está haciendo el peso variable por su situacion en el tablero
+     * @param tablero al que se refiere el calculo de la distancia
+     * @return un valor double más o menos entre 0 y 1.x como mucho que indica un factor multiplicativo para sopesar el peso de una
+     * pieza
+     */
+    @Override
+    public double FactorDistancia(Casilla casilla,Board tablero){
+    
+         //Puede ser otro parametro y definirlo buscandolo pero de momento lo dejo como constante que más o menos he visto
+        //que salía unos resultados que me parecían coherentes
+        final int PARAMETRO=8;
+        if (tablero.Rows!=2){
+             //Relacionado con la distancia máxima del tablero
+            double parametroRows=(double) tablero.Rows/2.-1.;        
+            //Relaciona con la distancia real (considerando las filas en no peligro)
+            double parametroDistancia= (double) tablero.DistanciaFinalTablero(casilla)/parametroRows;
+            return Math.sqrt(parametroDistancia)+(1-parametroDistancia)/(PARAMETRO-parametroRows);
+        }
+        else return 1;
+    }
     @Override
     public double Evaluacion(Board tablero) {
         //La ecuacion usada es 
@@ -96,9 +121,10 @@ class SillyIA implements Evaluation{
         for(Casilla x:tablero.Tablero){
             //if (x.Ocupada!=null && x.Ocupada.ClasePieza!=TipoPieza.KING){ //No entiendo porque tengo que quitar al rey...
             if (x.Ocupada!=null){ 
-                if ( x.Ocupada.ColorJugador==EvaluaColor) valorJugador+=FactorValor(x.Ocupada.ClasePieza)*FactorMovimiento(x,tablero);
-                else if (x.Ocupada.ColorJugador!=EvaluaColor) valorEnemigos+=FactorValor(x.Ocupada.ClasePieza)*FactorMovimiento(x,tablero);
+                if ( x.Ocupada.ColorJugador==EvaluaColor) valorJugador+=FactorDistancia(x,tablero)*FactorValor(x.Ocupada.ClasePieza)*FactorMovimiento(x,tablero);
+                else if (x.Ocupada.ColorJugador!=EvaluaColor) valorEnemigos+=FactorDistancia(x,tablero)*FactorValor(x.Ocupada.ClasePieza)*FactorMovimiento(x,tablero);
             }
+            
         }
         denominador=valorJugador+valorEnemigos;
         numerador=valorJugador-valorEnemigos/(double) (tablero.JugadoresActivos.size()-1);     

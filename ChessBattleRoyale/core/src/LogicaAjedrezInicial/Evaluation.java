@@ -28,5 +28,21 @@ public interface Evaluation {
     */
     double FactorValor(TipoPieza pieza);
     
+    /**
+     * Funcion que pesara la distancia al borde del tablero para tener en cuenta que cuanto más lejos menos peligro
+     * de ser consumida cuando el tablero disminuya de tamanyo
+     * @param casilla
+     * @param tablero
+     * @return Valor doble que sopesa la distancia de la casilla al borde del tablero
+     */
+    double FactorDistancia(Casilla casilla,Board tablero);
+    
+    /**
+     * Funcion que da un valor numerico a un tablero cualquiera para luego ir escogiendo el que sea correspondiente
+     * para la eleccion de jugadas
+     * @param tablero
+     * @return 
+     */
     double Evaluacion(Board tablero);
+     
 }
