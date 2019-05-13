@@ -116,7 +116,6 @@ public class Board {
     
     
     /**
-     * NO IMPLEMENTADO
      * @return Un conjunto de tableros que constituyen las posibles jugadas a partir de él. No incluyen valoración
      * que eso lo haré dependiendo de parametros de mi intento de hacer IA
      */
@@ -128,7 +127,7 @@ public class Board {
                 for (Casilla y:x.Ocupada.PossibleMoves(x, this)) tablerosFuturos.add(Movimiento(x, y));
             }
         }
-        System.out.println("Casillas "+Tablero.size()+" Tableros "+tablerosFuturos.size());
+        //System.out.println("Casillas "+Tablero.size()+" Tableros "+tablerosFuturos.size());
         return tablerosFuturos;
     }
     /**
@@ -180,7 +179,7 @@ public class Board {
             EliminaPiezasJugadorEliminado(x);
             cambiarTurno=true;           
         }
-        if (cambiarTurno) ColorDelSiguienteJugador(false);
+        if (cambiarTurno) EliminaJugadorYPasaAlSiguienteJugador(false);
     }
     /**
      * Mueve una pieza de la casilla inicio a la casilla destino en un tablero copia.
@@ -199,7 +198,7 @@ public class Board {
         Pieza pieza=inicio.CopiaPiezaPorTipo();
         nuevoTablero.getCasilla(inicio.Fila, inicio.Columna).Ocupada=null;
         nuevoTablero.getCasilla(destino.Fila, destino.Columna).Ocupada=pieza;
-        nuevoTablero.ColorDelSiguienteJugador(true);
+        nuevoTablero.EliminaJugadorYPasaAlSiguienteJugador(true);
         
         //Chequeo del jaque mate...
         //UNA posibilidad es comprobar lo de los reyes como hicimos con los cambios de colroes
@@ -219,12 +218,10 @@ public class Board {
         return  (inicio.Ocupada !=null&&inicio.Ocupada.PossibleMoves(inicio, this).contains(destino));
     }
     /**
-     * Devuelve el tablero del siguiente jugador a mover cambiando el Turno del jugador y el array de Jugadores activo 
-     * si es necesario
-     * @param nuevoTablero Tablero al que todavía no se le ha cambiado el jugador  
-     * @return Un nuevo tablero con todo comprobado si es correcto y nulo si no quedan jugadores
+     * Elimina al jugador de  colore eliminado(y sus piezas)  y cambia el turno del jugador si es necesario 
+     * @param cambio indice que indica si hay que cambiar el turno o no
      */
-    private void ColorDelSiguienteJugador(Boolean cambio) {
+    private void EliminaJugadorYPasaAlSiguienteJugador(Boolean cambio) {
         int indice;
         Color colorSiguienteJugador;
         indice=JugadoresActivos.indexOf(TurnoJugador)+(cambio?1:0); 
@@ -373,7 +370,11 @@ public class Board {
         }
         return contador;
     }
-   
+    Color jugadorAnterior(){
+        int indice=JugadoresActivos.indexOf(TurnoJugador)-1;            
+        if(indice<0) indice= JugadoresActivos.size()-1;
+        return JugadoresActivos.get(indice);
+    }
     /**
     * 
     * @return string con el tablero (para pruebas antes de ir pintando con la libreria y demás LIBGDX

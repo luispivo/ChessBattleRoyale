@@ -319,8 +319,10 @@ public class ChessRoyale {
         double mejorJugada,valoracion;
         Board mejorTablero=null;
         
-        for (int i=0;i<=40;i++){
+        for (int i=0;i<=20;i++){
+            mejorTablero=null;
             mejorJugada=-1000000000;
+            valoracion=-1000000000;
             /*            indice=tablero.JugadoresActivos.indexOf(tablero.TurnoJugador)+1;
             if(indice>tablero.JugadoresActivos.size()-1) indice=0;
             else if (indice<0) indice=tablero.JugadoresActivos.size()-1;
@@ -339,9 +341,20 @@ public class ChessRoyale {
                     sillyIActiva=sillyIAGreen;
                     break;                      
             }
-            for(int j=0;j<=3;j++){
+            //alphabeta(origin, depth, ??, +?, TRUE)
+            //valoracion=sillyIActiva.MinMax_AlphaBeta(tablero, 6, -100000, 1000000);
+            //for(int j=0;j<=3;j++){
+            //ESTO ES UNA JODIENDA PERO PARA SABER QUE JUGADA ES LA QUE HACE TENGO QUE HACER UN CICLO DE MAX 
+            //PREVIO para modificar el tablero
+            //System.out.println(tablero.TurnoJugador);
                 for (Board x: tablero.TablerosPosibles()) {
-                    valoracion=sillyIActiva.Evaluacion(x);
+                    //System.out.println(x.TurnoJugador);
+                    //Lo mejor es que el numero de profundidad sea NumeroJugadores*entero-1 (p.e. siendo 4= 3,7,11 ...
+                    //de profundidad... para que tome un turno entero de todos... problema... que conforme pasa de 
+                    //profundidad los tiempos de computacion...
+                    valoracion=sillyIActiva.MinMax_AlphaBeta(x, 3, -1000000, 1000000);
+                    //valoracion=sillyIActiva.Evaluacion(x);
+                    //if (sillyIActiva.Evaluacion(x)!=sillyIActiva.MinMax_AlphaBeta(x, 0, -100000, 1000000)) System.out.println("Algo Pasa");
                     if (valoracion>mejorJugada){
                         mejorJugada=valoracion;
                         mejorTablero=x;
@@ -349,8 +362,13 @@ public class ChessRoyale {
                 //System.out.println("Activa: "+sillyIActiva.EvaluaColor+" val "+valoracion);
                 }
                
-            }
+            //}
+            try{
             tablero=new Board(mejorTablero);
+            }
+            catch (Exception e){
+                System.out.println(valoracion+" "+mejorJugada);
+            }
             System.out.println(tablero+"V "+sillyIActiva.Evaluacion(tablero));//+sillyIActiva.Evaluacion(tablero));
         }
     }

@@ -18,10 +18,10 @@ public class ParametrosSillyIAPieza {
     double VALOR;
     TipoPieza TipoPieza;
 
-    public ParametrosSillyIAPieza(double MOVIMIENTOSMAXIMOS, double VALOR, TipoPieza TipoPieza) {
-        this.MOVIMIENTOSMAXIMOS = MOVIMIENTOSMAXIMOS;
-        this.VALOR = VALOR;
-        this.TipoPieza = TipoPieza;
+    public ParametrosSillyIAPieza(double movimientos, double valor, TipoPieza tipo) {
+        this.MOVIMIENTOSMAXIMOS = movimientos;
+        this.VALOR = valor;
+        this.TipoPieza = tipo;
     }    
 
     @Override

@@ -36,7 +36,7 @@ class SillyIA implements Evaluation{
         (EnumSet.allOf(TipoPieza.class)).forEach( x -> {
             switch(x){
                 case PAWN:
-                    Parametros.add(new ParametrosSillyIAPieza(8.0,1.0,x));
+                    Parametros.add(new ParametrosSillyIAPieza(4.0,1.0,x));
                     break;
                 case KNIGHT:
                     Parametros.add(new ParametrosSillyIAPieza(8.0,3.0,x));
@@ -74,7 +74,11 @@ class SillyIA implements Evaluation{
     @Override
     public double FactorMovimiento(Casilla casilla, Board tablero) {
         ParametrosSillyIAPieza aux=new ParametrosSillyIAPieza(0, 0, casilla.Ocupada.ClasePieza);
-        for (ParametrosSillyIAPieza x: Parametros) if (x.equals(aux)) return (double)casilla.Ocupada.PossibleMoves(casilla, tablero).size()/x.MOVIMIENTOSMAXIMOS;
+        for (ParametrosSillyIAPieza x: Parametros) if (x.equals(aux)) {
+            //if (tablero.TurnoJugador==Color.GREEN) System.out.println("-------> " + casilla.Ocupada.PossibleMoves(casilla, tablero).size()+"||"+x.MOVIMIENTOSMAXIMOS);
+            return (double)casilla.Ocupada.PossibleMoves(casilla, tablero).size()/x.MOVIMIENTOSMAXIMOS;
+        }
+        //System.out.println("Algo Ha pasado");
         return 0;
     }
     @Override
@@ -120,11 +124,10 @@ class SillyIA implements Evaluation{
         double denominador,numerador;
         for(Casilla x:tablero.Tablero){
             //if (x.Ocupada!=null && x.Ocupada.ClasePieza!=TipoPieza.KING){ //No entiendo porque tengo que quitar al rey...
-            if (x.Ocupada!=null){ 
-                if ( x.Ocupada.ColorJugador==EvaluaColor) valorJugador+=FactorDistancia(x,tablero)*FactorValor(x.Ocupada.ClasePieza)*FactorMovimiento(x,tablero);
-                else if (x.Ocupada.ColorJugador!=EvaluaColor) valorEnemigos+=FactorDistancia(x,tablero)*FactorValor(x.Ocupada.ClasePieza)*FactorMovimiento(x,tablero);
+            if (x.Ocupada!=null){ //System.out.println(x.Ocupada.ColorJugador.toString()+EvaluaColor.toString());
+                if ( x.Ocupada.ColorJugador==EvaluaColor) valorJugador+=FactorValor(x.Ocupada.ClasePieza)*FactorDistancia(x,tablero)*(1+FactorMovimiento(x,tablero));
+                else if (x.Ocupada.ColorJugador!=EvaluaColor) valorEnemigos+=FactorValor(x.Ocupada.ClasePieza)*FactorDistancia(x,tablero)*(1+FactorMovimiento(x,tablero));
             }
-            
         }
         denominador=valorJugador+valorEnemigos;
         numerador=valorJugador-valorEnemigos/(double) (tablero.JugadoresActivos.size()-1);     
@@ -134,6 +137,61 @@ class SillyIA implements Evaluation{
         //System.out.println("D: "+denominador);
         //System.out.println("N: "+numerador);
         //return (denominador-1)*numerador/((numerador-1)*denominador);
+        //System.out.println(tablero);
         return numerador/denominador;
     }   
+
+    @Override
+    public double MinMax_AlphaBeta(Board tablero, int profundidad,double alpha, double beta) {
+        //Valor de la evaluacion
+        double value;
+        if (profundidad==0||tablero.TablerosPosibles().size()==0) return Evaluacion(tablero);
+        //En juegos de dos personas aqui simplemente va un booleano que tiene en cuenta si estamos maximizando o 
+        //minimizando. Aqui con 4 jugadores no es tan sencillo pero si si se tiene en cuenta que comparando el color
+        //del jugador que le toca y el color que se está evaluando.
+        //Es el jugador anterior porque si que al hacer el movimiento ya cambia de jugador...
+        //System.out.println(EvaluaColor.toString()+tablero.jugadorAnterior().toString()+tablero.TurnoJugador.toString());
+        if (EvaluaColor==tablero.TurnoJugador){
+            value= -10000000;
+            for (Board x : tablero.TablerosPosibles()){
+                value=Math.max(value,MinMax_AlphaBeta(x,profundidad-1,alpha,beta));
+                alpha=Math.max(alpha,value);
+                if (alpha>=beta) break;     
+                //System.out.println(EvaluaColor+" "+tablero.jugadorAnterior()+" "+tablero.TurnoJugador+"\n="+x.toString()+value+" "+alpha+" "+beta); 
+            }
+            return value;
+        }
+        else{
+            value= 10000000;
+            for (Board x : tablero.TablerosPosibles()){
+                value=Math.min(value,MinMax_AlphaBeta(x,profundidad-1,alpha,beta));
+                beta=Math.min(beta,value);
+                if (alpha>=beta) break;
+                //System.out.println("="+x.toString()+value+" "+alpha+" "+beta); 
+            }           
+            return value;
+        }
+        //Lo siguiente es el pseudocodigo de la wikipedia...
+ /*       function alphabeta(node, depth, ?, ?, maximizingPlayer) is
+    if depth = 0 or node is a terminal node then
+        return the heuristic value of node
+    if maximizingPlayer then
+        value := ??
+        for each child of node do
+            value := max(value, alphabeta(child, depth ? 1, ?, ?, FALSE))
+            ? := max(?, value)
+            if ? ? ? then
+                break (* ? cut-off *)
+        return value
+    else
+        value := +?
+        for each child of node do
+            value := min(value, alphabeta(child, depth ? 1, ?, ?, TRUE))
+            ? := min(?, value)
+            if ? ? ? then
+                break (* ? cut-off *)
+        return value
+(* Initial call *)
+alphabeta(origin, depth, ??, +?, TRUE)*/
+    }
 }
