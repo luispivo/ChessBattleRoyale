@@ -29,7 +29,12 @@ public class ChessRoyale {
         //pruebaMovimientosII();
         //pruebaDistancias();
         //pruebaCasillasRey();
-        pruebaHorizonteTableros();
+        Board tablero = NuevoTablero();
+        tablero=pruebaHorizonteTableros(50, tablero);
+        System.out.println("**********************************************");
+        System.out.println("**********************************************");
+        
+        //pruebaHorizonteTableros(4, tablero);
     }
     private static void pruebaDistancias(){      
         Board tablero = new Board(14, 14);
@@ -77,7 +82,7 @@ public class ChessRoyale {
         tablero.getCasilla(7,5).Ocupada=new King(Color.PURPLE);
         tablero.getCasilla(7,6).Ocupada=new King(Color.BLUE);
         //System.out.println(tablero.getCasilla(7, 0));
-        if (tablero.MovimientoLegal(casillaAuxInicio, casillaAuxFinal)) tablero=tablero.Movimiento(casillaAuxInicio, casillaAuxFinal);
+        if (tablero.MovimientoLegal(casillaAuxInicio, casillaAuxFinal)) tablero=tablero.Movimiento(casillaAuxInicio, casillaAuxFinal, true);
         System.out.println(tablero);
          
     }
@@ -180,8 +185,7 @@ public class ChessRoyale {
     }
     private static void pruebaValoraciones() {    
         //PRUEBAS DE VALORACIONES
-        Board tablero = new Board(14, 14);
-        tablero.TableroInicialPiezas14();
+        Board tablero = NuevoTablero();
         SillyIA sillyIABlack=new SillyIA(Color.BLACK);
         SillyIA sillyIABlue=new SillyIA(Color.BLUE);
         SillyIA sillyIAGreen=new SillyIA(Color.GREEN);
@@ -225,7 +229,7 @@ public class ChessRoyale {
                     break;                      
             }
             //for(int j=0;j<=3;j++){
-                for (Board x: tablero.TablerosPosibles()) {
+                for (Board x: tablero.TablerosPosibles(null)) {
                     valoracion=sillyIActiva.Evaluacion(x);
                     if (valoracion>mejorJugada){
                         mejorJugada=valoracion;
@@ -290,26 +294,24 @@ public class ChessRoyale {
     }
 
     private static void pruebaCasillasRey() {
-        Board tablero = new Board(14, 14);
-        tablero.TableroInicialPiezas14();
+        Board tablero = NuevoTablero();
         //tablero.TableroInicialPiezas14();
         Casilla casilla=tablero.getCasilla(1, 7);
         Casilla casi = tablero.getCasilla(2,7);
-        tablero=tablero.Movimiento(casilla, casi);
+        tablero=tablero.Movimiento(casilla, casi, true);
         //tablero.getCasilla(4, 4).Ocupada=new King(Color.BLACK);
         //tablero.getCasilla(3,3).Ocupada=new Rook(Color.BLUE);
         casilla=tablero.getCasilla(7, 1);
         casi = tablero.getCasilla(7,2);
-        tablero=tablero.Movimiento(casilla, casi);
+        tablero=tablero.Movimiento(casilla, casi, true);
         System.out.println(tablero);
         System.out.println(tablero.getCasilla(0, 7).Ocupada);
         ArrayList<Casilla> casillas=tablero.getCasilla(0,7).Ocupada.PossibleMoves(tablero.getCasilla(0, 7), tablero);
         casillas.forEach(x -> System.out.println("F: "+x.Fila+" C: "+x.Columna));
     }
 
-    private static void pruebaHorizonteTableros() {
-        Board tablero = new Board(14, 14);
-        tablero.TableroInicialPiezas14();
+    private static Board pruebaHorizonteTableros(int numero, Board tablero) {
+
         SillyIA sillyIABlack=new SillyIA(Color.BLACK);
         SillyIA sillyIABlue=new SillyIA(Color.BLUE);
         SillyIA sillyIAGreen=new SillyIA(Color.GREEN);
@@ -317,9 +319,11 @@ public class ChessRoyale {
         SillyIA sillyIActiva=null;
         Casilla casillaAuxInicio, casillaAuxFinal;
         double mejorJugada,valoracion;
+        //Board tableroAuxiliar;
         Board mejorTablero=null;
         
-        for (int i=0;i<=20;i++){
+        for (int i=0;i<=numero;i++){
+            //tableroAuxiliar=new Board(tablero);
             mejorTablero=null;
             mejorJugada=-1000000000;
             valoracion=-1000000000;
@@ -347,12 +351,13 @@ public class ChessRoyale {
             //ESTO ES UNA JODIENDA PERO PARA SABER QUE JUGADA ES LA QUE HACE TENGO QUE HACER UN CICLO DE MAX 
             //PREVIO para modificar el tablero
             //System.out.println(tablero.TurnoJugador);
-                for (Board x: tablero.TablerosPosibles()) {
+                for (Board x: tablero.TablerosPosibles(true)) {
                     //System.out.println(x.TurnoJugador);
                     //Lo mejor es que el numero de profundidad sea NumeroJugadores*entero-1 (p.e. siendo 4= 3,7,11 ...
                     //de profundidad... para que tome un turno entero de todos... problema... que conforme pasa de 
                     //profundidad los tiempos de computacion...
                     valoracion=sillyIActiva.MinMax_AlphaBeta(x, 3, -1000000, 1000000);
+                    //System.out.println(valoracion+" "+sillyIActiva.Evaluacion(x));
                     //valoracion=sillyIActiva.Evaluacion(x);
                     //if (sillyIActiva.Evaluacion(x)!=sillyIActiva.MinMax_AlphaBeta(x, 0, -100000, 1000000)) System.out.println("Algo Pasa");
                     if (valoracion>mejorJugada){
@@ -371,6 +376,13 @@ public class ChessRoyale {
             }
             System.out.println(tablero+"V "+sillyIActiva.Evaluacion(tablero));//+sillyIActiva.Evaluacion(tablero));
         }
+        return tablero;
+    }
+
+    private static Board NuevoTablero() {
+        Board tablero = new Board(14, 14);
+        tablero.TableroInicialPiezas14();
+        return tablero;
     }
 
 }

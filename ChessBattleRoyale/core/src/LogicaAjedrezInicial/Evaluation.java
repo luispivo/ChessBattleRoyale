@@ -29,7 +29,7 @@ public interface Evaluation {
     double FactorValor(TipoPieza pieza);
     
     /**
-     * Funcion que pesara la distancia al borde del tablero para tener en cuenta que cuanto más lejos menos peligro
+     * Funcion que pesara la distancia al borde del tablero para tener en cuenta que cuanto mas lejos menos peligro
      * de ser consumida cuando el tablero disminuya de tamanyo
      * @param casilla
      * @param tablero
@@ -45,14 +45,14 @@ public interface Evaluation {
      */
     double Evaluacion(Board tablero);
     /**
-     * Función que implementa la búsqueda MinMax con poda AlphaBeta a una determinada profundidad de entre los tableros 
-     * posibles para encontrar la mejor jugada.En realidad en un futuro implementaré mejores cosas pero ahora mismo
- creo que es la mejor cosa sencilla a hacer
+     * Funcion que implementa la busqueda MinMax con poda AlphaBeta a una determinada profundidad de entre los tableros 
+     * posibles para encontrar la mejor jugada.En realidad en un futuro implementare mejores cosas pero ahora mismo
+     * creo que es la mejor cosa sencilla a hacer
      * @param tablero tablero origen de la evaluacion
      * @param profundidad numero de movimientos a buscar
      * @param alpha parametro alpha de la poda
      * @param beta parametros beta de la poda 
-     * @return valor de la evaluación
+     * @return valor de la evaluacion
      */
     
     double MinMax_AlphaBeta(Board tablero, int profundidad, double alpha, double beta);

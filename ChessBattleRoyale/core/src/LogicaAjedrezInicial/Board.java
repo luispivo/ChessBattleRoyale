@@ -116,15 +116,15 @@ public class Board {
     
     
     /**
-     * @return Un conjunto de tableros que constituyen las posibles jugadas a partir de él. No incluyen valoración
-     * que eso lo haré dependiendo de parametros de mi intento de hacer IA
+     * @param analisis the value of analisis
+     * @return the java.util.ArrayList<LogicaAjedrezInicial.Board>
      */
-    ArrayList<Board> TablerosPosibles(){
+    ArrayList<Board> TablerosPosibles(Boolean noAnalisis){
         ArrayList<Board> tablerosFuturos=new ArrayList();
         for (Casilla x: Tablero){
             //System.out.println("contador:"+contador);
             if(x.Ocupada!=null && x.Ocupada.ColorJugador==TurnoJugador){
-                for (Casilla y:x.Ocupada.PossibleMoves(x, this)) tablerosFuturos.add(Movimiento(x, y));
+                for (Casilla y:x.Ocupada.PossibleMoves(x, this)) tablerosFuturos.add(Movimiento(x, y, noAnalisis));
             }
         }
         //System.out.println("Casillas "+Tablero.size()+" Tableros "+tablerosFuturos.size());
@@ -182,29 +182,34 @@ public class Board {
         if (cambiarTurno) EliminaJugadorYPasaAlSiguienteJugador(false);
     }
     /**
-     * Mueve una pieza de la casilla inicio a la casilla destino en un tablero copia.
-     * NOTA: No incluyo aqui comprobación que el movimiento es legal porque lo quiero usar con 
-     * el generador de movimientos para la IA donde ya tengo que comprobar que le pongo movimientos
-     * legales. Así que me pareció excesivo ponerle un doble check de ello. Esto hace que para las partidas 
-     * normales este check de movimiento legal ha de hacerse SIEMPRE y genere algo un tanto más feo
-     * pero es el precio a pagar para no incrementar la carga de "checks" de movimiento legal
+     * Mueve una pieza de la casilla inicio a la casilla destino en un tablero copia.NOTA: No incluyo aqui comprobación que el movimiento es legal porque lo quiero usar con 
+ el generador de movimientos para la IA donde ya tengo que comprobar que le pongo movimientos
+ legales.
+     * Así que me pareció excesivo ponerle un doble check de ello. Esto hace que para las partidas 
+ normales este check de movimiento legal ha de hacerse SIEMPRE y genere algo un tanto más feo
+ pero es el precio a pagar para no incrementar la carga de "checks" de movimiento legal
      * @param inicio Casilla inicio
      * @param destino Casilla destino
+     * @param analisis the value of analisis
+     * @return the LogicaAjedrezInicial.Board
      */
-    Board Movimiento(Casilla inicio, Casilla destino){
+    Board Movimiento(Casilla inicio, Casilla destino, Boolean noAnalisis){
         Board nuevoTablero=new Board(this);
         //System.out.println("UNA COSA");
         //System.out.println(nuevoTablero);
         Pieza pieza=inicio.CopiaPiezaPorTipo();
         nuevoTablero.getCasilla(inicio.Fila, inicio.Columna).Ocupada=null;
         nuevoTablero.getCasilla(destino.Fila, destino.Columna).Ocupada=pieza;
-        nuevoTablero.EliminaJugadorYPasaAlSiguienteJugador(true);
+        nuevoTablero.EliminaJugadorYPasaAlSiguienteJugador(noAnalisis);
         
         //Chequeo del jaque mate...
         //UNA posibilidad es comprobar lo de los reyes como hicimos con los cambios de colroes
         //nuevoTablero.JugadoresActivos.forEach ( x -> {if (ColorSeVaDePartida(x)) nuevoTablero.EliminaPiezasJugadorEliminado(x);});
         //PERO dado que es cosa del ultimo movimiento parece mas sencillo para menos ciclos y memoria...
-        if (this.getCasilla(destino.Fila, destino.Columna).Ocupada!=null && this.getCasilla(destino.Fila, destino.Columna).Ocupada.ClasePieza==TipoPieza.KING) nuevoTablero.EliminaPiezasJugadorEliminado(destino.Ocupada.ColorJugador);
+        if (this.getCasilla(destino.Fila, destino.Columna).Ocupada!=null && this.getCasilla(destino.Fila, destino.Columna).Ocupada.ClasePieza==TipoPieza.KING) {
+            //System.out.println("Algo pasa, inicio"+inicio.Fila+" "+inicio.Columna+" en destino f"+destino.Fila+" c"+destino.Columna+" Pieza: "+this.getCasilla(destino.Fila, destino.Columna).Ocupada.ClasePieza);
+            nuevoTablero.EliminaPiezasJugadorEliminado(destino.Ocupada.ColorJugador);         
+        }
         
         return nuevoTablero;
     }
@@ -228,9 +233,11 @@ public class Board {
         //System.out.println(TurnoJugador.toString()+indice+JugadoresActivos.get(indice));
         do{            
             if(indice>JugadoresActivos.size()-1) indice=0;
-            else if (indice<0) indice=JugadoresActivos.size()-1;
+           // else if (indice<0) indice=JugadoresActivos.size()-1;
             colorSiguienteJugador=JugadoresActivos.get(indice);
             if (ColorSeVaDePartida(colorSiguienteJugador)) {
+                //System.out.println("ENTRO A BORRAR2");
+                //System.out.println(cambio.toString()+colorSiguienteJugador+this);
                 JugadoresActivos.remove(colorSiguienteJugador);
                 EliminaPiezasJugadorEliminado(colorSiguienteJugador);
                 //System.out.println(colorSiguienteJugador+"HOLA"+TurnoJugador);
@@ -254,6 +261,7 @@ public class Board {
      * @param colorSiguienteJugador color de las piezas a eliminar
      */
     private void EliminaPiezasJugadorEliminado(Color color) {
+        //System.out.println("ENTRO A BORRAR1"+color);
         for (Casilla x:Tablero) if(x.Ocupada!=null && x.Ocupada.ColorJugador==color) x.Ocupada=null;
     }
     /**

@@ -43,8 +43,8 @@ class King extends Pieza{
                 }
                 // Ahora mismo no se me ocurre salvo bucle por el tablero de todas las casillas y de todas las piezas e ir
                 // comprobando que no estÃ¡ la casilla en la lista de posibles moves... 
-                // Creo que ya lo he hecho en la clase tablero y aÃ±ado... 
-                // Pero tengo que revisar esta implementación... primero porque en blitz es posible comerse los reyes asi que tendria
+                // Creo que ya lo he hecho en la clase tablero y anyado... 
+                // Pero tengo que revisar esta implementacion... primero porque en blitz es posible comerse los reyes asi que tendria
                 // que quitar pero tambien porque al usar la IA me esta dando problemas de stack overflow...                           
             }                       
         }
@@ -75,7 +75,7 @@ class King extends Pieza{
                     }
                 }
           
-                // Pero tengo que revisar esta implementación... primero porque en blitz es posible comerse los reyes asi que tendria
+                // Pero tengo que revisar esta implementacion... primero porque en blitz es posible comerse los reyes asi que tendria
                 // que quitar pero tambien porque al usar la IA me esta dando problemas de stack overflow... 
                 // quitandolo no
             }                       

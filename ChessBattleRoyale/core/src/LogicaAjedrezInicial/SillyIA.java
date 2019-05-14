@@ -53,7 +53,7 @@ class SillyIA implements Evaluation{
                 case KING:
                     //Por poner algo de varias ordenes de magnitud probe 100 pero 
                     //aunque la perdida del rey hace perder la partida...
-                    //Este factor tiene que ser más de la fuerza ofensiva
+                    //Este factor tiene que ser mas de la fuerza ofensiva
                     //y dejar si pierde el rey en los calculos como infinito
                     //que si no movera el rey para fomentar su movilidad
                     Parametros.add(new ParametrosSillyIAPieza(8.0,2.0,x)); 
@@ -145,15 +145,15 @@ class SillyIA implements Evaluation{
     public double MinMax_AlphaBeta(Board tablero, int profundidad,double alpha, double beta) {
         //Valor de la evaluacion
         double value;
-        if (profundidad==0||tablero.TablerosPosibles().size()==0) return Evaluacion(tablero);
+        if (profundidad==0||tablero.TablerosPosibles(false).size()==0) return Evaluacion(tablero);
         //En juegos de dos personas aqui simplemente va un booleano que tiene en cuenta si estamos maximizando o 
         //minimizando. Aqui con 4 jugadores no es tan sencillo pero si si se tiene en cuenta que comparando el color
-        //del jugador que le toca y el color que se está evaluando.
+        //del jugador que le toca y el color que se esta evaluando.
         //Es el jugador anterior porque si que al hacer el movimiento ya cambia de jugador...
         //System.out.println(EvaluaColor.toString()+tablero.jugadorAnterior().toString()+tablero.TurnoJugador.toString());
         if (EvaluaColor==tablero.TurnoJugador){
             value= -10000000;
-            for (Board x : tablero.TablerosPosibles()){
+            for (Board x : tablero.TablerosPosibles(false)){
                 value=Math.max(value,MinMax_AlphaBeta(x,profundidad-1,alpha,beta));
                 alpha=Math.max(alpha,value);
                 if (alpha>=beta) break;     
@@ -163,7 +163,7 @@ class SillyIA implements Evaluation{
         }
         else{
             value= 10000000;
-            for (Board x : tablero.TablerosPosibles()){
+            for (Board x : tablero.TablerosPosibles(false)){
                 value=Math.min(value,MinMax_AlphaBeta(x,profundidad-1,alpha,beta));
                 beta=Math.min(beta,value);
                 if (alpha>=beta) break;

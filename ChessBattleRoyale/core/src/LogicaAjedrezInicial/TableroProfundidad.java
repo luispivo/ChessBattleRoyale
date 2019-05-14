@@ -20,6 +20,6 @@ class TableroProfundidad {
     public TableroProfundidad(Board generator,int profundidad){
         TableroGenerador=generator;
         Profundidad=profundidad;
-        TablerosFuturos=generator.TablerosPosibles();
+        TablerosFuturos=generator.TablerosPosibles(null);
     }
 }
