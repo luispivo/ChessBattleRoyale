@@ -142,7 +142,8 @@ public class Board {
                     ||((Tablero.get(i).Columna==fila||Tablero.get(i).Columna==(InitialColumns-fila-1)) &&(Tablero.get(i).Fila<=(InitialColumns-fila-1)&&Tablero.get(i).Fila>=fila)))  
                 if(Tablero.get(i).IncreaseDangerStatus(this)){
                         eliminarParteTablero=true;
-                        i--;
+                        i--; //Al eliminar la casilla hay que tener en cuenta que el resto pasa a ocupar un indice menor asi que 
+			     //lo elimino para continuar sin salirme de los limites en el for
                 }
         }
         //Se eliminan 2 filas y columnas con esto asi que se modifican estos valores de la clase tablero

@@ -145,6 +145,9 @@ class SillyIA implements Evaluation{
     public double MinMax_AlphaBeta(Board tablero, int profundidad,double alpha, double beta) {
         //Valor de la evaluacion
         double value;
+	//AQUI TENGO QUE PROBAR QUE CUANDO MUERE UN REY SEA SEGURAMENTE UN NODO TERMINAL Y EN EVALUACION QUE HAGA LO DE +INFINITo
+	//--INFINITO Y ASI EVITAR EL PROBLEMA DE QUE SE ME VAYA DE MADRE QUE ESTOY TENIENDO Y POSIBLEMENTE ADEMÁS FACILITEUN POCO LA 
+	//PROFUNDIDAD
         if (profundidad==0||tablero.TablerosPosibles(false).size()==0) return Evaluacion(tablero);
         //En juegos de dos personas aqui simplemente va un booleano que tiene en cuenta si estamos maximizando o 
         //minimizando. Aqui con 4 jugadores no es tan sencillo pero si si se tiene en cuenta que comparando el color
