@@ -122,6 +122,10 @@ class SillyIA implements Evaluation{
         double valorJugador=0;
         double valorEnemigos=0;
         double denominador,numerador;
+        for (Color x : tablero.JugadoresActivos) if(tablero.ColorSeVaDePartida(x)){
+            if (x==EvaluaColor) return -10000000;
+            else return 10000000;
+        } 
         for(Casilla x:tablero.Tablero){
             //if (x.Ocupada!=null && x.Ocupada.ClasePieza!=TipoPieza.KING){ //No entiendo porque tengo que quitar al rey...
             if (x.Ocupada!=null){ //System.out.println(x.Ocupada.ColorJugador.toString()+EvaluaColor.toString());
@@ -145,10 +149,15 @@ class SillyIA implements Evaluation{
     public double MinMax_AlphaBeta(Board tablero, int profundidad,double alpha, double beta) {
         //Valor de la evaluacion
         double value;
-	//AQUI TENGO QUE PROBAR QUE CUANDO MUERE UN REY SEA SEGURAMENTE UN NODO TERMINAL Y EN EVALUACION QUE HAGA LO DE +INFINITo
+	Boolean nodoTerminalPorEliminacion=false;
+        //AQUI TENGO QUE PROBAR QUE CUANDO MUERE UN REY SEA SEGURAMENTE UN NODO TERMINAL Y EN EVALUACION QUE HAGA LO DE +INFINITo
 	//--INFINITO Y ASI EVITAR EL PROBLEMA DE QUE SE ME VAYA DE MADRE QUE ESTOY TENIENDO Y POSIBLEMENTE ADEMÁS FACILITEUN POCO LA 
 	//PROFUNDIDAD
-        if (profundidad==0||tablero.TablerosPosibles(false).size()==0) return Evaluacion(tablero);
+        for (Color x : tablero.JugadoresActivos) if(tablero.ColorSeVaDePartida(x)) {
+                nodoTerminalPorEliminacion=true;
+                break;
+            }          
+        if (profundidad==0||tablero.TablerosPosibles(false).size()==0||nodoTerminalPorEliminacion) return Evaluacion(tablero);
         //En juegos de dos personas aqui simplemente va un booleano que tiene en cuenta si estamos maximizando o 
         //minimizando. Aqui con 4 jugadores no es tan sencillo pero si si se tiene en cuenta que comparando el color
         //del jugador que le toca y el color que se esta evaluando.

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Luis
  * @version 1.0 (Le falta lo de no "suicidarse"
  */
-class King extends Pieza{
+public class King extends Pieza{
     public King(Color color) {
         ColorJugador=color;
         ClasePieza=TipoPieza.KING;

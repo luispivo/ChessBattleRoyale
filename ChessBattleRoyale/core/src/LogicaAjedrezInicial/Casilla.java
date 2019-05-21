@@ -5,6 +5,11 @@
  */
 package LogicaAjedrezInicial;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+
 /**
  *
  * @author Luis
@@ -14,13 +19,62 @@ package LogicaAjedrezInicial;
  * contener una Pieza (null si está vacía).
  * @author Luis
  */
-class Casilla{
+public class Casilla extends Actor{
     int Fila;
     int Columna;
-    Pieza Ocupada;
+    public Pieza Ocupada;
     EstadoCasilla Status;
     Boolean Clickada;
+    Texture imagenCasilla;
+    Texture darkwhite=new Texture(Gdx.files.internal("darkwhite.png"));
+    Texture darkyellow=new Texture(Gdx.files.internal("darkyellow.png"));
+    Texture darkorange=new Texture(Gdx.files.internal("darkorange.png"));
+    Texture darkred=new Texture(Gdx.files.internal("darkred.png"));
+    Texture white=new Texture(Gdx.files.internal("white.png"));
+    Texture yellow=new Texture(Gdx.files.internal("yellow.jpg"));
+    Texture orange=new Texture(Gdx.files.internal("orange.png"));
+    Texture red=new Texture(Gdx.files.internal("red.png"));
 
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        //super.draw(batch, parentAlpha);//To change body of generated methods, choose Tools | Templates.
+        
+        if ((Fila+Columna)%2==0) {
+            switch (Status){
+                    case EMPTY:
+                        imagenCasilla=darkwhite;
+                    break;
+                    case DANGERYELLOW:
+                        imagenCasilla=darkyellow;
+                    break;
+                    case DANGERORANGE:
+                        imagenCasilla=darkorange;
+                    break;
+                    case DANGERRED:
+                        imagenCasilla=darkred;
+                    break;
+            }            
+        }
+        else{
+             switch (Status){
+                    case EMPTY:
+                        imagenCasilla=white;
+                    break;
+                    case DANGERYELLOW:
+                        imagenCasilla=yellow;
+                    break;
+                    case DANGERORANGE:
+                        imagenCasilla=orange;
+                    break;
+                    case DANGERRED:
+                        imagenCasilla=red;
+                    break;
+            }                             
+        }
+        batch.draw(imagenCasilla,Fila*50+30,Columna*50+30);
+    }
+
+    
     /**
      * Crea la casilla correspondiente
      * @param columna 

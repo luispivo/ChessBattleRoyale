@@ -28,8 +28,8 @@ public abstract class PlantillaScreen implements Screen {
        
     @Override
     public void show() {
-         moveSound = Gdx.audio.newSound(Gdx.files.internal("move.mp3"));
-         moveSound.play();
+        // moveSound = Gdx.audio.newSound(Gdx.files.internal("move.mp3"));
+         //moveSound.play();
     }
     
     @Override
@@ -39,12 +39,12 @@ public abstract class PlantillaScreen implements Screen {
 
     @Override
     public void pause() {
-       moveSound.pause();
+       //moveSound.pause();
     }
 
     @Override
     public void resume() {
-        moveSound.resume();
+        //moveSound.resume();
     }
 
     @Override

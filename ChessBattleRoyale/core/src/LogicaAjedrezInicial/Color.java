@@ -9,7 +9,7 @@ package LogicaAjedrezInicial;
  * Colores de los 4 jugadores del juego
  * @author Luis
  */
-enum Color{
+public enum Color{
     BLACK,BLUE,PURPLE,GREEN
     //WHITE,BLUE,PURPLE,GREEN //para que se vea distinto B y B
 }

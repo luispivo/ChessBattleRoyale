@@ -5,6 +5,8 @@
  */
 package LogicaAjedrezInicial;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
@@ -16,7 +18,7 @@ import java.util.EnumSet;
  * 
  * @author Luis
  */
-public class Board {
+public class Board extends Actor{
     int Rows,InitialRows;
     int Columns,InitialColumns;
     
@@ -26,11 +28,17 @@ public class Board {
     //La colección de colores de jugadores activos que no han sido eliminados el rey (y por lo tanto sus piezas todavía
     ArrayList<Color> JugadoresActivos;
     
-    ArrayList<Casilla> Tablero;
+    public ArrayList<Casilla> Tablero;
     //Otra posibilidad sería trabajar con 
     //Casilla[][] TCasillas;
     //pero es mejor el arraylist a priori para no tener fijas las dimensiones
 
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        super.draw(batch, parentAlpha); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     /**
      * Constructor para el tablero vacío, sin piezas y que comienza el jugador negro
      * @param columns número de columnas del tablero (1 al número de columnas)
@@ -74,7 +82,7 @@ public class Board {
      * @param columna
      * @return La casilla correspondiente a esa fila y columna (null si ya eliminada)
      */
-    Casilla getCasilla(int fila, int columna){
+    public Casilla getCasilla(int fila, int columna){
         if ((fila>=(InitialRows-Rows)/2 && fila <(InitialRows+Rows)/2)&&(columna>=(InitialColumns-Columns)/2&& columna<(InitialColumns+Columns)/2)){
             int index=Rows*(fila-(InitialRows-Rows)/2)+columna-(InitialColumns-Columns)/2;
             return Tablero.get(index);
@@ -161,7 +169,7 @@ public class Board {
      * OJO Al orden... es necesario usar el Incrementa de dentro afuera pues el de fuera cambia la variable 
      * Rows cuando hace desparecer las casillas
      */
-    void IncrementaAlertaTablero(){
+    public void IncrementaAlertaTablero(){
         Boolean cambiarTurno=false;
         int numeroFilas=0;
         switch(Tablero.get(0).Status){
@@ -180,7 +188,7 @@ public class Board {
             EliminaPiezasJugadorEliminado(x);
             cambiarTurno=true;           
         }
-        if (cambiarTurno) EliminaJugadorYPasaAlSiguienteJugador(false);
+        if (cambiarTurno) EliminaJugadorYPasaAlSiguienteJugador(true);
     }
     /**
      * Mueve una pieza de la casilla inicio a la casilla destino en un tablero copia.NOTA: No incluyo aqui comprobación que el movimiento es legal porque lo quiero usar con 
@@ -227,33 +235,34 @@ public class Board {
      * Elimina al jugador de  colore eliminado(y sus piezas)  y cambia el turno del jugador si es necesario 
      * @param cambio indice que indica si hay que cambiar el turno o no
      */
-    private void EliminaJugadorYPasaAlSiguienteJugador(Boolean cambio) {
+    private void EliminaJugadorYPasaAlSiguienteJugador(Boolean noAnalisis) {
         int indice;
         Color colorSiguienteJugador;
-        indice=JugadoresActivos.indexOf(TurnoJugador)+(cambio?1:0); 
+        indice=JugadoresActivos.indexOf(TurnoJugador)+1;//(cambio?1:0); 
         //System.out.println(TurnoJugador.toString()+indice+JugadoresActivos.get(indice));
         do{            
             if(indice>JugadoresActivos.size()-1) indice=0;
            // else if (indice<0) indice=JugadoresActivos.size()-1;
             colorSiguienteJugador=JugadoresActivos.get(indice);
-            if (ColorSeVaDePartida(colorSiguienteJugador)) {
+            if (ColorSeVaDePartida(colorSiguienteJugador)&& noAnalisis) {
                 //System.out.println("ENTRO A BORRAR2");
                 //System.out.println(cambio.toString()+colorSiguienteJugador+this);
                 JugadoresActivos.remove(colorSiguienteJugador);
                 EliminaPiezasJugadorEliminado(colorSiguienteJugador);
                 //System.out.println(colorSiguienteJugador+"HOLA"+TurnoJugador);
-                if (colorSiguienteJugador.equals(TurnoJugador)) cambio=true;
+                //if (colorSiguienteJugador.equals(TurnoJugador)) cambio=true;
             }          
             //System.out.println(colorSiguienteJugador.toString()+ColorSeVaDePartida(colorSiguienteJugador).toString());
         } while (JugadoresActivos.size()>0 && ColorSeVaDePartida(colorSiguienteJugador));   
-        if (cambio) TurnoJugador=colorSiguienteJugador;
+        //if (cambio) 
+        TurnoJugador=colorSiguienteJugador;
     }
     /**
      * Comprueba que el jugador/color no ha desaparecido del tablero
      * @param color
      * @return Booleano de si ha perdido o continua en la partida
      */
-    private Boolean ColorSeVaDePartida(Color color){
+    protected Boolean ColorSeVaDePartida(Color color){
         for (Casilla x:Tablero) if( x.Ocupada!=null && x.Ocupada.ClasePieza==TipoPieza.KING && x.Ocupada.ColorJugador==color) return false;
         return true;
     }
