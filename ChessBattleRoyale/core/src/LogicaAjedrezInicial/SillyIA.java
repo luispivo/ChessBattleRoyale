@@ -12,7 +12,7 @@ import java.util.EnumSet;
  * Mi primer intento de ir construyendo una clase que se pueda usar para jugar automaticamente
  * @author Luis
  */
-class SillyIA implements Evaluation{
+public class SillyIA implements Evaluation{
 
     //Hay dos formas de tratar esta cuesti�n:
     //La primera y m�s pragm�tica simplemente calcular cuantos movimientos tiene una pieza dada en un tablero fijo

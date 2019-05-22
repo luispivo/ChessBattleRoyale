@@ -5,17 +5,18 @@
  */
 package Screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.pddm.game.ChessBattleRoyaleGame;
 
 /**
  *
  * @author Luis
  */
-public abstract class PlantillaScreen implements Screen {
+public abstract class PlantillaScreen extends ScreenAdapter {
 
     protected ChessBattleRoyaleGame game;
     protected SpriteBatch batch;
@@ -23,15 +24,17 @@ public abstract class PlantillaScreen implements Screen {
 
     public PlantillaScreen(ChessBattleRoyaleGame game) {
         this.game = game;
-        batch=game.getSpriteBatch();
+        batch = game.getSpriteBatch();
+        game.getAssetManager().load("ChessBattleRoyale_assets.atlas", TextureAtlas.class);
+        game.getAssetManager().finishLoading();
     }
-       
+
     @Override
     public void show() {
         // moveSound = Gdx.audio.newSound(Gdx.files.internal("move.mp3"));
-         //moveSound.play();
+        //moveSound.play();
     }
-    
+
     @Override
     public void resize(int i, int i1) {
 
@@ -39,7 +42,7 @@ public abstract class PlantillaScreen implements Screen {
 
     @Override
     public void pause() {
-       //moveSound.pause();
+        //moveSound.pause();
     }
 
     @Override
@@ -56,5 +59,5 @@ public abstract class PlantillaScreen implements Screen {
     public void dispose() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

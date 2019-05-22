@@ -1,0 +1,230 @@
+
+ChessBattleRoyale_assets.png
+size: 1024,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+chapablackBishop
+  rotate: false
+  xy: 2, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapablackKing
+  rotate: false
+  xy: 2, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapablackKnight
+  rotate: false
+  xy: 54, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapablackPawn
+  rotate: false
+  xy: 54, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapablackQueen
+  rotate: false
+  xy: 106, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapablackRook
+  rotate: false
+  xy: 106, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapablueBishop
+  rotate: false
+  xy: 158, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapablueKing
+  rotate: false
+  xy: 158, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapablueKnight
+  rotate: false
+  xy: 210, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapabluePawn
+  rotate: false
+  xy: 210, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapablueQueen
+  rotate: false
+  xy: 262, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapablueRook
+  rotate: false
+  xy: 262, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapagreenBishop
+  rotate: false
+  xy: 314, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapagreenKing
+  rotate: false
+  xy: 314, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapagreenKnight
+  rotate: false
+  xy: 366, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapagreenPawn
+  rotate: false
+  xy: 366, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapagreenQueen
+  rotate: false
+  xy: 418, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapagreenRook
+  rotate: false
+  xy: 418, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapapurpleBishop
+  rotate: false
+  xy: 470, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapapurpleKing
+  rotate: false
+  xy: 470, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapapurpleKnight
+  rotate: false
+  xy: 522, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapapurplePawn
+  rotate: false
+  xy: 522, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapapurpleQueen
+  rotate: false
+  xy: 574, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+chapapurpleRook
+  rotate: false
+  xy: 574, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+darkorange
+  rotate: false
+  xy: 626, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+darkred
+  rotate: false
+  xy: 626, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+darkwhite
+  rotate: false
+  xy: 678, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+darkyellow
+  rotate: false
+  xy: 678, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+orange
+  rotate: false
+  xy: 730, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+red
+  rotate: false
+  xy: 730, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+white
+  rotate: false
+  xy: 782, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+yellow
+  rotate: false
+  xy: 782, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1

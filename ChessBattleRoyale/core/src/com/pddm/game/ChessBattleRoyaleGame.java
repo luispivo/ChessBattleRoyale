@@ -2,18 +2,21 @@ package com.pddm.game;
 
 import Screens.PartidaScreen;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class ChessBattleRoyaleGame extends Game {
 
     private SpriteBatch batch;
     private PartidaScreen partida;
+    private final AssetManager assetManager = new AssetManager();
     
     @Override
     public void create() {
         batch=new SpriteBatch();
-        partida=new PartidaScreen(this);
-        setScreen(partida);
+        partida=new PartidaScreen(this);       
+        setScreen(partida);       
     }
 
     @Override
@@ -25,5 +28,8 @@ public class ChessBattleRoyaleGame extends Game {
     
     public SpriteBatch getSpriteBatch(){
         return batch;
+    }
+    public AssetManager getAssetManager() {
+        return assetManager;
     }
 }

@@ -6,6 +6,7 @@
 package LogicaAjedrezInicial;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -24,7 +25,7 @@ public class Board extends Actor{
     
     //No tengo claro si es mejor tener aquí simplemente un color representando al jugador que le toca mover
     //o tener al jugador entero. Vamos a ir explorando con esto pero lo mismo es mejor tener la referencia al jugador
-    Color TurnoJugador;
+    public Color TurnoJugador;
     //La colección de colores de jugadores activos que no han sido eliminados el rey (y por lo tanto sus piezas todavía
     ArrayList<Color> JugadoresActivos;
     
@@ -32,6 +33,7 @@ public class Board extends Actor{
     //Otra posibilidad sería trabajar con 
     //Casilla[][] TCasillas;
     //pero es mejor el arraylist a priori para no tener fijas las dimensiones
+    TextureAtlas Atlas;
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -44,16 +46,17 @@ public class Board extends Actor{
      * @param columns número de columnas del tablero (1 al número de columnas)
      * @param rows número de filas del tablero (1 al número de filas)
      */
-    public Board(int columns, int rows) {
+    public Board(int columns, int rows,TextureAtlas atlas) {
         Tablero=new ArrayList();
         this.Rows = rows;
         this.Columns = columns;
         InitialRows=rows;
         InitialColumns=columns;
-        for(int i=0;i<Rows;i++) for(int j=0;j<Columns;j++) Tablero.add(new Casilla(i,j));
+        for(int i=0;i<Rows;i++) for(int j=0;j<Columns;j++) Tablero.add(new Casilla(i,j,atlas));
         TurnoJugador=Color.BLACK;
         JugadoresActivos=new ArrayList<>();
         (EnumSet.allOf(Color.class)).forEach( x -> JugadoresActivos.add(x));
+        Atlas=atlas;
     } 
     /**
      * Constructor copia
@@ -68,6 +71,7 @@ public class Board extends Actor{
         JugadoresActivos=board.JugadoresActivos;
         Tablero=new ArrayList();
         board.Tablero.forEach( x -> Tablero.add(new Casilla(x)));
+        Atlas=board.Atlas;
     }
     /**
      * Elimina la casilla del tablero
@@ -127,7 +131,7 @@ public class Board extends Actor{
      * @param analisis the value of analisis
      * @return the java.util.ArrayList<LogicaAjedrezInicial.Board>
      */
-    ArrayList<Board> TablerosPosibles(Boolean noAnalisis){
+    public ArrayList<Board> TablerosPosibles(Boolean noAnalisis){
         ArrayList<Board> tablerosFuturos=new ArrayList();
         for (Casilla x: Tablero){
             //System.out.println("contador:"+contador);
