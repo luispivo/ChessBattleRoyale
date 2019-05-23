@@ -31,8 +31,8 @@ public class PartidaScreen extends PlantillaScreen{
         tablero=new Board(NUMEROFILAS,NUMEROCOLUMNAS,atlas);
         tablero.TableroInicialPiezas14();
         stage=new Stage(new ScreenViewport());
-        for (Casilla x: tablero.Tablero) stage.addActor(x);
-        Gdx.input.setInputProcessor(stage);     
+        Gdx.input.setInputProcessor(stage);  
+        for (Casilla x: tablero.Tablero) stage.addActor(x);      
     }
 
     @Override

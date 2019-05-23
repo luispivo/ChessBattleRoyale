@@ -5,10 +5,16 @@
  */
 package LogicaAjedrezInicial;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 
 /**
  *
@@ -33,7 +39,11 @@ public class Casilla extends Actor {
     TextureRegion blueKnight, blueBishop, blueKing, bluePawn, blueQueen, blueRook;
     TextureRegion greenKnight, greenBishop, greenKing, greenPawn, greenQueen, greenRook;
     TextureRegion purpleKnight, purpleBishop, purpleKing, purplePawn, purpleQueen, purpleRook;
-    TextureRegion imagenCasilla, imagenPieza;    
+    TextureRegion imagenCasilla, imagenPieza; 
+    
+    //Creo el sprite más que nada para darle un tamaño asi que me da igual que imagen coger (creo)
+    //Lo mismo es un poco torticero pero...
+    Sprite sprite=new Sprite(new Texture(Gdx.files.internal("darkwhite.png")));
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -170,7 +180,7 @@ public class Casilla extends Actor {
                     }
                     break;
             }
-            batch.draw(imagenPieza, Fila * 50 + 30, Columna * 50 + 30);
+            batch.draw(imagenPieza, Fila * sprite.getWidth() + 30, Columna * sprite.getHeight()+ 30);
         }
     }
 
@@ -186,6 +196,24 @@ public class Casilla extends Actor {
         Status = EstadoCasilla.EMPTY;
         Clickada = false;
         Atlas=atlas;
+        //Posicion y tamaño de la casilla (Perdon por lo del 30 pero estoy acelerando a malas maneras por la entrega...
+        //NOTA: Revisar que necesitare acceder al tablero desde aqui para controlar que dos casillas han sido tocadas para 
+        //hacer el movimiento... Creo que tengo la idea en la cabeza pero para que no se me olvide:
+        //funcion busqueda en las filas que hay una clickada, casilla al tocar cambia estado clickada-no clickada,
+        //si dos casillas (o sea se clicka una cuando ya hay otra realiza el movimiento y tendré que ver como cambia
+        //el tiempo. Al clickar... estaria guay que resaltara casilla y pusiera movimientos si es una pieza. Al descklickar quita
+        //Pero si no sale.... ya pasaría a lo siguiente       
+        //Otra CUESTION tener en cuenta el TurnoJugador y que si es IA tiene que haber una manera de evitar esto ¿otro
+        //booleano de jugador o enemigo?
+        setBounds(Fila * sprite.getWidth() + 30, Columna * sprite.getHeight()+ 30, sprite.getWidth(), sprite.getHeight());
+        setTouchable(Touchable.enabled);
+        addListener(new InputListener(){
+           @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                System.out.println("Toque la casilla "+Fila+"|"+Columna);
+                return super.touchDown(event, x, y, pointer, button); //To change body of generated methods, choose Tools | Templates.
+            }           
+        });
     }
 
     public Casilla(Casilla casilla) {
