@@ -30,6 +30,7 @@ public class PartidaScreen extends PlantillaScreen{
         TextureAtlas atlas=game.getAssetManager().get("ChessBattleRoyale_assets.atlas");
         tablero=new Board(NUMEROFILAS,NUMEROCOLUMNAS,atlas);
         tablero.TableroInicialPiezas14();
+        for (int i = 0; i < 3; i++) tablero.IncrementaAlertaTablero();
         stage=new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);  
         for (Casilla x: tablero.Tablero) stage.addActor(x);      

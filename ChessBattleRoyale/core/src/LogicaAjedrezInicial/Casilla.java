@@ -28,27 +28,32 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
  */
 public class Casilla extends Actor {
 
+    Board Partida;
     TextureAtlas Atlas;
     int Fila;
     int Columna;
     public Pieza Ocupada;
     EstadoCasilla Status;
     Boolean Clickada;
-    TextureRegion darkwhite, darkyellow, darkorange, darkred, white, yellow, orange, red;
-    TextureRegion blackKnight, blackBishop, blackKing, blackPawn, blackQueen, blackRook;
-    TextureRegion blueKnight, blueBishop, blueKing, bluePawn, blueQueen, blueRook;
-    TextureRegion greenKnight, greenBishop, greenKing, greenPawn, greenQueen, greenRook;
-    TextureRegion purpleKnight, purpleBishop, purpleKing, purplePawn, purpleQueen, purpleRook;
-    TextureRegion imagenCasilla, imagenPieza; 
-    
+//    TextureRegion darkwhite, darkyellow, darkorange, darkred, white, yellow, orange, red;
+//    TextureRegion blackKnight, blackBishop, blackKing, blackPawn, blackQueen, blackRook;
+//    TextureRegion blueKnight, blueBishop, blueKing, bluePawn, blueQueen, blueRook;
+//    TextureRegion greenKnight, greenBishop, greenKing, greenPawn, greenQueen, greenRook;
+//    TextureRegion purpleKnight, purpleBishop, purpleKing, purplePawn, purpleQueen, purpleRook;
+    TextureRegion imagenCasilla, imagenPieza;
+//    TextureRegion diana, darkDiana;
+
     //Creo el sprite más que nada para darle un tamaño asi que me da igual que imagen coger (creo)
     //Lo mismo es un poco torticero pero...
-    Sprite sprite=new Sprite(new Texture(Gdx.files.internal("darkwhite.png")));
+    Sprite sprite = new Sprite(new Texture(Gdx.files.internal("darkwhite.png")));
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         //super.draw(batch, parentAlpha);//To change body of generated methods, choose Tools | Templates.
-
+//NOTA: Este codigo se puede reformatear simplemente cambiando el nombre de las imagenes y creando una string
+//para llamar a la region correspondiente. Cosas que te das cuenta a posteriori... pero bueno aunque queda como 
+//una issue no sé si sería más eficiente en memoria y no sé como afectaria con los ToString que usaba para las
+//enumeraciones... lo mismo también tendría que cambiar eso y el tiempo se echa encima...
         if ((Fila + Columna) % 2 == 0) {
             switch (Status) {
                 case EMPTY:
@@ -86,102 +91,153 @@ public class Casilla extends Actor {
                 case PAWN:
                     switch (Ocupada.ColorJugador) {
                         case BLACK:
-                            imagenPieza = Atlas.findRegion("chapablackPawn");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblackPawn");
+                            else imagenPieza = Atlas.findRegion("chapablackPawn");
                             break;
                         case BLUE:
-                            imagenPieza = Atlas.findRegion("chapabluePawn");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickbluePawn");
+                            else imagenPieza = Atlas.findRegion("chapabluePawn");
                             break;
                         case GREEN:
-                            imagenPieza = Atlas.findRegion("chapagreenPawn");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickgreenPawn");
+                            else imagenPieza = Atlas.findRegion("chapagreenPawn");
                             break;
                         case PURPLE:
-                            imagenPieza = Atlas.findRegion("chapapurplePawn");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickpurplePawn");
+                            else imagenPieza = Atlas.findRegion("chapapurplePawn");
                             break;
                     }
                     break;
                 case KNIGHT:
                     switch (Ocupada.ColorJugador) {
                         case BLACK:
-                            imagenPieza = Atlas.findRegion("chapablackKnight");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblackKnight");
+                            else imagenPieza = Atlas.findRegion("chapablackKnight");
                             break;
                         case BLUE:
-                            imagenPieza = Atlas.findRegion("chapablueKnight");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblueKnight");
+                            else imagenPieza = Atlas.findRegion("chapablueKnight");
                             break;
                         case GREEN:
-                            imagenPieza = Atlas.findRegion("chapagreenKnight");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickgreenKnight");
+                            else imagenPieza = Atlas.findRegion("chapagreenKnight");
                             break;
                         case PURPLE:
-                            imagenPieza = Atlas.findRegion("chapapurpleKnight");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickpurpleKnight");
+                            else imagenPieza = Atlas.findRegion("chapapurpleKnight");
                             break;
                     }
                     break;
                 case BISHOP:
                     switch (Ocupada.ColorJugador) {
                         case BLACK:
-                            imagenPieza = Atlas.findRegion("chapablackBishop");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblackBishop");
+                            else imagenPieza = Atlas.findRegion("chapablackBishop");
                             break;
                         case BLUE:
-                            imagenPieza = Atlas.findRegion("chapablueBishop");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblueBishop");
+                            else imagenPieza = Atlas.findRegion("chapablueBishop");
                             break;
                         case GREEN:
-                            imagenPieza = Atlas.findRegion("chapagreenBishop");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickgreenBishop");
+                            else imagenPieza = Atlas.findRegion("chapagreenBishop");
                             break;
                         case PURPLE:
-                            imagenPieza = Atlas.findRegion("chapapurpleBishop");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickpurpleBishop");
+                            else imagenPieza = Atlas.findRegion("chapapurpleBishop");
                             break;
                     }
                     break;
                 case ROOK:
                     switch (Ocupada.ColorJugador) {
                         case BLACK:
-                            imagenPieza = Atlas.findRegion("chapablackRook");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblackRook");
+                            else imagenPieza = Atlas.findRegion("chapablackRook");
                             break;
                         case BLUE:
-                            imagenPieza = Atlas.findRegion("chapablueRook");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblueRook");
+                            else imagenPieza = Atlas.findRegion("chapablueRook");
                             break;
                         case GREEN:
-                            imagenPieza = Atlas.findRegion("chapagreenRook");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickgreenRook");
+                            else imagenPieza = Atlas.findRegion("chapagreenRook");
                             break;
                         case PURPLE:
-                            imagenPieza = Atlas.findRegion("chapapurpleRook");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickpurpleRook");
+                            else imagenPieza = Atlas.findRegion("chapapurpleRook");
                             break;
                     }
                     break;
                 case QUEEN:
                     switch (Ocupada.ColorJugador) {
                         case BLACK:
-                            imagenPieza = Atlas.findRegion("chapablackQueen");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblackQueen");
+                            else imagenPieza = Atlas.findRegion("chapablackQueen");
                             break;
                         case BLUE:
-                            imagenPieza = Atlas.findRegion("chapablueQueen");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblueQueen");
+                            else imagenPieza = Atlas.findRegion("chapablueQueen");
                             break;
                         case GREEN:
-                            imagenPieza = Atlas.findRegion("chapagreenQueen");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickgreenQueen");
+                            else imagenPieza = Atlas.findRegion("chapagreenQueen");
                             break;
                         case PURPLE:
-                            imagenPieza = Atlas.findRegion("chapapurpleQueen");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickpurpleQueen");
+                            else imagenPieza = Atlas.findRegion("chapapurpleQueen");
                             break;
                     }
                     break;
                 case KING:
                     switch (Ocupada.ColorJugador) {
                         case BLACK:
-                            imagenPieza = Atlas.findRegion("chapablackKing");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblackKing");
+                            else imagenPieza = Atlas.findRegion("chapablackKing");
                             break;
                         case BLUE:
-                            imagenPieza = Atlas.findRegion("chapablueKing");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblueKing");
+                            else imagenPieza = Atlas.findRegion("chapablueKing");
                             break;
                         case GREEN:
-                            imagenPieza = Atlas.findRegion("chapagreenKing");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickgreenKing");
+                            else imagenPieza = Atlas.findRegion("chapagreenKing");
                             break;
                         case PURPLE:
-                            imagenPieza = Atlas.findRegion("chapapurpleKing");
+                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickpurpleKing");
+                            else imagenPieza = Atlas.findRegion("chapapurpleKing");
                             break;
                     }
                     break;
             }
-            batch.draw(imagenPieza, Fila * sprite.getWidth() + 30, Columna * sprite.getHeight()+ 30);
+            batch.draw(imagenPieza, Fila * sprite.getWidth() + 30, Columna * sprite.getHeight() + 30);
         }
+        if (Partida.SoloUnaCasillaClickada() && Partida.CasillaClickada().Ocupada.PossibleMoves(Partida.CasillaClickada(), Partida).contains(this)) {
+            batch.draw(Atlas.findRegion("diana"), Fila * sprite.getWidth() + 30, Columna * sprite.getHeight() + 30);
+        }
+        //Tenia puesto que cambiara segun la casilla fuera oscura o clara pero bueno creo que esta imagen
+        //gris es un buen compromiso (Aun asi dejo esto en parte por tener esto por si futuro y en parte
+        //porque como no me salia por un error mio asi queda otra forma de implementar lo de este color
+        
+        //for (Casilla x : Partida.CasillaClickada().Ocupada.PossibleMoves(Partida.CasillaClickada(), Partida)) {
+        //System.out.println("f+c"+x.Fila+"@"+Fila+"|"+x.Columna+"@"+Columna);
+        //if (x.Fila==Fila && x.Columna==Columna) {
+        //  if ((Fila + Columna) % 2 == 0) {
+        //    System.out.println("hola");
+        //    batch.draw(Atlas.findRegion("darkdiana"), Fila * sprite.getWidth() + 30, Columna * sprite.getHeight() + 30);
+        //} else {
+
+        //}
+        //break;
+        //}
+        //}
+        //batch.draw(Atlas.findRegion("diana"), Fila * sprite.getWidth() + 30, Columna * sprite.getHeight() + 30);
+//            System.out.println(Partida.CasillaClickada().Ocupada.PossibleMoves(Partida.CasillaClickada(), Partida).contains(Partida.getCasilla(Fila, Columna)));//{
+        /*if ((Fila + Columna) % 2 == 0) batch.draw(Atlas.findRegion("darkdiana."), Fila * sprite.getWidth() + 30, Columna * sprite.getHeight() + 30);
+                else {
+                    batch.draw(Atlas.findRegion("diana"), Fila * sprite.getWidth() + 30, Columna * sprite.getHeight() + 30);
+                    System.out.println("pasoporaqui");
+                }*/
+        //}
     }
 
     /**
@@ -190,12 +246,13 @@ public class Casilla extends Actor {
      * @param columna
      * @param fila
      */
-    public Casilla(int fila, int columna,TextureAtlas atlas) {
+    public Casilla(int fila, int columna, TextureAtlas atlas, Board partida) {
         Fila = fila;
         Columna = columna;
         Status = EstadoCasilla.EMPTY;
         Clickada = false;
-        Atlas=atlas;
+        Atlas = atlas;
+        Partida = partida;
         //Posicion y tamaño de la casilla (Perdon por lo del 30 pero estoy acelerando a malas maneras por la entrega...
         //NOTA: Revisar que necesitare acceder al tablero desde aqui para controlar que dos casillas han sido tocadas para 
         //hacer el movimiento... Creo que tengo la idea en la cabeza pero para que no se me olvide:
@@ -205,14 +262,23 @@ public class Casilla extends Actor {
         //Pero si no sale.... ya pasaría a lo siguiente       
         //Otra CUESTION tener en cuenta el TurnoJugador y que si es IA tiene que haber una manera de evitar esto ¿otro
         //booleano de jugador o enemigo?
-        setBounds(Fila * sprite.getWidth() + 30, Columna * sprite.getHeight()+ 30, sprite.getWidth(), sprite.getHeight());
+        setBounds(Fila * sprite.getWidth() + 30, Columna * sprite.getHeight() + 30, sprite.getWidth(), sprite.getHeight());
         setTouchable(Touchable.enabled);
-        addListener(new InputListener(){
-           @Override
+        addListener(new InputListener() {
+            @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Toque la casilla "+Fila+"|"+Columna);
+                System.out.println("Toque la casilla " + Fila + "|" + Columna);
+                if (Clickada) {
+                    Clickada = false;
+                } else if (Ocupada != null && (Ocupada.ColorJugador == Partida.TurnoJugador) && !Partida.SoloUnaCasillaClickada()) {
+                    Clickada = true;
+                } else if (Partida.SoloUnaCasillaClickada()) {
+                    System.out.println("Tocaria moverse ahi");
+                    Partida.QuitarClicks();
+                }
+
                 return super.touchDown(event, x, y, pointer, button); //To change body of generated methods, choose Tools | Templates.
-            }           
+            }
         });
     }
 
@@ -222,7 +288,8 @@ public class Casilla extends Actor {
         Status = casilla.Status;
         Clickada = casilla.Clickada;
         Ocupada = casilla.Ocupada;
-        Atlas=casilla.Atlas;
+        Atlas = casilla.Atlas;
+        Partida = casilla.Partida;
     }
 
     Pieza CopiaPiezaPorTipo() {

@@ -5,6 +5,7 @@
  */
 package LogicaAjedrezInicial;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -52,7 +53,7 @@ public class Board extends Actor{
         this.Columns = columns;
         InitialRows=rows;
         InitialColumns=columns;
-        for(int i=0;i<Rows;i++) for(int j=0;j<Columns;j++) Tablero.add(new Casilla(i,j,atlas));
+        for(int i=0;i<Rows;i++) for(int j=0;j<Columns;j++) Tablero.add(new Casilla(i,j,atlas,this));
         TurnoJugador=Color.BLACK;
         JugadoresActivos=new ArrayList<>();
         (EnumSet.allOf(Color.class)).forEach( x -> JugadoresActivos.add(x));
@@ -434,4 +435,18 @@ public class Board extends Actor{
         }*/
         return auxiliar;
     }   
+
+    boolean SoloUnaCasillaClickada() {
+        for(Casilla x:Tablero) if(x.Clickada) return true;
+        return false;
+    }
+
+    void QuitarClicks() {
+        for (Casilla x:Tablero) x.Clickada=false;
+    }
+
+    Casilla CasillaClickada() {
+        for(Casilla x:Tablero) if(x.Clickada) return x;
+        return null;
+    }
 }
