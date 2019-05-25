@@ -8,9 +8,9 @@ package Screens;
 import com.pddm.game.ChessBattleRoyaleGame;
 import LogicaAjedrezInicial.Board;
 import LogicaAjedrezInicial.Casilla;
-import LogicaAjedrezInicial.SillyIA;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -28,13 +28,20 @@ public class PartidaScreen extends PlantillaScreen{
     public PartidaScreen(ChessBattleRoyaleGame game) {
         super(game);
         TextureAtlas atlas=game.getAssetManager().get("ChessBattleRoyale_assets.atlas");
-        tablero=new Board(NUMEROFILAS,NUMEROCOLUMNAS,atlas);
-        tablero.TableroInicialPiezas14();
-        for (int i = 0; i < 3; i++) tablero.IncrementaAlertaTablero();
         stage=new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);  
-        for (Casilla x: tablero.Tablero) stage.addActor(x);      
+        tablero=new Board(NUMEROFILAS,NUMEROCOLUMNAS,atlas);
+        tablero.TableroInicialPiezas14();
+        //for (int i = 0; i < 3; i++) tablero.IncrementaAlertaTablero();       
+        for (Casilla x: tablero.Tablero) stage.addActor(x);  
+        stage.addActor(tablero);
     }
+
+    @Override
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height,true); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
     @Override
     public void render(float f) {

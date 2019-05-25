@@ -35,11 +35,6 @@ public abstract class PlantillaScreen extends ScreenAdapter {
     }
 
     @Override
-    public void resize(int i, int i1) {
-
-    }
-
-    @Override
     public void pause() {
         //moveSound.pause();
     }
@@ -57,6 +52,11 @@ public abstract class PlantillaScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

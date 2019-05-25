@@ -5,7 +5,6 @@
  */
 package LogicaAjedrezInicial;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -29,6 +28,9 @@ public class Board extends Actor{
     public Color TurnoJugador;
     //La colección de colores de jugadores activos que no han sido eliminados el rey (y por lo tanto sus piezas todavía
     ArrayList<Color> JugadoresActivos;
+    int Movimientos;
+    //De momento para las pruebas lo pongo como constante
+    final int AUMENTARPELIGRO=2;
     
     public ArrayList<Casilla> Tablero;
     //Otra posibilidad sería trabajar con 
@@ -58,6 +60,7 @@ public class Board extends Actor{
         JugadoresActivos=new ArrayList<>();
         (EnumSet.allOf(Color.class)).forEach( x -> JugadoresActivos.add(x));
         Atlas=atlas;
+        Movimientos=0;
     } 
     /**
      * Constructor copia
@@ -73,6 +76,7 @@ public class Board extends Actor{
         Tablero=new ArrayList();
         board.Tablero.forEach( x -> Tablero.add(new Casilla(x)));
         Atlas=board.Atlas;
+        Movimientos=board.Movimientos;
     }
     /**
      * Elimina la casilla del tablero
@@ -80,6 +84,11 @@ public class Board extends Actor{
      */
     void EliminaCasilla(Casilla casilla){
         Tablero.remove(casilla);
+        //Que dolor de cabeza da a veces el Libgdx... 
+        //hay que quitarlo de los actores además de la lista de casillas para que deje de mostrarse
+        //PD: Tal vez se pueda refactorizar todo para usar esto de abajo... aunque creo que al hacer pruebas
+        //no funcionaba añadir actores así asi que dado el tiempo que me queda se queda asi de momento.
+        getStage().getActors().removeValue(casilla, true);
         //Cambiando las dimensiones del tablero...        
     }
     /**
@@ -208,13 +217,25 @@ public class Board extends Actor{
      * @return the LogicaAjedrezInicial.Board
      */
     Board Movimiento(Casilla inicio, Casilla destino, Boolean noAnalisis){
+        // Tal y como lo tenia antes por cuestiones de IA y demas y he tenido que cambiarlo por Libgdx 
+
         Board nuevoTablero=new Board(this);
-        //System.out.println("UNA COSA");
-        //System.out.println(nuevoTablero);
+        //Chequeo del jaque mate
+        if (this.getCasilla(destino.Fila, destino.Columna).Ocupada!=null && this.getCasilla(destino.Fila, destino.Columna).Ocupada.ClasePieza==TipoPieza.KING) {
+            nuevoTablero.EliminaPiezasJugadorEliminado(destino.Ocupada.ColorJugador);         
+        }
         Pieza pieza=inicio.CopiaPiezaPorTipo();
         nuevoTablero.getCasilla(inicio.Fila, inicio.Columna).Ocupada=null;
         nuevoTablero.getCasilla(destino.Fila, destino.Columna).Ocupada=pieza;
         nuevoTablero.EliminaJugadorYPasaAlSiguienteJugador(noAnalisis);
+        if(nuevoTablero.TurnoJugador==nuevoTablero.JugadoresActivos.get(0)) nuevoTablero.Movimientos++;
+        if(nuevoTablero.Movimientos%AUMENTARPELIGRO==0) nuevoTablero.IncrementaAlertaTablero();
+        
+
+        
+        return nuevoTablero;
+    }
+        void MovimientoNuevo(Casilla inicio, Casilla destino, Boolean noAnalisis){
         
         //Chequeo del jaque mate...
         //UNA posibilidad es comprobar lo de los reyes como hicimos con los cambios de colroes
@@ -222,10 +243,18 @@ public class Board extends Actor{
         //PERO dado que es cosa del ultimo movimiento parece mas sencillo para menos ciclos y memoria...
         if (this.getCasilla(destino.Fila, destino.Columna).Ocupada!=null && this.getCasilla(destino.Fila, destino.Columna).Ocupada.ClasePieza==TipoPieza.KING) {
             //System.out.println("Algo pasa, inicio"+inicio.Fila+" "+inicio.Columna+" en destino f"+destino.Fila+" c"+destino.Columna+" Pieza: "+this.getCasilla(destino.Fila, destino.Columna).Ocupada.ClasePieza);
-            nuevoTablero.EliminaPiezasJugadorEliminado(destino.Ocupada.ColorJugador);         
+            EliminaPiezasJugadorEliminado(destino.Ocupada.ColorJugador);         
         }
-        
-        return nuevoTablero;
+        //System.out.println("UNA COSA");
+        //System.out.println(nuevoTablero);
+        Pieza pieza=inicio.CopiaPiezaPorTipo();
+        getCasilla(inicio.Fila, inicio.Columna).Ocupada=null;
+        getCasilla(destino.Fila, destino.Columna).Ocupada=pieza;
+        EliminaJugadorYPasaAlSiguienteJugador(noAnalisis);
+        if(JugadorAnterior()==JugadoresActivos.get(JugadoresActivos.size()-1)) {
+            Movimientos++;
+            if(Movimientos%AUMENTARPELIGRO==0) IncrementaAlertaTablero();
+        }             
     }
     /**
      * Comprueba que el movimiento de inicio a final se puede hacer
@@ -393,7 +422,7 @@ public class Board extends Actor{
         }
         return contador;
     }
-    Color jugadorAnterior(){
+    Color JugadorAnterior(){
         int indice=JugadoresActivos.indexOf(TurnoJugador)-1;            
         if(indice<0) indice= JugadoresActivos.size()-1;
         return JugadoresActivos.get(indice);

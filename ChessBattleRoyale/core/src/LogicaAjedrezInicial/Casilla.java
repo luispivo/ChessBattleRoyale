@@ -91,120 +91,192 @@ public class Casilla extends Actor {
                 case PAWN:
                     switch (Ocupada.ColorJugador) {
                         case BLACK:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblackPawn");
-                            else imagenPieza = Atlas.findRegion("chapablackPawn");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickblackPawn");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapablackPawn");
+                            }
                             break;
                         case BLUE:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickbluePawn");
-                            else imagenPieza = Atlas.findRegion("chapabluePawn");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickbluePawn");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapabluePawn");
+                            }
                             break;
                         case GREEN:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickgreenPawn");
-                            else imagenPieza = Atlas.findRegion("chapagreenPawn");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickgreenPawn");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapagreenPawn");
+                            }
                             break;
                         case PURPLE:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickpurplePawn");
-                            else imagenPieza = Atlas.findRegion("chapapurplePawn");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickpurplePawn");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapapurplePawn");
+                            }
                             break;
                     }
                     break;
                 case KNIGHT:
                     switch (Ocupada.ColorJugador) {
                         case BLACK:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblackKnight");
-                            else imagenPieza = Atlas.findRegion("chapablackKnight");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickblackKnight");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapablackKnight");
+                            }
                             break;
                         case BLUE:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblueKnight");
-                            else imagenPieza = Atlas.findRegion("chapablueKnight");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickblueKnight");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapablueKnight");
+                            }
                             break;
                         case GREEN:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickgreenKnight");
-                            else imagenPieza = Atlas.findRegion("chapagreenKnight");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickgreenKnight");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapagreenKnight");
+                            }
                             break;
                         case PURPLE:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickpurpleKnight");
-                            else imagenPieza = Atlas.findRegion("chapapurpleKnight");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickpurpleKnight");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapapurpleKnight");
+                            }
                             break;
                     }
                     break;
                 case BISHOP:
                     switch (Ocupada.ColorJugador) {
                         case BLACK:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblackBishop");
-                            else imagenPieza = Atlas.findRegion("chapablackBishop");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickblackBishop");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapablackBishop");
+                            }
                             break;
                         case BLUE:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblueBishop");
-                            else imagenPieza = Atlas.findRegion("chapablueBishop");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickblueBishop");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapablueBishop");
+                            }
                             break;
                         case GREEN:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickgreenBishop");
-                            else imagenPieza = Atlas.findRegion("chapagreenBishop");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickgreenBishop");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapagreenBishop");
+                            }
                             break;
                         case PURPLE:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickpurpleBishop");
-                            else imagenPieza = Atlas.findRegion("chapapurpleBishop");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickpurpleBishop");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapapurpleBishop");
+                            }
                             break;
                     }
                     break;
                 case ROOK:
                     switch (Ocupada.ColorJugador) {
                         case BLACK:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblackRook");
-                            else imagenPieza = Atlas.findRegion("chapablackRook");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickblackRook");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapablackRook");
+                            }
                             break;
                         case BLUE:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblueRook");
-                            else imagenPieza = Atlas.findRegion("chapablueRook");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickblueRook");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapablueRook");
+                            }
                             break;
                         case GREEN:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickgreenRook");
-                            else imagenPieza = Atlas.findRegion("chapagreenRook");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickgreenRook");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapagreenRook");
+                            }
                             break;
                         case PURPLE:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickpurpleRook");
-                            else imagenPieza = Atlas.findRegion("chapapurpleRook");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickpurpleRook");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapapurpleRook");
+                            }
                             break;
                     }
                     break;
                 case QUEEN:
                     switch (Ocupada.ColorJugador) {
                         case BLACK:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblackQueen");
-                            else imagenPieza = Atlas.findRegion("chapablackQueen");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickblackQueen");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapablackQueen");
+                            }
                             break;
                         case BLUE:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblueQueen");
-                            else imagenPieza = Atlas.findRegion("chapablueQueen");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickblueQueen");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapablueQueen");
+                            }
                             break;
                         case GREEN:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickgreenQueen");
-                            else imagenPieza = Atlas.findRegion("chapagreenQueen");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickgreenQueen");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapagreenQueen");
+                            }
                             break;
                         case PURPLE:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickpurpleQueen");
-                            else imagenPieza = Atlas.findRegion("chapapurpleQueen");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickpurpleQueen");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapapurpleQueen");
+                            }
                             break;
                     }
                     break;
                 case KING:
                     switch (Ocupada.ColorJugador) {
                         case BLACK:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblackKing");
-                            else imagenPieza = Atlas.findRegion("chapablackKing");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickblackKing");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapablackKing");
+                            }
                             break;
                         case BLUE:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickblueKing");
-                            else imagenPieza = Atlas.findRegion("chapablueKing");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickblueKing");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapablueKing");
+                            }
                             break;
                         case GREEN:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickgreenKing");
-                            else imagenPieza = Atlas.findRegion("chapagreenKing");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickgreenKing");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapagreenKing");
+                            }
                             break;
                         case PURPLE:
-                            if (Clickada) imagenPieza = Atlas.findRegion("chapaclickpurpleKing");
-                            else imagenPieza = Atlas.findRegion("chapapurpleKing");
+                            if (Clickada) {
+                                imagenPieza = Atlas.findRegion("chapaclickpurpleKing");
+                            } else {
+                                imagenPieza = Atlas.findRegion("chapapurpleKing");
+                            }
                             break;
                     }
                     break;
@@ -217,7 +289,7 @@ public class Casilla extends Actor {
         //Tenia puesto que cambiara segun la casilla fuera oscura o clara pero bueno creo que esta imagen
         //gris es un buen compromiso (Aun asi dejo esto en parte por tener esto por si futuro y en parte
         //porque como no me salia por un error mio asi queda otra forma de implementar lo de este color
-        
+
         //for (Casilla x : Partida.CasillaClickada().Ocupada.PossibleMoves(Partida.CasillaClickada(), Partida)) {
         //System.out.println("f+c"+x.Fila+"@"+Fila+"|"+x.Columna+"@"+Columna);
         //if (x.Fila==Fila && x.Columna==Columna) {
@@ -225,7 +297,6 @@ public class Casilla extends Actor {
         //    System.out.println("hola");
         //    batch.draw(Atlas.findRegion("darkdiana"), Fila * sprite.getWidth() + 30, Columna * sprite.getHeight() + 30);
         //} else {
-
         //}
         //break;
         //}
@@ -274,7 +345,29 @@ public class Casilla extends Actor {
                     Clickada = true;
                 } else if (Partida.SoloUnaCasillaClickada()) {
                     System.out.println("Tocaria moverse ahi");
-                    Partida.QuitarClicks();
+                    //System.out.println(Partida.CasillaClickada());
+                    //System.out.println(Partida.getCasilla(Fila, Columna));
+                    if (Partida.MovimientoLegal(Partida.CasillaClickada(), Partida.getCasilla(Fila, Columna))) {//INNECESARIO YA HE COMPROBADO QUE EL MOVIMIENTO ES LEGAL
+                        Partida.MovimientoNuevo(Partida.CasillaClickada(), Partida.getCasilla(Fila, Columna), true);
+                        Partida.QuitarClicks();
+                        int indice = getStage().getActors().size;
+                       // getStage().getActors().removeRange(0, indice - 1);
+                       // for (Casilla cas : Partida.Tablero) {
+                       //     getStage().addActor(cas);
+                       // }
+                       // getStage().addActor(Partida);
+                        //Board prueba = (Board) (getStage().getActors().get(indice - 1));
+                       // System.out.println(prueba + " " + prueba.CasillaClickada());
+                       // System.out.println(getStage().getActors().size);
+
+                        //int indice=getStage().getActors().size;
+                        //getStage().getActors().removeIndex(indice-1);
+                        //getStage().getActors().
+                        //getStage().addActor(Partida);
+                        //System.out.println(prueba);
+                        //prueba=prueba.Movimiento(Partida.CasillaClickada(), Partida.getCasilla(Fila, Columna), true);
+                        //Partida.QuitarClicks();   
+                    }
                 }
 
                 return super.touchDown(event, x, y, pointer, button); //To change body of generated methods, choose Tools | Templates.

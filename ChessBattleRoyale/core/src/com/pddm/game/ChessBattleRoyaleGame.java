@@ -15,8 +15,14 @@ public class ChessBattleRoyaleGame extends Game {
     @Override
     public void create() {
         batch=new SpriteBatch();
-        partida=new PartidaScreen(this);       
+            partida=new PartidaScreen(this);       
         setScreen(partida);       
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height); //To change body of generated methods, choose Tools | Templates.
+        if (partida != null) partida.resize(width, height); 
     }
 
     @Override

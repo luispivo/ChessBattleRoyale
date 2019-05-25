@@ -162,14 +162,14 @@ public class SillyIA implements Evaluation{
         //minimizando. Aqui con 4 jugadores no es tan sencillo pero si si se tiene en cuenta que comparando el color
         //del jugador que le toca y el color que se esta evaluando.
         //Es el jugador anterior porque si que al hacer el movimiento ya cambia de jugador...
-        //System.out.println(EvaluaColor.toString()+tablero.jugadorAnterior().toString()+tablero.TurnoJugador.toString());
+        //System.out.println(EvaluaColor.toString()+tablero.JugadorAnterior().toString()+tablero.TurnoJugador.toString());
         if (EvaluaColor==tablero.TurnoJugador){
             value= -10000000;
             for (Board x : tablero.TablerosPosibles(false)){
                 value=Math.max(value,MinMax_AlphaBeta(x,profundidad-1,alpha,beta));
                 alpha=Math.max(alpha,value);
                 if (alpha>=beta) break;     
-                //System.out.println(EvaluaColor+" "+tablero.jugadorAnterior()+" "+tablero.TurnoJugador+"\n="+x.toString()+value+" "+alpha+" "+beta); 
+                //System.out.println(EvaluaColor+" "+tablero.JugadorAnterior()+" "+tablero.TurnoJugador+"\n="+x.toString()+value+" "+alpha+" "+beta); 
             }
             return value;
         }
