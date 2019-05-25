@@ -5,8 +5,13 @@
  */
 package Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.pddm.game.ChessBattleRoyaleGame;
@@ -21,6 +26,7 @@ public abstract class PlantillaScreen extends ScreenAdapter {
     protected SpriteBatch batch;
     public Sound moveSound;
 
+    
     public PlantillaScreen(ChessBattleRoyaleGame game) {
         this.game = game;
         batch = game.getSpriteBatch();
@@ -32,6 +38,7 @@ public abstract class PlantillaScreen extends ScreenAdapter {
     public void show() {
         // moveSound = Gdx.audio.newSound(Gdx.files.internal("move.mp3"));
         //moveSound.play();
+
     }
 
     @Override

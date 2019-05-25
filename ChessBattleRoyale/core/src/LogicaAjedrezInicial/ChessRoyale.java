@@ -37,7 +37,7 @@ public class ChessRoyale {
         //pruebaHorizonteTableros(4, tablero);
     }
     private static void pruebaDistancias(){      
-        Board tablero = new Board(14, 14,null);
+        Board tablero = new Board(14, 14,null,3);
         System.out.println("------->VAMOS A VER DISTANCIAS***********************");
         Casilla casilla=tablero.getCasilla(7, 7);
         casilla.Ocupada=new King(Color.GREEN);
@@ -60,7 +60,7 @@ public class ChessRoyale {
     }
     private static void pruebaMovimientosII(){
        // PRUEBAS DE COMO VA LOS MOVIMIENTOS
-        Board tablero = new Board(14, 14,null);
+        Board tablero = new Board(14, 14,null,3);
         System.out.println("IMPRIMO TABLERO SIN NADA");
         System.out.println(tablero);
         
@@ -87,7 +87,7 @@ public class ChessRoyale {
          
     }
     private static void pruebaMovimientos(){
-        Board tablero = new Board(14, 14,null);
+        Board tablero = new Board(14, 14,null,3);
        
         //Pruebas de movimientos...
         Pieza peoncito=new King(Color.BLACK);
@@ -106,7 +106,7 @@ public class ChessRoyale {
     private static void pruebaDecrecerTablero(){
         // Prueba para ver como iba decreciendo el tablero... Se puede hasta i=8 con el tablero de 14 (el 9 haria
         // tablero nulo
-        Board tablero = new Board(14, 14,null);
+        Board tablero = new Board(14, 14,null,3);
         for (int i = 0; i < 3; i++) {
             tablero.IncrementaAlertaTablero();
             System.out.println(tablero);
@@ -148,7 +148,7 @@ public class ChessRoyale {
 
     }
     private static void pruebaColorines(){
-        Board tablero = new Board(14, 14,null);
+        Board tablero = new Board(14, 14,null,3);
         //Prueba de unas cosillas de las enumeraciones para ver como hago para que vaya avanzando con ella por los turnos      
         Color color=Color.BLUE;
         System.out.println(color.ordinal());
@@ -380,7 +380,7 @@ public class ChessRoyale {
     }
 
     private static Board NuevoTablero() {
-        Board tablero = new Board(14, 14,null);
+        Board tablero = new Board(14, 14,null,3);
         tablero.TableroInicialPiezas14();
         return tablero;
     }

@@ -5,7 +5,12 @@
  */
 package LogicaAjedrezInicial;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import java.util.ArrayList;
@@ -37,19 +42,64 @@ public class Board extends Actor{
     //Casilla[][] TCasillas;
     //pero es mejor el arraylist a priori para no tener fijas las dimensiones
     TextureAtlas Atlas;
-
+    //Esta vez para variar de casilla he cogido y he puesto simplemente los nombres de las regiones 
+    //Correspondientes... Quizás es menos modular para el futuro pero bueno 
+    //Lo ideal seria juntar los colores con el TiemposReloj en una clase POJO pero no me atrevo a
+    //refactorizarlo teniendo en cuenta el tiempo que me queda para la entrega. Lo apunto como 
+    //una issue en github
+   
+    ArrayList<Long> TiemposReloj;
+    Long TiempoAnterior;
+      
+    //Creo el sprite más que nada para darle un tamaño todo relacionado con la casilla asi que me da igual que imagen coger (creo)
+    //Lo mismo es un poco torticero pero...
+    Sprite sprite;
+    
+    BitmapFont Font;
+    GlyphLayout GLayout;
+    
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        super.draw(batch, parentAlpha); //To change body of generated methods, choose Tools | Templates.
+        //super.draw(batch, parentAlpha); //To change body of generated methods, choose Tools | Templates.
+         batch.draw(Atlas.findRegion("titulo"),sprite.getWidth()*15, sprite.getHeight()*13); 
+         //System.out.println(TurnoJugador.toString());
+         batch.draw(Atlas.findRegion(TurnoJugador.toString()), sprite.getWidth()*17,sprite.getHeight()*12 );        
+         
+         //Aqui hay un bug cuando se elimina un jugador el indice pasa de 1-4 a 1-3....
+         //y esto no entiende de esas cosas
+         int indice=JugadoresActivos.indexOf(TurnoJugador);
+         TiemposReloj.set(indice, TiemposReloj.get(indice)-(System.currentTimeMillis()-TiempoAnterior));
+         TiempoAnterior=System.currentTimeMillis();
+         
+         PasarTiempoAString(TiemposReloj,batch);
+         
+    }
+    
+    private void PasarTiempoAString(ArrayList<Long> TiemposReloj,Batch batch) {
+        String tiempo;
+        long tiempoSobrante;
+        for (int i=0;i<TiemposReloj.size();i++){
+            Font.draw(batch, TiempoAString(TiemposReloj.get(i)) , sprite.getWidth()*17,sprite.getHeight()*(11-i));
+        }      
     }
 
-    
+    String TiempoAString(Long x) {
+        String tiempo;
+        long tiempoSobrante;
+        tiempo=Long.toString(x/3600000)+":";
+        tiempoSobrante=x%3600000;
+        tiempo+=Long.toString(tiempoSobrante/60000)+":";
+        tiempoSobrante=tiempoSobrante%60000;
+        tiempo+=Long.toString(tiempoSobrante/1000)+":";
+        tiempo+=Long.toString(tiempoSobrante%1000);
+        return tiempo;
+    }
     /**
      * Constructor para el tablero vacío, sin piezas y que comienza el jugador negro
      * @param columns número de columnas del tablero (1 al número de columnas)
      * @param rows número de filas del tablero (1 al número de filas)
      */
-    public Board(int columns, int rows,TextureAtlas atlas) {
+    public Board(int columns, int rows,TextureAtlas atlas,int tiempo) {
         Tablero=new ArrayList();
         this.Rows = rows;
         this.Columns = columns;
@@ -58,9 +108,18 @@ public class Board extends Actor{
         for(int i=0;i<Rows;i++) for(int j=0;j<Columns;j++) Tablero.add(new Casilla(i,j,atlas,this));
         TurnoJugador=Color.BLACK;
         JugadoresActivos=new ArrayList<>();
-        (EnumSet.allOf(Color.class)).forEach( x -> JugadoresActivos.add(x));
+        TiemposReloj=new ArrayList<>();
         Atlas=atlas;
+        (EnumSet.allOf(Color.class)).forEach( x -> {
+            JugadoresActivos.add(x);
+            TiemposReloj.add(new Long(tiempo*60000));
+                });   
         Movimientos=0;
+        sprite= new Sprite(new Texture(Gdx.files.internal("darkwhite.png")));
+//        Turno=new Label("Le toca jugar a:", style);
+        TiempoAnterior=System.currentTimeMillis();
+        Font=new BitmapFont(new BitmapFont.BitmapFontData(Gdx.files.internal("time.fnt"),false),Atlas.findRegion("time"),true);
+        GLayout=new GlyphLayout();
     } 
     /**
      * Constructor copia
@@ -72,11 +131,18 @@ public class Board extends Actor{
         Columns=board.Columns;
         InitialColumns=board.InitialColumns; 
         TurnoJugador=board.TurnoJugador;
-        JugadoresActivos=board.JugadoresActivos;
+        JugadoresActivos=new ArrayList();
+        board.JugadoresActivos.forEach( x -> JugadoresActivos.add(x));
         Tablero=new ArrayList();
         board.Tablero.forEach( x -> Tablero.add(new Casilla(x)));
         Atlas=board.Atlas;
         Movimientos=board.Movimientos;
+        this.sprite=board.sprite;
+        TiemposReloj=new ArrayList();
+        board.TiemposReloj.forEach( x -> TiemposReloj.add(x));
+        TiempoAnterior=board.TiempoAnterior;
+        Font=board.Font;
+        GLayout=board.GLayout;
     }
     /**
      * Elimina la casilla del tablero
@@ -227,6 +293,8 @@ public class Board extends Actor{
         Pieza pieza=inicio.CopiaPiezaPorTipo();
         nuevoTablero.getCasilla(inicio.Fila, inicio.Columna).Ocupada=null;
         nuevoTablero.getCasilla(destino.Fila, destino.Columna).Ocupada=pieza;
+        
+        
         nuevoTablero.EliminaJugadorYPasaAlSiguienteJugador(noAnalisis);
         if(nuevoTablero.TurnoJugador==nuevoTablero.JugadoresActivos.get(0)) nuevoTablero.Movimientos++;
         if(nuevoTablero.Movimientos%AUMENTARPELIGRO==0) nuevoTablero.IncrementaAlertaTablero();
@@ -250,6 +318,7 @@ public class Board extends Actor{
         Pieza pieza=inicio.CopiaPiezaPorTipo();
         getCasilla(inicio.Fila, inicio.Columna).Ocupada=null;
         getCasilla(destino.Fila, destino.Columna).Ocupada=pieza;
+        
         EliminaJugadorYPasaAlSiguienteJugador(noAnalisis);
         if(JugadorAnterior()==JugadoresActivos.get(JugadoresActivos.size()-1)) {
             Movimientos++;
@@ -478,4 +547,5 @@ public class Board extends Actor{
         for(Casilla x:Tablero) if(x.Clickada) return x;
         return null;
     }
+
 }

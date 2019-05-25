@@ -4,7 +4,6 @@ import Screens.PartidaScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class ChessBattleRoyaleGame extends Game {
 
@@ -15,7 +14,7 @@ public class ChessBattleRoyaleGame extends Game {
     @Override
     public void create() {
         batch=new SpriteBatch();
-            partida=new PartidaScreen(this);       
+        partida=new PartidaScreen(this);       
         setScreen(partida);       
     }
 
@@ -27,7 +26,7 @@ public class ChessBattleRoyaleGame extends Game {
 
     @Override
     public void dispose() {
-        super.dispose(); //To change body of generated methods, choose Tools | Templates.
+//        super.dispose(); //To change body of generated methods, choose Tools | Templates.
         batch.dispose();
     }
     

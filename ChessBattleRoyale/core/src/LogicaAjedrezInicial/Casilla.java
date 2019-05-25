@@ -5,8 +5,6 @@
  */
 package LogicaAjedrezInicial;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -45,7 +43,7 @@ public class Casilla extends Actor {
 
     //Creo el sprite más que nada para darle un tamaño asi que me da igual que imagen coger (creo)
     //Lo mismo es un poco torticero pero...
-    Sprite sprite = new Sprite(new Texture(Gdx.files.internal("darkwhite.png")));
+    Sprite sprite; 
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -85,7 +83,7 @@ public class Casilla extends Actor {
                     break;
             }
         }
-        batch.draw(imagenCasilla, Fila * 50 + 30, Columna * 50 + 30);
+        batch.draw(imagenCasilla, Fila * sprite.getWidth() + 30, Columna * sprite.getWidth() + 30);
         if (Ocupada != null) {
             switch (Ocupada.ClasePieza) {
                 case PAWN:
@@ -333,6 +331,7 @@ public class Casilla extends Actor {
         //Pero si no sale.... ya pasaría a lo siguiente       
         //Otra CUESTION tener en cuenta el TurnoJugador y que si es IA tiene que haber una manera de evitar esto ¿otro
         //booleano de jugador o enemigo?
+        sprite = new Sprite(Atlas.findRegion("darkwhite"));
         setBounds(Fila * sprite.getWidth() + 30, Columna * sprite.getHeight() + 30, sprite.getWidth(), sprite.getHeight());
         setTouchable(Touchable.enabled);
         addListener(new InputListener() {
@@ -350,7 +349,7 @@ public class Casilla extends Actor {
                     if (Partida.MovimientoLegal(Partida.CasillaClickada(), Partida.getCasilla(Fila, Columna))) {//INNECESARIO YA HE COMPROBADO QUE EL MOVIMIENTO ES LEGAL
                         Partida.MovimientoNuevo(Partida.CasillaClickada(), Partida.getCasilla(Fila, Columna), true);
                         Partida.QuitarClicks();
-                        int indice = getStage().getActors().size;
+                       // int indice = getStage().getActors().size;
                        // getStage().getActors().removeRange(0, indice - 1);
                        // for (Casilla cas : Partida.Tablero) {
                        //     getStage().addActor(cas);
@@ -383,6 +382,7 @@ public class Casilla extends Actor {
         Ocupada = casilla.Ocupada;
         Atlas = casilla.Atlas;
         Partida = casilla.Partida;
+        this.sprite=casilla.sprite;
     }
 
     Pieza CopiaPiezaPorTipo() {
