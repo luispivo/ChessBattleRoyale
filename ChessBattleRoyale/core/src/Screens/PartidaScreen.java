@@ -39,7 +39,8 @@ public class PartidaScreen extends PlantillaScreen{
         (EnumSet.allOf(Color.class)).forEach( x -> {
            ListaJugadores.add(new Jugador(1,TipoJugador.HUMANO,x));
         });
-        stage=new Stage(new FitViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
+        stage=new Stage(game.Viewport);
+        //stage=new Stage(new FitViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(stage);  
         tablero=new Board(NUMEROFILAS,NUMEROCOLUMNAS,atlas,ListaJugadores);
         tablero.TableroInicialPiezas14();        
@@ -50,7 +51,7 @@ public class PartidaScreen extends PlantillaScreen{
 
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width, height,false); //To change body of generated methods, choose Tools | Templates.
+        stage.getViewport().update(width, height,true); //To change body of generated methods, choose Tools | Templates.
         //stage.getViewport().project(Vector3.Zero);
     }
 
@@ -67,7 +68,6 @@ public class PartidaScreen extends PlantillaScreen{
     public void dispose() {
  //       super.dispose(); //To change body of generated methods, choose Tools | Templates.
         stage.dispose();
-        dispose();
     }
     
 }

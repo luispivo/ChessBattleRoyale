@@ -6,30 +6,37 @@ filter: Nearest,Nearest
 repeat: none
 BLACK
   rotate: false
-  xy: 516, 447
+  xy: 68, 245
   size: 250, 50
   orig: 250, 50
   offset: 0, 0
   index: -1
 BLUE
   rotate: false
-  xy: 2, 314
+  xy: 68, 193
   size: 250, 50
   orig: 250, 50
   offset: 0, 0
   index: -1
 GREEN
   rotate: false
-  xy: 768, 447
+  xy: 68, 141
   size: 250, 50
   orig: 250, 50
   offset: 0, 0
   index: -1
 PURPLE
   rotate: false
-  xy: 2, 262
+  xy: 68, 89
   size: 250, 50
   orig: 250, 50
+  offset: 0, 0
+  index: -1
+buttonAceptar
+  rotate: false
+  xy: 516, 447
+  size: 286, 50
+  orig: 286, 50
   offset: 0, 0
   index: -1
 chapablackBishop
@@ -41,380 +48,408 @@ chapablackBishop
   index: -1
 chapablackKing
   rotate: false
-  xy: 254, 314
+  xy: 804, 447
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablackKnight
   rotate: false
-  xy: 2, 210
+  xy: 310, 314
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablackPawn
   rotate: false
-  xy: 254, 262
+  xy: 2, 38
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablackQueen
   rotate: false
-  xy: 306, 314
+  xy: 856, 447
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablackRook
   rotate: false
-  xy: 2, 158
+  xy: 362, 314
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablueBishop
   rotate: false
-  xy: 54, 210
+  xy: 908, 447
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablueKing
   rotate: false
-  xy: 306, 262
+  xy: 960, 447
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablueKnight
   rotate: false
-  xy: 358, 314
+  xy: 54, 37
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapabluePawn
   rotate: false
-  xy: 2, 106
+  xy: 106, 37
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablueQueen
   rotate: false
-  xy: 54, 158
+  xy: 158, 37
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablueRook
   rotate: false
-  xy: 106, 210
+  xy: 210, 37
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblackBishop
   rotate: false
-  xy: 358, 262
+  xy: 262, 37
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblackKing
   rotate: false
-  xy: 2, 54
+  xy: 320, 262
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblackKnight
   rotate: false
-  xy: 54, 106
+  xy: 320, 210
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblackPawn
   rotate: false
-  xy: 106, 158
+  xy: 320, 158
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblackQueen
   rotate: false
-  xy: 158, 210
+  xy: 320, 106
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblackRook
   rotate: false
-  xy: 2, 2
+  xy: 414, 314
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblueBishop
   rotate: false
-  xy: 54, 54
+  xy: 399, 262
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblueKing
   rotate: false
-  xy: 106, 106
+  xy: 372, 194
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblueKnight
   rotate: false
-  xy: 158, 158
+  xy: 372, 142
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickbluePawn
   rotate: false
-  xy: 210, 210
+  xy: 372, 90
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblueQueen
   rotate: false
-  xy: 54, 2
+  xy: 320, 54
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblueRook
   rotate: false
-  xy: 106, 54
+  xy: 372, 38
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickgreenBishop
   rotate: false
-  xy: 158, 106
+  xy: 494, 381
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickgreenKing
   rotate: false
-  xy: 210, 158
+  xy: 546, 395
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickgreenKnight
   rotate: false
-  xy: 262, 210
+  xy: 598, 395
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickgreenPawn
   rotate: false
-  xy: 106, 2
+  xy: 650, 395
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickgreenQueen
   rotate: false
-  xy: 158, 54
+  xy: 702, 395
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickgreenRook
   rotate: false
-  xy: 210, 106
+  xy: 754, 395
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickpurpleBishop
   rotate: false
-  xy: 262, 158
+  xy: 806, 395
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickpurpleKing
   rotate: false
-  xy: 314, 210
+  xy: 858, 395
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickpurpleKnight
   rotate: false
-  xy: 158, 2
+  xy: 910, 395
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickpurplePawn
   rotate: false
-  xy: 210, 54
+  xy: 962, 395
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickpurpleQueen
   rotate: false
-  xy: 262, 106
+  xy: 466, 329
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickpurpleRook
   rotate: false
-  xy: 314, 158
+  xy: 518, 329
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapagreenBishop
   rotate: false
-  xy: 210, 2
+  xy: 570, 343
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapagreenKing
   rotate: false
-  xy: 262, 54
+  xy: 622, 343
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapagreenKnight
   rotate: false
-  xy: 314, 106
+  xy: 674, 343
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapagreenPawn
   rotate: false
-  xy: 262, 2
+  xy: 726, 343
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapagreenQueen
   rotate: false
-  xy: 314, 54
+  xy: 778, 343
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapagreenRook
   rotate: false
-  xy: 314, 2
+  xy: 830, 343
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapapurpleBishop
   rotate: false
-  xy: 366, 210
+  xy: 882, 343
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapapurpleKing
   rotate: false
-  xy: 366, 158
+  xy: 934, 343
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapapurpleKnight
   rotate: false
-  xy: 366, 106
+  xy: 451, 262
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapapurplePawn
   rotate: false
-  xy: 366, 54
+  xy: 503, 277
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapapurpleQueen
   rotate: false
-  xy: 366, 2
+  xy: 424, 210
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapapurpleRook
   rotate: false
-  xy: 410, 314
+  xy: 424, 158
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 darkorange
   rotate: false
-  xy: 410, 262
+  xy: 424, 106
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 darkred
   rotate: false
-  xy: 418, 210
+  xy: 424, 54
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 darkwhite
   rotate: false
-  xy: 418, 158
+  xy: 476, 210
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 darkyellow
   rotate: false
-  xy: 418, 106
+  xy: 476, 158
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 diana
   rotate: false
-  xy: 418, 54
+  xy: 476, 106
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 orange
   rotate: false
-  xy: 418, 2
+  xy: 476, 54
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 red
   rotate: false
-  xy: 494, 381
+  xy: 424, 2
   size: 50, 50
   orig: 50, 50
+  offset: 0, 0
+  index: -1
+slider-horizontal
+  rotate: false
+  xy: 68, 297
+  size: 240, 67
+  orig: 240, 67
+  offset: 0, 0
+  index: -1
+slider-knob-horizontal
+  rotate: false
+  xy: 372, 246
+  size: 25, 66
+  orig: 25, 66
+  offset: 0, 0
+  index: -1
+slider-knob-vertical
+  rotate: false
+  xy: 2, 90
+  size: 64, 24
+  orig: 64, 24
+  offset: 0, 0
+  index: -1
+slider-vertical
+  rotate: false
+  xy: 2, 116
+  size: 64, 248
+  orig: 64, 248
   offset: 0, 0
   index: -1
 time
@@ -433,14 +468,14 @@ titulo
   index: -1
 white
   rotate: false
-  xy: 546, 395
+  xy: 476, 2
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 yellow
   rotate: false
-  xy: 598, 395
+  xy: 555, 277
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
