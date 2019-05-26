@@ -12,7 +12,7 @@ public class DesktopLauncher {
                 config.height = 768;
 		config.width = 1360;
                 //Hiero.main(arg);
-                TexturePacker.process("../assets","../assets","ChessBattleRoyale_assets");
+                //TexturePacker.process("../assets","../assets","ChessBattleRoyale_assets");
                 new LwjglApplication(new ChessBattleRoyaleGame(), config);
 	}
 }

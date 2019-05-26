@@ -1,481 +1,488 @@
 
 ChessBattleRoyale_assets.png
-size: 1024,512
+size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 BLACK
   rotate: false
-  xy: 68, 245
+  xy: 2, 366
   size: 250, 50
   orig: 250, 50
   offset: 0, 0
   index: -1
 BLUE
   rotate: false
-  xy: 68, 193
+  xy: 638, 881
   size: 250, 50
   orig: 250, 50
   offset: 0, 0
   index: -1
 GREEN
   rotate: false
-  xy: 68, 141
+  xy: 2, 314
   size: 250, 50
   orig: 250, 50
   offset: 0, 0
   index: -1
 PURPLE
   rotate: false
-  xy: 68, 89
+  xy: 638, 829
   size: 250, 50
   orig: 250, 50
   offset: 0, 0
   index: -1
 buttonAceptar
   rotate: false
-  xy: 516, 447
+  xy: 638, 933
   size: 286, 50
   orig: 286, 50
   offset: 0, 0
   index: -1
+cblue
+  rotate: false
+  xy: 516, 499
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+cgreen
+  rotate: false
+  xy: 442, 433
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
 chapablackBishop
   rotate: false
-  xy: 442, 381
+  xy: 926, 933
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablackKing
   rotate: false
-  xy: 804, 447
+  xy: 254, 366
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablackKnight
   rotate: false
-  xy: 310, 314
+  xy: 890, 881
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablackPawn
   rotate: false
-  xy: 2, 38
+  xy: 2, 262
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablackQueen
   rotate: false
-  xy: 856, 447
+  xy: 638, 777
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablackRook
   rotate: false
-  xy: 362, 314
+  xy: 568, 499
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablueBishop
   rotate: false
-  xy: 908, 447
+  xy: 254, 314
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablueKing
   rotate: false
-  xy: 960, 447
+  xy: 306, 366
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablueKnight
   rotate: false
-  xy: 54, 37
+  xy: 890, 829
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapabluePawn
   rotate: false
-  xy: 106, 37
+  xy: 2, 210
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablueQueen
   rotate: false
-  xy: 158, 37
+  xy: 54, 262
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapablueRook
   rotate: false
-  xy: 210, 37
+  xy: 638, 725
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblackBishop
   rotate: false
-  xy: 262, 37
+  xy: 690, 777
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblackKing
   rotate: false
-  xy: 320, 262
+  xy: 306, 314
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblackKnight
   rotate: false
-  xy: 320, 210
+  xy: 358, 366
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblackPawn
   rotate: false
-  xy: 320, 158
+  xy: 2, 158
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblackQueen
   rotate: false
-  xy: 320, 106
+  xy: 54, 210
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblackRook
   rotate: false
-  xy: 414, 314
+  xy: 106, 262
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblueBishop
   rotate: false
-  xy: 399, 262
+  xy: 638, 673
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblueKing
   rotate: false
-  xy: 372, 194
+  xy: 690, 725
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblueKnight
   rotate: false
-  xy: 372, 142
+  xy: 742, 777
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickbluePawn
   rotate: false
-  xy: 372, 90
+  xy: 358, 314
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblueQueen
   rotate: false
-  xy: 320, 54
+  xy: 2, 106
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickblueRook
   rotate: false
-  xy: 372, 38
+  xy: 54, 158
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickgreenBishop
   rotate: false
-  xy: 494, 381
+  xy: 106, 210
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickgreenKing
   rotate: false
-  xy: 546, 395
+  xy: 158, 262
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickgreenKnight
   rotate: false
-  xy: 598, 395
+  xy: 690, 673
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickgreenPawn
   rotate: false
-  xy: 650, 395
+  xy: 742, 725
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickgreenQueen
   rotate: false
-  xy: 702, 395
+  xy: 794, 777
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickgreenRook
   rotate: false
-  xy: 754, 395
+  xy: 2, 54
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickpurpleBishop
   rotate: false
-  xy: 806, 395
+  xy: 54, 106
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickpurpleKing
   rotate: false
-  xy: 858, 395
+  xy: 106, 158
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickpurpleKnight
   rotate: false
-  xy: 910, 395
+  xy: 158, 210
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickpurplePawn
   rotate: false
-  xy: 962, 395
+  xy: 210, 262
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickpurpleQueen
   rotate: false
-  xy: 466, 329
+  xy: 742, 673
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapaclickpurpleRook
   rotate: false
-  xy: 518, 329
+  xy: 794, 725
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapagreenBishop
   rotate: false
-  xy: 570, 343
+  xy: 846, 777
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapagreenKing
   rotate: false
-  xy: 622, 343
+  xy: 2, 2
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapagreenKnight
   rotate: false
-  xy: 674, 343
+  xy: 54, 54
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapagreenPawn
   rotate: false
-  xy: 726, 343
+  xy: 106, 106
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapagreenQueen
   rotate: false
-  xy: 778, 343
+  xy: 158, 158
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapagreenRook
   rotate: false
-  xy: 830, 343
+  xy: 210, 210
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapapurpleBishop
   rotate: false
-  xy: 882, 343
+  xy: 262, 262
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapapurpleKing
   rotate: false
-  xy: 934, 343
+  xy: 794, 673
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapapurpleKnight
   rotate: false
-  xy: 451, 262
+  xy: 846, 725
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapapurplePawn
   rotate: false
-  xy: 503, 277
+  xy: 54, 2
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapapurpleQueen
   rotate: false
-  xy: 424, 210
+  xy: 106, 54
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 chapapurpleRook
   rotate: false
-  xy: 424, 158
+  xy: 158, 106
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+cpurple
+  rotate: false
+  xy: 210, 158
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 darkorange
   rotate: false
-  xy: 424, 106
+  xy: 262, 210
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 darkred
   rotate: false
-  xy: 424, 54
+  xy: 314, 262
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 darkwhite
   rotate: false
-  xy: 476, 210
+  xy: 846, 673
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 darkyellow
   rotate: false
-  xy: 476, 158
+  xy: 106, 2
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 diana
   rotate: false
-  xy: 476, 106
+  xy: 158, 54
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
+icono
+  rotate: false
+  xy: 2, 650
+  size: 634, 333
+  orig: 634, 333
+  offset: 0, 0
+  index: -1
 orange
   rotate: false
-  xy: 476, 54
+  xy: 210, 106
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 red
   rotate: false
-  xy: 424, 2
+  xy: 262, 158
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
-slider-horizontal
-  rotate: false
-  xy: 68, 297
-  size: 240, 67
-  orig: 240, 67
-  offset: 0, 0
-  index: -1
-slider-knob-horizontal
-  rotate: false
-  xy: 372, 246
-  size: 25, 66
-  orig: 25, 66
-  offset: 0, 0
-  index: -1
-slider-knob-vertical
-  rotate: false
-  xy: 2, 90
-  size: 64, 24
-  orig: 64, 24
-  offset: 0, 0
-  index: -1
-slider-vertical
-  rotate: false
-  xy: 2, 116
-  size: 64, 248
-  orig: 64, 248
-  offset: 0, 0
-  index: -1
 time
   rotate: false
-  xy: 2, 433
+  xy: 2, 485
   size: 512, 64
   orig: 512, 64
   offset: 0, 0
   index: -1
 titulo
   rotate: false
-  xy: 2, 366
+  xy: 2, 418
   size: 438, 65
   orig: 438, 65
   offset: 0, 0
   index: -1
+titulo_grande
+  rotate: false
+  xy: 2, 551
+  size: 657, 97
+  orig: 657, 97
+  offset: 0, 0
+  index: -1
 white
   rotate: false
-  xy: 476, 2
+  xy: 314, 210
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 yellow
   rotate: false
-  xy: 555, 277
+  xy: 158, 2
   size: 50, 50
   orig: 50, 50
   offset: 0, 0

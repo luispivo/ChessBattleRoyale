@@ -40,7 +40,7 @@ public class Board extends Actor {
     ArrayList<Color> JugadoresActivos;
     int Movimientos;
     //De momento para las pruebas lo pongo como constante
-    final int AUMENTARPELIGRO = 2;
+    final int AUMENTARPELIGRO;
 
     public ArrayList<Casilla> Tablero;
     //Otra posibilidad sería trabajar con 
@@ -141,7 +141,7 @@ public class Board extends Actor {
      * @param columns número de columnas del tablero (1 al número de columnas)
      * @param rows número de filas del tablero (1 al número de filas)
      */
-    public Board(int columns, int rows, TextureAtlas atlas, ArrayList<Jugador> ListaJugadores) {
+    public Board(int columns, int rows, TextureAtlas atlas, ArrayList<Jugador> ListaJugadores, int aumentar) {
         Tablero = new ArrayList();
         this.Rows = rows;
         this.Columns = columns;
@@ -165,6 +165,7 @@ public class Board extends Actor {
         Font = new BitmapFont(new BitmapFont.BitmapFontData(Gdx.files.internal("time.fnt"), false), Atlas.findRegion("time"), true);
         GLayout = new GlyphLayout();
         Jugadores = ListaJugadores;
+        AUMENTARPELIGRO=aumentar;
     }
 
     /**
@@ -189,6 +190,7 @@ public class Board extends Actor {
         TiempoAnterior = board.TiempoAnterior;
         Font = board.Font;
         GLayout = board.GLayout;
+        AUMENTARPELIGRO=board.AUMENTARPELIGRO;
     }
 
     /**

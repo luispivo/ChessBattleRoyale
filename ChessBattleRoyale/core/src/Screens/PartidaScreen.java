@@ -30,19 +30,20 @@ public class PartidaScreen extends PlantillaScreen{
     Stage stage;
     ArrayList<Jugador> ListaJugadores;
     
-    public PartidaScreen(ChessBattleRoyaleGame game) {
+    public PartidaScreen(ChessBattleRoyaleGame game, int minutos,String periodo) {
         super(game);
         TextureAtlas atlas=game.getAssetManager().get("ChessBattleRoyale_assets.atlas");
         ListaJugadores=new ArrayList();
         //esto habrá que retocarlo en el futuro porque los jugadores han de venir del menu de configuracion para 
         //para poner las ias o los remotos
         (EnumSet.allOf(Color.class)).forEach( x -> {
-           ListaJugadores.add(new Jugador(1,TipoJugador.HUMANO,x));
+           ListaJugadores.add(new Jugador(minutos,TipoJugador.HUMANO,x));
         });
         stage=new Stage(game.Viewport);
         //stage=new Stage(new FitViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(stage);  
-        tablero=new Board(NUMEROFILAS,NUMEROCOLUMNAS,atlas,ListaJugadores);
+        int per=Integer.parseInt(periodo);
+        tablero=new Board(NUMEROFILAS,NUMEROCOLUMNAS,atlas,ListaJugadores,per);
         tablero.TableroInicialPiezas14();        
         //for (int i = 0; i < 3; i++) tablero.IncrementaAlertaTablero();       
         for (Casilla x: tablero.Tablero) stage.addActor(x);  
