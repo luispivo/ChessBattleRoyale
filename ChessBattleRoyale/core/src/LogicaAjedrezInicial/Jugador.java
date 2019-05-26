@@ -9,7 +9,21 @@ package LogicaAjedrezInicial;
  *
  * @author Luis
  */
-class Jugador {
+public class Jugador {
     String Nick,Nombre,Apellidos,Correo;
-    ELO Elo;   
+    ELO Elo;
+    Long TiempoRestante;
+    TipoJugador ClaseJugador;
+    Color PiezasPartida;
+
+    public Jugador(TipoJugador ClaseJugador, Color PiezasPartida) {
+        this.ClaseJugador = ClaseJugador;
+        this.PiezasPartida = PiezasPartida;
+    }
+
+    public Jugador(int TiempoRestante, TipoJugador ClaseJugador, Color PiezasPartida) {
+        this.TiempoRestante = new Long(TiempoRestante*60000);
+        this.ClaseJugador = ClaseJugador;
+        this.PiezasPartida = PiezasPartida;
+    }    
 }

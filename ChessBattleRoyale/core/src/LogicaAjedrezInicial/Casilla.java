@@ -337,13 +337,13 @@ public class Casilla extends Actor {
         addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Toque la casilla " + Fila + "|" + Columna);
+                //System.out.println("Toque la casilla " + Fila + "|" + Columna);
                 if (Clickada) {
                     Clickada = false;
                 } else if (Ocupada != null && (Ocupada.ColorJugador == Partida.TurnoJugador) && !Partida.SoloUnaCasillaClickada()) {
                     Clickada = true;
                 } else if (Partida.SoloUnaCasillaClickada()) {
-                    System.out.println("Tocaria moverse ahi");
+                  //  System.out.println("Tocaria moverse ahi");
                     //System.out.println(Partida.CasillaClickada());
                     //System.out.println(Partida.getCasilla(Fila, Columna));
                     if (Partida.MovimientoLegal(Partida.CasillaClickada(), Partida.getCasilla(Fila, Columna))) {//INNECESARIO YA HE COMPROBADO QUE EL MOVIMIENTO ES LEGAL
