@@ -23,5 +23,5 @@ ChessBattleRoyale | Proyecto en sí
 ChessBattleRoyale_test | Borrador empleado a veces para los javaDoc (Ni mirar)
 
 ## Sitio Web GitPages del proyecto
-[ChessBattleRoyale] (http://luispivo.github.io/ChessBattleRoyale)
+[ChessBattleRoyale](http://luispivo.github.io/ChessBattleRoyale)
 
