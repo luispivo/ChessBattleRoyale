@@ -12,6 +12,6 @@ layout: default
 
 * [Documentación sobre las clases en JavaDoc](./index1.html).
 
-* [Descargate el Manual del proyecto](./Documento_Proyecto.pdf).
+* [Descargate el Manual del proyecto](../Documento_Proyecto.pdf).
 
-* [Descargate el ejecutable del juego (aún no implementadao)](.)
+* [Descargate el ejecutable del juego (aún no implementadao)](../Exes/ChessBattleRoyale.zip)
