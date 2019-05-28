@@ -18,4 +18,19 @@ https://www.youtube.com/watch?v=023XCfmjBjk
 https://www.quora.com/How-do-I-write-a-chess-game-in-Java
 https://www.quora.com/unanswered/I-want-to-write-a-chess-engine-where-do-I-start
 https://www.youtube.com/watch?v=bGAfaepBco4
+https://www.freecodecamp.org/news/simple-chess-ai-step-by-step-1d55a9266977/
+https://www.youtube.com/watch?v=VoVPYVwulQs
+https://github.com/lhartikk/simple-chess-ai
+https://github.com/amir650/BlackWidow-Chess
 
+
+LIBGDX
+https://github.com/libgdx/libgdx/wiki/Scene2d.ui
+https://libgdx.info/basic_image/
+https://www.gamefromscratch.com/page/LibGDX-Video-Tutorial-Series.aspx
+https://gamedev.stackexchange.com/questions/143452/how-to-tap-a-square-and-draw-cross-x-on-tic-tac-toe-for-iibgdx
+http://www.java-gaming.org/topics/libgdx-solved-it-s-possible-get-the-time/30294/view.html
+https://github.com/libgdx/libgdx
+
+OTRAS COSAS
+http://buttonoptimizer.com
